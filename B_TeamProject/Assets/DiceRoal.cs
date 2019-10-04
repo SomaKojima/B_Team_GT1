@@ -13,6 +13,7 @@ public class DiceRoal : MonoBehaviour
     [SerializeField]
     private GameObject dice;
     int count;
+    int score;
 
     // Start is called before the first frame update
     void Start()
@@ -26,34 +27,40 @@ public class DiceRoal : MonoBehaviour
     void Update()
     {
         
-        if (!one)
-        {
-            dice.transform.Rotate(new Vector3(0, 5, 15));
-            
+        if (roalFlag)
+        {         
+            dice.transform.Rotate(new Vector3(0, 10, 25));     
         }
         if (Input.GetMouseButtonUp(0))
         {
-            roalFlag = false;
+            
             //dice.transform.Rotate(new Vector3(0, 0, 0));
         }
-        if(!one&&!roalFlag)
+        if(!one&&roalFlag)
         {
             count++;
             if (count < 20)
             {
-                speed = new Vector3(-0.25f, 0.5f, 0);
+                speed = new Vector3(0.2f, 0.5f, 0);
             }
             else if (count<30)
             {
-                speed = new Vector3(-0.25f, 0.25f, 0);
+                speed = new Vector3(0.2f, 0.25f, 0);
             }
             else if (count < 40)
             {
-                dice.transform.Translate(new Vector3(-0.25f, -0.25f, 0));
+                speed = new Vector3(0.2f, -0.25f, 0);
             }
             else if (count < 60)
             {
-                dice.transform.Translate(new Vector3(-0.25f, -0.5f, 0));
+                speed = new Vector3(0.2f, -0.5f, 0);
+            }
+            else
+            {
+                speed = new Vector3(0, 0, 0);
+                roalFlag = false;
+                score = (int)Random.Range(1.0f, 6.99f);
+                Debug.Log(score);
             }
 
             dice.transform.position += speed;
