@@ -25,7 +25,7 @@ public class DebugMouse : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.name == "Base0")
+        if (col.gameObject.name == "Base1")
         {
             Debug.Log("jhfhe");
             if (Input.GetMouseButton(0))

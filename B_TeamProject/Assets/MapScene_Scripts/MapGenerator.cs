@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    [SerializeField]
+    private float m_mapScale = 0.0f;
+    
     //マップ上のオブジェクト個数
     public const int MAP_BASE_NUM = 7;
 
@@ -55,7 +58,14 @@ public class MapGenerator : MonoBehaviour
         m_mapObject[0].transform.position = new Vector3(0, 0, 0);
 
         //マップのスケールを拡大させる
-        m_mapObject[0].transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
+        m_mapObject[0].transform.localScale = new Vector3(m_mapScale, m_mapScale, m_mapScale);
+
+        for(int i=1;i< MAP_BASE_NUM;i++)
+        {
+            m_mapObject[i].transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+            //描画順を変更
+            m_mapObject[i].GetComponent<SpriteRenderer>().sortingOrder = 2;
+        }
 
         //マップの回転値の変更
         m_mapObject[0].transform.transform.rotation = Quaternion.Euler(5, 0, 0);
