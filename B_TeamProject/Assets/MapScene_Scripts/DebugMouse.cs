@@ -23,17 +23,6 @@ public class DebugMouse : MonoBehaviour
         transform.position = new Vector3(worldMousePos.x, worldMousePos.y, 0);
     }
 
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.name == "Base1")
-        {
-            Debug.Log("jhfhe");
-            if (Input.GetMouseButton(0))
-            {
-                Debug.Log("jhfhe");
-                //SceneManager.LoadScene("GameScene");
-            }
-        }
-    }
+  
 
 }
