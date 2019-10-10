@@ -28,9 +28,6 @@ public class ScrollMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 外部のスクリプト
-        //bool a = MoveObject;
-        //MoveObject = false;
     }
 
     // Update is called once per frame
