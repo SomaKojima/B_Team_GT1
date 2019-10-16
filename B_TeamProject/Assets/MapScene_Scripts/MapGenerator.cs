@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+
     //マップ自体の大きさ
     [SerializeField]
     private float m_mapScale = 0.0f;
@@ -14,12 +15,23 @@ public class MapGenerator : MonoBehaviour
     //マップ上のオブジェクト個数
     public const int MAP_BASE_NUM = 7;
 
+    //マップ上の吹き出しの個数
+    public const int MAP_CALLOUT_NUM = 6;
+
     //マップ上のオブジェクト
     private GameObject[] m_mapObject = new GameObject[MAP_BASE_NUM];
+
+    //マップ上の吹き出しオブジェクト
+    private GameObject[] m_mapCallOutObject = new GameObject[MAP_CALLOUT_NUM];
+
 
     // Start is called before the first frame update
     void Start()
     {
+
+        GameObject generator = GameObject.Find("MapGenerator");
+
+       
 
         //テクスチャ配列
         Sprite[] m_sprite = {
@@ -44,7 +56,18 @@ public class MapGenerator : MonoBehaviour
             //森テクスチャをコンポーネント
             m_mapObject[i].GetComponent<SpriteRenderer>().sprite = m_sprite[i];
 
-            //m_mapObject[i].transform.position = Instantiate(gameObject);
+            // プレハブを取得
+            GameObject prefab = (GameObject)Resources.Load("Prefab/CallOUTPreb");
+
+            Vector2 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y,gameObject.transform.position.z);
+            // プレハブからインスタンスを生成
+            GameObject obj = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
+            // 作成したオブジェクトを子として登録
+            obj.transform.parent = transform;
+
+            //m_mapObject[i] = (GameObject)Instantiate(generator,transform.position,Quaternion.identity);
+
+            //m_mapObject[i].transform.parent = transform;
         }
        
 
@@ -63,6 +86,13 @@ public class MapGenerator : MonoBehaviour
             m_mapObject[i].GetComponent<SpriteRenderer>().sortingOrder = 2;
         }
 
+        //マップのスケールを拡大させる
+        m_mapObject[0].transform.localScale = new Vector3(m_mapScale, m_mapScale, m_mapScale);
+
+        //マップの回転値の変更
+        m_mapObject[0].transform.transform.rotation = Quaternion.Euler(37.426f, 0, 0);
+
+
         //ポジションの細かい設定
         m_mapObject[1].transform.position = m_texPos+ new Vector3(0, -1.73f,0);
 
@@ -78,12 +108,6 @@ public class MapGenerator : MonoBehaviour
 
         m_mapObject[6].transform.position = m_texPos + new Vector3(-3.5f, 2.3f, 1.68f);
 
-
-        //マップのスケールを拡大させる
-        m_mapObject[0].transform.localScale = new Vector3(m_mapScale, m_mapScale, m_mapScale);
-
-        //マップの回転値の変更
-        m_mapObject[0].transform.transform.rotation = Quaternion.Euler(37.426f, 0, 0);
     }
 
     // Update is called once per frame
