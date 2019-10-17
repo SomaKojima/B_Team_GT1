@@ -18,11 +18,9 @@ public class CloudManager : MonoBehaviour
     float m_fadeCount=1.0f;
 
 
-
     [SerializeField]
     private float m_posY;
      
-    private float distance_two;
 
 
     enum MOVE

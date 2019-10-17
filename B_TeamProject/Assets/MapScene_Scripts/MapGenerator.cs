@@ -35,13 +35,13 @@ public class MapGenerator : MonoBehaviour
 
         //テクスチャ配列
         Sprite[] m_sprite = {
-            Resources.Load<Sprite>("phone_map"),
-            Resources.Load<Sprite>("Forest"),
-            Resources.Load<Sprite>("Forest"),
-            Resources.Load<Sprite>("Forest"),
-            Resources.Load<Sprite>("Forest"),
-            Resources.Load<Sprite>("Forest"),
-            Resources.Load<Sprite>("Forest")};
+            Resources.Load<Sprite>("Sprite/phone_map"),
+            Resources.Load<Sprite>("Sprite/Forest"),
+            Resources.Load<Sprite>("Sprite/Forest"),
+            Resources.Load<Sprite>("Sprite/Forest"),
+            Resources.Load<Sprite>("Sprite/Forest"),
+            Resources.Load<Sprite>("Sprite/Forest"),
+            Resources.Load<Sprite>("Sprite/Forest")};
 
 
         for(int i=0;i<MAP_BASE_NUM;i++)
