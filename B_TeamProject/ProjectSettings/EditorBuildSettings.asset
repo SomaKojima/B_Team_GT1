@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BaseScene/B_BackGroundScene.unity
     guid: 7fdc5197245af944bb2e06a35087544a
+  - enabled: 1
+    path: Assets/Scenes/BaseMapScene.unity
+    guid: d10ffd4e27e0f5446bb25a79b097db67
   m_configObjects: {}
