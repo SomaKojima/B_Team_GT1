@@ -21,6 +21,7 @@ public class MapGenerator : MonoBehaviour
     //マップ上のオブジェクト
     private GameObject[] m_mapObject = new GameObject[MAP_BASE_NUM];
 
+
     //マップ上の吹き出しオブジェクト
     private GameObject[] m_mapCallOutObject = new GameObject[MAP_CALLOUT_NUM];
 
@@ -43,11 +44,16 @@ public class MapGenerator : MonoBehaviour
             Resources.Load<Sprite>("Sprite/Forest"),
             Resources.Load<Sprite>("Sprite/Forest")};
 
+        //タイトルのロゴを生成
+      //  m_mapObject[MAP_BASE_NUM] = new GameObject();
 
-        for(int i=0;i<MAP_BASE_NUM;i++)
+        for (int i=0;i<MAP_BASE_NUM;i++)
         {
-            //タイトルのロゴを生成
-            m_mapObject[i] = new GameObject("Base" + i);
+
+           // m_mapObject[i] = new GameObject(MAP_BASE_NUM);
+          
+
+            
             //スプライトレンダラーをAddする
             m_mapObject[i].AddComponent<SpriteRenderer>();
             //描画順を変更
@@ -56,14 +62,27 @@ public class MapGenerator : MonoBehaviour
             //森テクスチャをコンポーネント
             m_mapObject[i].GetComponent<SpriteRenderer>().sprite = m_sprite[i];
 
-            // プレハブを取得
-            GameObject prefab = (GameObject)Resources.Load("Prefab/CallOUTPreb");
+            Vector2 position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 
-            Vector2 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y,gameObject.transform.position.z);
-            // プレハブからインスタンスを生成
-            GameObject obj = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
-            // 作成したオブジェクトを子として登録
+            GameObject obj = (GameObject)Instantiate(m_mapObject[i], transform.position, Quaternion.identity);
+
             obj.transform.parent = transform;
+
+
+
+
+
+
+            //// プレハブを取得
+            //GameObject prefab = (GameObject)Resources.Load("Prefab/CallOUTPreb");
+
+            //Vector2 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y,gameObject.transform.position.z);
+            //// プレハブからインスタンスを生成
+            //m_mapObject[i] = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
+            //// 作成したオブジェクトを子として登録
+            //m_mapObject[i].transform.parent = transform;
+
+
 
             //m_mapObject[i] = (GameObject)Instantiate(generator,transform.position,Quaternion.identity);
 

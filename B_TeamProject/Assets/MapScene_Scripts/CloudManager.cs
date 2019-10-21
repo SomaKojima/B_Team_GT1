@@ -6,43 +6,24 @@ using DG.Tweening;
 
 public class CloudManager : MonoBehaviour
 {
-
-    [SerializeField]
-    //動く速度
-    private float m_moveVec;
-
-    //透明化の速さ
-    private float speed = 1.0f;
-
-    //フェードするときのカウント
-    float m_fadeCount=1.0f;
-
-
     [SerializeField]
     private float m_posY;
-     
 
-
+    //雲の動き  
     enum MOVE
     {
-        OBJECTLEFTMOVE,
-        OBJECTRIGHTMOVE,
-        OBJECTLEFTMOVE2,
-        OBJECTRIGHTMOVE2,
-        FADE,
+        OBJECTLEFTMOVE,     //画面内から画面外へ
+        OBJECTRIGHTMOVE,    //画面外から画面内へ
+        OBJECTLEFTMOVE2,    //画面外から画面内へ
+        OBJECTRIGHTMOVE2,   //画面内から画面外へ
     }
 
     [SerializeField]
     MOVE m_state;
 
-    SpriteRenderer spriteRenderer;
-
-
-
     // Start is called before the first frame update
     void Start()
     {
-        //動きだおおおおおおおおお
         if(m_state==MOVE.OBJECTLEFTMOVE)
         {
             this.transform.position = new Vector3(-4.96f, m_posY, -1.77f);
@@ -51,24 +32,12 @@ public class CloudManager : MonoBehaviour
         {
             this.transform.position = new Vector3(-14.67f, m_posY, -1.77f);
         }
-        else if(m_state==MOVE.OBJECTLEFTMOVE2)
-        {
-
-        }
-        else if(m_state==MOVE.OBJECTRIGHTMOVE2)
-        {
-
-        }
-   
-        //スプライトレンダラーを取得
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
-        ChangeTransparency(1); // 完全に透明にする
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        //動きの分岐
         switch (m_state)
         {
             case MOVE.OBJECTLEFTMOVE:
@@ -83,39 +52,54 @@ public class CloudManager : MonoBehaviour
             case MOVE.OBJECTRIGHTMOVE2:
                 MoveRight2();
                 break;
-            case MOVE.FADE:
-                m_fadeCount-=0.1f;
-                ChangeTransparency(m_fadeCount);
-                break;
         }
+
+        //動いた反対方向へ動く処理
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (m_state == MOVE.OBJECTLEFTMOVE)
+            {
+                m_state = MOVE.OBJECTRIGHTMOVE;
+            }
+            else if (m_state == MOVE.OBJECTRIGHTMOVE)
+            {
+                m_state = MOVE.OBJECTLEFTMOVE;
+            }
+            else if (m_state == MOVE.OBJECTLEFTMOVE2)
+            {
+                m_state = MOVE.OBJECTRIGHTMOVE2;
+            }
+            else if (m_state == MOVE.OBJECTRIGHTMOVE2)
+            {
+                m_state = MOVE.OBJECTLEFTMOVE2;
+            }
+        }
+
+      
+
     }
 
-
+    //左側の雲（画面内から画面外へ）
     void MoveLeft()
     {
         this.transform.DOMove(new Vector3(-14.67f,m_posY, -1.77f), 8.0f);
     }
 
+    //左側の雲（画面外から画面内へ）
     void MoveRight()
     {
         this.transform.DOMove(new Vector3(-4.96f, m_posY, -1.77f), 8.0f);
     }
 
+    //右側の雲（画面外から画面内へ）
     void MoveLeft2()
     {
         this.transform.DOMove(new Vector3(5.48f,m_posY, -1.77f),8.0f);
     }
 
+    //右側の雲（画面内から画面外へ）
     void MoveRight2()
     {
         this.transform.DOMove(new Vector3(15.19f, m_posY, -1.77f), 8.0f);
-    }
-
-    void ChangeTransparency(float alpha)
-    {
-        if (m_state == MOVE.FADE)
-        {
-            this.spriteRenderer.color = new Color(1, 1, 1, alpha);
-        } 
     }
 }
