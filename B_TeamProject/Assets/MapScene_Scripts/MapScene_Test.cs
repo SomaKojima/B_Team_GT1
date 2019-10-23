@@ -27,7 +27,9 @@ public class MapScene_Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Vector3 p = Camera.main.transform.position;
+        //p.y = transform.position.y;
+        //transform.LookAt(p);
     }
 
     //当たり判定をする処理（今はマウスと画像）
