@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/QRcodeSampleScene.unity
+- path: Assets/Scenes/BaseMapScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
