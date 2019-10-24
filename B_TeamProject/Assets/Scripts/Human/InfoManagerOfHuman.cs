@@ -5,6 +5,7 @@ using UnityEngine;
 public class InfoManagerOfHuman : MonoBehaviour
 {
     List<InfoOfHuman> humans = new List<InfoOfHuman>();
+    InfoOfHuman hu = new InfoOfHuman();
     
     // Start is called before the first frame update
     void Start()
@@ -50,5 +51,11 @@ public class InfoManagerOfHuman : MonoBehaviour
                 humans.RemoveAt(i);
             }
         }
+    }
+
+
+    public InfoOfHuman HU
+    {
+        get { return hu; }
     }
 }
