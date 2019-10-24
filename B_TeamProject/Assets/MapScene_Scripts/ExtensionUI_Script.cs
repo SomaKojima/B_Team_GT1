@@ -31,4 +31,17 @@ public class ExtensionUI_Script : MonoBehaviour
         m_extension.SetActive(true);
         m_sample.SetActive(true);
     }
+
+    //増築ボタンを押したら
+    public void ExtensionClick()
+    {
+        Debug.Log("rara");
+    }
+
+    //サンプルボタンを押したら
+    public void SampleClick()
+    {
+        Debug.Log("sample");
+    }
+
 }
