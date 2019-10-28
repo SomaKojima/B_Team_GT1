@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+public class CreateExchangeUnit
 {
-    [SerializeField]
-    InfoManagerOfHuman humanManager;
-
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public InfoManagerOfHuman HumanManager
+    static public ExchangeUnit Create()
     {
-        get { return humanManager; }
+        ExchangeUnit unit = new ExchangeUnit();
+        unit.RandomSet();
+
+        return unit;
     }
-    
 }

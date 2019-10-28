@@ -12,9 +12,10 @@ public class ExchangeUnit
 
     int id = 0;
 
-    public void Initialize()
+    public void Initialize(InfoOfHuman presentation, InfoOfHuman necessaty)
     {
-
+        presentationHuman = presentation;
+        necessatyHuman = necessaty;
     }
     
     /// <summary>
@@ -42,23 +43,3 @@ public class ExchangeUnit
         set;
     }
 }
-
-//public class ExchangeUnit : MonoBehaviour
-//{
-//    // 提示される人間
-//    InfoOfHuman presentationHuman;
-
-//    // 必要となる人間
-//    InfoOfHuman necessatyHuman;
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-
-//    }
-
-//    // Update is called once per frame
-//    void Update()
-//    {
-
-//    }
-//}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExchangeUnitManager : MonoBehaviour
 {
     const int UNIT_MAX = 10;
-    ExchangeUnit[] units = new ExchangeUnit[UNIT_MAX];
+    List<ExchangeUnit> units = new List<ExchangeUnit>();
 
     // Start is called before the first frame update
     void Start()
@@ -18,23 +18,25 @@ public class ExchangeUnitManager : MonoBehaviour
         
     }
 
-    public void Create()
+    public void Add(ExchangeUnit unit)
     {
-        for (int i = 0; i < UNIT_MAX; i++)
-        {
-            units[i] = new ExchangeUnit();
-        }
+        units.Add(unit);
     }
 
-    public void Initialize()
+    // IDからユニットを取得
+    public ExchangeUnit Get(int id)
     {
-        for(int i = 0; i < UNIT_MAX; i++)
+        foreach (ExchangeUnit unit in units)
         {
-            units[i].Initialize();
+            if (id == unit.ID)
+            {
+                return unit;
+            }
         }
+        return null;
     }
 
-    public ExchangeUnit[] Units
+    public List<ExchangeUnit> Units
     {
         get { return units; }
     }

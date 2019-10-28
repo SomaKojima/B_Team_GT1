@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/BaseMapScene.unity
+- path: Assets/Scenes/SelectExchangeScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

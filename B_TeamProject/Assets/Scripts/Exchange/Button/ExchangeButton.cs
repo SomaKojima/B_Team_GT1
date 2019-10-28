@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class ExchangeButton : MonoBehaviour
 {
-    InfoOfHuman presentationHuman = new InfoOfHuman();
-    InfoOfHuman necessatyHuman = new InfoOfHuman();
     bool isPress = false;
 
     // 提示資源のテキスト
@@ -24,12 +22,10 @@ public class ExchangeButton : MonoBehaviour
     {
     }
 
-    public void Initalize(InfoOfHuman presentation, InfoOfHuman necessaty, int _id)
+    public void Initalize(string presentation, string necessaty, int _id)
     {
-        presentationHuman = presentation;
-        necessatyHuman = necessaty;
-        presentationText.text = presentationHuman.Type.ToString();
-        necessaryText.text = necessatyHuman.Type.ToString();
+        presentationText.text = presentation;
+        necessaryText.text = necessaty;
 
         isPress = false;
 
@@ -42,19 +38,15 @@ public class ExchangeButton : MonoBehaviour
         
     }
 
-    void OnClick()
+    public void OnClickProcess()
+    {
+        isPress = false;
+    }
+
+    public void OnClick()
     {
         isPress = true;
-    }
-
-    public InfoOfHuman PresentationHuman
-    {
-        set { presentationHuman = value; }
-    }
-
-    public InfoOfHuman NecessatyHuman
-    {
-        set { necessatyHuman = value; }
+        Debug.Log("ボタン押された");
     }
 
     public bool IsPress

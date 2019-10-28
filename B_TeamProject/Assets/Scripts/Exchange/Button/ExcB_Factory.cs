@@ -23,16 +23,15 @@ public class ExcB_Factory : MonoBehaviour
         
     }
 
-    // ボタンの作成
-    public ExchangeButton CreateButton(ExchangeUnit unit)
+    public ExchangeButton CreateButton(string presentation, string necessaty, int id)
     {
         GameObject instance = Instantiate(prefabButton);
         instance.transform.SetParent(parent.transform, false);
 
         // ボタンの初期化処理
         ExchangeButton button = instance.GetComponent<ExchangeButton>();
-        
-        button.Initalize(unit.PresentationHuman, unit.NecessatyHuman, unit.ID);
+
+        button.Initalize(presentation, necessaty, id);
         return button;
     }
 }

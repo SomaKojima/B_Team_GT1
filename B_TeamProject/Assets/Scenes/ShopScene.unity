@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &29415076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabButton: {fileID: 8303746120712488275, guid: 706f0be518ff1c04eb4789bfd6235ed3,
     type: 3}
-  parent: {fileID: 29415075}
+  parent: {fileID: 1397848413}
 --- !u!4 &497124696
 Transform:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 811563986}
-  exchangeManager: {fileID: 1123441854}
+  exchangeUnitManager: {fileID: 1123441854}
   buttonManager: {fileID: 1614138525}
   buttonFactory: {fileID: 497124695}
 --- !u!4 &508548709

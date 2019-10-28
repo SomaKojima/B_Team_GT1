@@ -38,4 +38,9 @@ public class ExcB_Manager : MonoBehaviour
     {
         buttonList.Add(button);
     }
+
+    public List<ExchangeButton> ButtonList
+    {
+        get { return buttonList; }
+    }
 }
