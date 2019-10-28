@@ -8,11 +8,38 @@ public class ExchangeUnit
     InfoOfHuman presentationHuman = new InfoOfHuman();
 
     // 必要となる人間
-    InfoOfHuman necessatyHuman;
+    InfoOfHuman necessatyHuman = new InfoOfHuman();
 
-    void Initialize()
+    int id = 0;
+
+    public void Initialize()
     {
 
+    }
+    
+    /// <summary>
+    /// 人間の情報をランダムで設定する
+    /// </summary>
+    public void RandomSet()
+    {
+        presentationHuman.RandomSet();
+        necessatyHuman.RandomSet();
+    }
+
+    public InfoOfHuman PresentationHuman
+    {
+        get { return presentationHuman; }
+    }
+
+    public InfoOfHuman NecessatyHuman
+    {
+        get { return necessatyHuman; }
+    }
+    
+    public int ID
+    {
+        get;
+        set;
     }
 }
 

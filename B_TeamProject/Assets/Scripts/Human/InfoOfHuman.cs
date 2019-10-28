@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class InfoOfHuman
 {
+    /// <summary>
+    /// 人間の種別
+    /// </summary>
     public enum HUMAN_TYPE
     {
         NONE = -1,
         WOOD,
+        ENGINEER,
+        COAL_MIEAR,
 
         MAX
     };
 
+    // 人間の種別
     HUMAN_TYPE type = HUMAN_TYPE.NONE;
+
+    public void Initialize(HUMAN_TYPE _type)
+    {
+        type = _type;
+    }
 
 
     // 内容をランダムで決める
-    void RandomSet()
+    public void RandomSet()
     {
-        HUMAN_TYPE randomType = (HUMAN_TYPE)Random.Range(0.0f, (float)HUMAN_TYPE.MAX - 0.01f);
+        float random = Random.Range(0.0f, (float)HUMAN_TYPE.MAX - 0.01f);
+        HUMAN_TYPE randomType = (HUMAN_TYPE)random;
         this.type = randomType;
     }
 

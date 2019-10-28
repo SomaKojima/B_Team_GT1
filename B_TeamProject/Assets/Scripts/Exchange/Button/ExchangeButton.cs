@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class ExchangeButton : MonoBehaviour
 {
-    InfoOfHuman presentationHuman;
-    InfoOfHuman necessatyHuman;
+    InfoOfHuman presentationHuman = new InfoOfHuman();
+    InfoOfHuman necessatyHuman = new InfoOfHuman();
+    bool isPress = false;
 
     // 提示資源のテキスト
     [SerializeField]
@@ -15,15 +16,24 @@ public class ExchangeButton : MonoBehaviour
     [SerializeField]
     Text necessaryText;
 
+    // どの交換ユニットとつながっているか
+    int id = 0;
+
     // Start is called before the first frame update
     void Start()
     {
     }
 
-    public void Initalize()
+    public void Initalize(InfoOfHuman presentation, InfoOfHuman necessaty, int _id)
     {
+        presentationHuman = presentation;
+        necessatyHuman = necessaty;
         presentationText.text = presentationHuman.Type.ToString();
         necessaryText.text = necessatyHuman.Type.ToString();
+
+        isPress = false;
+
+        id = _id;
     }
 
     // Update is called once per frame
@@ -34,7 +44,7 @@ public class ExchangeButton : MonoBehaviour
 
     void OnClick()
     {
-
+        isPress = true;
     }
 
     public InfoOfHuman PresentationHuman
@@ -45,5 +55,15 @@ public class ExchangeButton : MonoBehaviour
     public InfoOfHuman NecessatyHuman
     {
         set { necessatyHuman = value; }
+    }
+
+    public bool IsPress
+    {
+        get { return isPress; }
+    }
+
+    public int ID
+    {
+        get { return id; }
     }
 }
