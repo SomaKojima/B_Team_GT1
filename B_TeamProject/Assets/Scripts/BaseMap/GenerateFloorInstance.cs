@@ -21,7 +21,7 @@ public class GenerateFloorInstance : MonoBehaviour
         Vector3 basePos = floorBase.GetComponent<Transform>().position;
 
         // FloorInstanceプレハブをGameObject型で取得
-        GameObject floorInstance = (GameObject)Resources.Load("floor_instance");
+        GameObject floorInstance = (GameObject)Resources.Load("Prefabs/BaseMap/floor_instance");
         // FloorInstanceプレハブのサイズ取得
         float floorWidth = floorInstance.GetComponent<SpriteRenderer>().bounds.size.x;
         float floorHeight = floorInstance.GetComponent<SpriteRenderer>().bounds.size.y;

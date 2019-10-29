@@ -47,7 +47,7 @@ public class GenerateHuman : MonoBehaviour
     void Start()
     {
         // logger1プレハブをGameObject型で取得
-        loggerInstance = (GameObject)Resources.Load("Prefabs/logger1");
+        loggerInstance = (GameObject)Resources.Load("Prefabs/BaseMap/logger1");
     }
 
     // Update is called once per frame
