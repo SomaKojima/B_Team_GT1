@@ -19,31 +19,29 @@ public class BaseMapGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        managerOfEntityHuman.Initialize();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 木こり生成
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            managerOfEntityHuman.Add(factoryOfEntityHuman.Create(InfoOfHuman.HUMAN_TYPE.WOOD, new Vector3( 10.0f, 10.0f, -2.0f)));
-        }
+        // 木こりの人数を合わせる
+        InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.WOOD;
+        JudgeCount(infoGame.HumanManager.GetHumansOf(type).Count, managerOfEntityHuman.GetCountOf(type), type);
     }
 
-    //void EntityHumanManager.JudgeCount(int count)
-    //{
-    //    int sabun = count - list.length;
-    //    // 増やす
-    //    for (int i = 0; i < sabun; i++)
-    //    {
-    //        list.AddHumans(CreateEntityHuman.Create());
-    //    }
-    //    // 減らす
-    //    for (int i = 0; i > sabun; i--)
-    //    {
-    //        list.delete();
-    //    }
-    //}
+    void JudgeCount(int InfoCount, int entityCount, InfoOfHuman.HUMAN_TYPE type)
+    {
+        int sabun = InfoCount - entityCount;
+        // 増やす
+        for (int i = 0; i < sabun; i++)
+        {
+            managerOfEntityHuman.Add(factoryOfEntityHuman.Create(type, new Vector3(10.0f, 10.0f, -2.0f)));
+        }
+        if (sabun < 0)
+        {
+            // 減らす
+            managerOfEntityHuman.DeleteHumansOf(type, sabun);
+        }
+    }
 }

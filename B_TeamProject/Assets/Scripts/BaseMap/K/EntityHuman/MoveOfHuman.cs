@@ -35,7 +35,7 @@ public class MoveOfHuman : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
     }
 
     // Update is called once per frame
@@ -46,7 +46,7 @@ public class MoveOfHuman : MonoBehaviour
         if (IsTurn(MAX_POS_X, MIN_POS_X, gameObject.transform.position.x, velocity.x))
         {
             velocity = new Vector3(velocity.x * -1, velocity.y, velocity.z);
-            gameObject.transform.localScale
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
         }
         else if (IsTurn(MAX_POS_Z, MIN_POS_Z, gameObject.transform.position.z, velocity.z))
         {
@@ -75,6 +75,7 @@ public class MoveOfHuman : MonoBehaviour
         }
         return false;
     }
+    
 
     public HUMAN_MOVE MoveType
     {

@@ -34,4 +34,8 @@ public class EntityHuman : MonoBehaviour
         
     }
 
+    public InfoOfHuman.HUMAN_TYPE Type
+    {
+        get { return type; }
+    }
 }

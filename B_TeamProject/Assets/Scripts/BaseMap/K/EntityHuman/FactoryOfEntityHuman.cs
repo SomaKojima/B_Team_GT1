@@ -30,6 +30,7 @@ public class FactoryOfEntityHuman : MonoBehaviour
         instance.transform.position = position;
 
         EntityHuman human = instance.GetComponent<EntityHuman>();
+        human.Initialize(_type);
 
         return human;
     }

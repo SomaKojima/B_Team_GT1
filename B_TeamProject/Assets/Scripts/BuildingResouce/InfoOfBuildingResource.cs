@@ -35,20 +35,16 @@ public class InfoOfBuildingResource
     {
         get { return type; }
     }
+
+    public BUILDING_RESOUCE_TYPE ChangeToBUILDING_RESOURCE_TYPEFromHUMAN_TYPE(InfoOfHuman.HUMAN_TYPE type)
+    {
+        switch (type)
+        {
+            case InfoOfHuman.HUMAN_TYPE.WOOD:
+                return BUILDING_RESOUCE_TYPE.WOOD;
+                break;
+        }
+
+        return BUILDING_RESOUCE_TYPE.NONE;
+    }
 }
-
-
-//public class InfoOfBuildingResource : MonoBehaviour
-//{
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-
-//    }
-
-//    // Update is called once per frame
-//    void Update()
-//    {
-
-//    }
-//}
