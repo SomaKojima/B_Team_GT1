@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+public class ManagerOfEntityHuman : MonoBehaviour
 {
-    [SerializeField]
-    InfoManagerOfHuman humanManager;
-
+    List<EntityHuman> humans = new List<EntityHuman>();
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +18,13 @@ public class Game : MonoBehaviour
         
     }
 
-    public InfoManagerOfHuman HumanManager
+    public void Add(EntityHuman human)
     {
-        get { return humanManager; }
+        humans.Add(human);
     }
-    
+
+    public List<EntityHuman> Humans
+    {
+        get { return humans; }
+    }
 }
