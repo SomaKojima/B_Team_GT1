@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EntityHuman : MonoBehaviour
 {
-    
     // 人種
     InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.NONE;
 

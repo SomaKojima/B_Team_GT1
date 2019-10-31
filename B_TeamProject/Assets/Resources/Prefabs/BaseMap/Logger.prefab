@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5951351137843659386}
   - component: {fileID: 6458418876314376578}
   - component: {fileID: 2056333757611596625}
-  - component: {fileID: 335145153722338530}
   m_Layer: 8
   m_Name: Render
   m_TagString: Untagged
@@ -79,20 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &335145153722338530
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2463014684534442715}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5122093088272929627
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,10 +87,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4992377440395505346}
-  - component: {fileID: 4062225783194350493}
+  - component: {fileID: 6357425407511099372}
   - component: {fileID: 5731917705918925506}
   - component: {fileID: 8183606136955069772}
   - component: {fileID: 3576500878929098797}
+  - component: {fileID: 2550848845792932703}
   m_Layer: 8
   m_Name: Logger
   m_TagString: Untagged
@@ -128,7 +114,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4062225783194350493
+--- !u!65 &6357425407511099372
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,8 +125,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.563638, y: 1.5690963, z: 1}
-  m_Center: {x: -0.02692151, y: 0.8206974, z: 0}
+  m_Size: {x: 1, y: 1.5014629, z: 1}
+  m_Center: {x: 0, y: 0.7605715, z: 0}
 --- !u!54 &5731917705918925506
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -185,3 +171,26 @@ MonoBehaviour:
   MIN_POS_X: -10
   MAX_POS_Z: 5
   MIN_POS_Z: -5
+  navMeshAgent: {fileID: 2550848845792932703}
+--- !u!195 &2550848845792932703
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122093088272929627}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 1

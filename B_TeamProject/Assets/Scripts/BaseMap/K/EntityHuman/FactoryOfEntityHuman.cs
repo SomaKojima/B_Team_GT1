@@ -23,14 +23,17 @@ public class FactoryOfEntityHuman : MonoBehaviour
         
     }
 
-    public EntityHuman Create(InfoOfHuman.HUMAN_TYPE _type, Vector3 position)
+    public EntityHuman Create(InfoOfHuman.HUMAN_TYPE _type, Vector3 _position, Vector3 _homePosition, Vector3 _buildingResourcePosition)
     {
         GameObject instance = Instantiate(prefab);
         instance.transform.SetParent(parent.transform, false);
-        instance.transform.position = position;
+        instance.transform.position = _position;
 
         EntityHuman human = instance.GetComponent<EntityHuman>();
         human.Initialize(_type);
+
+        MoveOfHuman move = instance.GetComponent<MoveOfHuman>();
+        move.Initialize(_homePosition, _buildingResourcePosition);
 
         return human;
     }
