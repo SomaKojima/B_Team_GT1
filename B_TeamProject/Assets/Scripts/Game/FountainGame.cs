@@ -26,6 +26,13 @@ public class FountainGame : MonoBehaviour
     [SerializeField]
     OKButton SelectExchange_OKButton;
 
+    [SerializeField]
+    QRcodeManager qrCodeManager;
+
+    // QRコードを生成する文字列
+    [SerializeField]
+    string testStr;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,8 +80,21 @@ public class FountainGame : MonoBehaviour
         if (SelectExchange_OKButton.IsClick)
         {
             SelectExchange_OKButton.OnClick();
+
+            // QRコード表示
+            qrCodeManager.SetActiveQRcode(true);
+
+            // 文字列からQRコードを生成、Imageに張り付ける
+            qrCodeManager.QRImage = qrCodeManager.CreateQRcode(testStr);
+            Debug.Log(testStr);
+
             // UIの切り替え
             uiModeManager.ChangeMode(ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE);
+        }
+        else
+        {
+            // QRコード非表示
+            qrCodeManager.SetActiveQRcode(false);
         }
 
     }
