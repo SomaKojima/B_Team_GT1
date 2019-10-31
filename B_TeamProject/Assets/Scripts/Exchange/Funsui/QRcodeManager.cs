@@ -5,12 +5,20 @@ using UnityEngine.UI;
 
 public class QRcodeManager : MonoBehaviour
 {
+    // ウェブカメラのテクスチャ
+    private WebCamTexture webCam = null;
+    //カメラ起動フラグ
+    private bool isPlayCamera = false;
+
     // QRコードを生成する文字列
     private string createQRStrList = "null";
 
     // QR表示オブジェクト
     [SerializeField]
     RawImage qrImage = null;
+
+    // 文字列から生成して表示するか読み取りを表示するか
+    bool isRead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +33,45 @@ public class QRcodeManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Webカメラの起動
+    /// </summary>
+    /// <returns></returns>
+    public bool ActivationWebCamera()
+    {
+        //yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
+        //if (Application.HasUserAuthorization(UserAuthorization.WebCam) == false)
+        //{
+        //    Debug.LogFormat("no camera.");
+        //    yield break;
+        //}
+        //Debug.LogFormat("camera ok.");
+
+        // ウェブカメラのデバイス数を取得
+        WebCamDevice[] devices = WebCamTexture.devices;
+        // デバイスが存在しなかったら、もしくはすでに起動していたら
+        if (devices == null || devices.Length == 0 || isPlayCamera)
+            //yield break;
+            return false;
+
+        // ウェブカメラオブジェクトを生成
+        webCam = new WebCamTexture(devices[0].name, Screen.width, Screen.height, 12);
+        // ウェブカメラを起動
+        webCam.Play();
+
+        // 起動成功
+        return true;
+    }
+
+    /// <summary>
+    /// Webカメラの停止
+    /// </summary>
+    /// <returns></returns>
+    public void DeactivationWebCamera()
+    {
+        webCam.Stop();
+    }
+
+    /// <summary>
     /// 文字列をQRコードテクスチャにする
     /// Texture型で返す
     /// </summary>
@@ -34,6 +81,23 @@ public class QRcodeManager : MonoBehaviour
     {
         // 指定文字列からQRテクスチャ生成
         return QRCodeHelper.CreateQRCode(str, 256, 256);
+    }
+
+    /// <summary>
+    ///  カメラ起動フラグの取得、設定
+    /// </summary>
+    public WebCamTexture WebCam
+    {
+        get { return webCam; }
+    }
+
+    /// <summary>
+    ///  カメラ起動フラグの取得、設定
+    /// </summary>
+    public bool IsPlayCamera
+    {
+        get { return isPlayCamera; }
+        set { isPlayCamera = value; }
     }
 
     /// <summary>
@@ -65,4 +129,20 @@ public class QRcodeManager : MonoBehaviour
         get { return qrImage.texture; }
         set { qrImage.texture = value; }
     }
+
+    /// <summary>
+    /// フラグの取得
+    /// </summary>
+    public bool IsRead
+    {
+        get { return isRead; }
+    }
+    /// <summary>
+    /// フラグの反転
+    /// </summary>
+    public void SetIsRead()
+    {
+        isRead = !isRead;
+    }
+
 }

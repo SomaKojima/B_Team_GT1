@@ -84,9 +84,44 @@ public class FountainGame : MonoBehaviour
             // QRコード表示
             qrCodeManager.SetActiveQRcode(true);
 
-            // 文字列からQRコードを生成、Imageに張り付ける
-            qrCodeManager.QRImage = qrCodeManager.CreateQRcode(testStr);
-            Debug.Log(testStr);
+            // 表示するモノの切り替えのためのフラグ反転
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                qrCodeManager.SetIsRead();
+            }
+
+            // true＝カメラに映っているものを表示
+            if (qrCodeManager.IsRead)
+            {
+                if (!qrCodeManager.IsPlayCamera)
+                {
+                    // カメラの起動
+                    qrCodeManager.ActivationWebCamera();
+                    // カメラ起動フラグを立てる
+                    qrCodeManager.IsPlayCamera = true;
+                }
+                if (qrCodeManager.IsPlayCamera)
+                {
+                    // カメラが起動していたら画像をそのまま張り付ける
+                    qrCodeManager.QRImage = qrCodeManager.WebCam;
+                }
+            }
+            // false＝文字からQRコードを表示
+            else
+            {
+                // 起動中だったら
+                if (qrCodeManager.IsPlayCamera)
+                {
+                    // カメラを停止させる
+                    qrCodeManager.DeactivationWebCamera();
+                    // カメラ起動フラグを伏せる
+                    qrCodeManager.IsPlayCamera = false;
+                }
+
+                // 文字列からQRコードを生成、Imageに張り付ける
+                qrCodeManager.QRImage = qrCodeManager.CreateQRcode(testStr);
+                Debug.Log(testStr);
+            }
 
             // UIの切り替え
             uiModeManager.ChangeMode(ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE);
