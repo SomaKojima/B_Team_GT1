@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8181042789512281118}
   - component: {fileID: 8181042789512281122}
-  - component: {fileID: 8181042789512281123}
-  - component: {fileID: 8181042789512281120}
   - component: {fileID: 8181042789512281121}
+  - component: {fileID: 8462774067670012487}
+  - component: {fileID: -7988513731394715141}
   m_Layer: 0
-  m_Name: Forest
+  m_Name: Base
   m_TagString: Mouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &8181042789512281123
+--- !u!114 &8181042789512281121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8181042789512281119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ac60fb795ecc54e8dac2c055a58a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_name: 0
+--- !u!50 &8462774067670012487
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -105,7 +118,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &8181042789512281120
+--- !u!58 &-7988513731394715141
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,19 +134,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.5
---- !u!114 &8181042789512281121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8181042789512281119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85ac60fb795ecc54e8dac2c055a58a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_name: 0
 --- !u!1001 &1123063112617449985
 PrefabInstance:
   m_ObjectHideFlags: 0

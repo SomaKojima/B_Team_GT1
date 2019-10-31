@@ -34,20 +34,20 @@ public class MapScene_Test : MonoBehaviour
     void OnTriggerStay2D(Collider2D col)
     {
         //Forest当たり判定をする処理
-        if (col.gameObject.tag == "Mouse" && m_name== BaseName.Forest)
+        if (col.gameObject.tag == "Mouse" && m_name == BaseName.Forest)
         {
-           // Debug.Log("forest");
+            // Debug.Log("forest");
             if (Input.GetMouseButton(0))
             {
                 Debug.Log("foresthit");
-              
+
             }
         }
 
         //Factory当たり判定をする処理
         if (col.gameObject.tag == "Mouse" && m_name == BaseName.Factory)
         {
-           // Debug.Log("factory");
+            // Debug.Log("factory");
             if (Input.GetMouseButton(0))
             {
                 Debug.Log("factoryhit");
@@ -100,4 +100,74 @@ public class MapScene_Test : MonoBehaviour
         }
 
     }
+
+
+    //void OnTriggerStay(Collider col)
+    //{
+    //    //Forest当たり判定をする処理
+    //        if (col.gameObject.tag == "Mouse" && m_name == BaseName.Forest)
+    //    {
+    //        // Debug.Log("forest");
+    //        if (Input.GetMouseButton(0))
+    //        {
+    //            Debug.Log("foresthit");
+
+    //        }
+    //    }
+
+    //    //Factory当たり判定をする処理
+    //    if (col.gameObject.tag == "Mouse" && m_name == BaseName.Factory)
+    //    {
+    //        // Debug.Log("factory");
+    //        if (Input.GetMouseButton(0))
+    //        {
+    //            Debug.Log("factoryhit");
+
+    //        }
+    //    }
+
+    //    //Sample1当たり判定をする処理
+    //    if (col.gameObject.tag == "Mouse" && m_name == BaseName.Sample1)
+    //    {
+    //        // Debug.Log("Sample1");
+    //        if (Input.GetMouseButton(0))
+    //        {
+    //            Debug.Log("sample1hit");
+
+    //        }
+    //    }
+
+    //    //Sampl2当たり判定をする処理
+    //    if (col.gameObject.tag == "Mouse" && m_name == BaseName.Sample2)
+    //    {
+    //        // Debug.Log("Sample2");
+    //        if (Input.GetMouseButton(0))
+    //        {
+    //            Debug.Log("sample2hit");
+
+    //        }
+    //    }
+
+    //    //Sampl3当たり判定をする処理
+    //    if (col.gameObject.tag == "Mouse" && m_name == BaseName.Sample3)
+    //    {
+    //        // Debug.Log("Sample3");
+    //        if (Input.GetMouseButton(0))
+    //        {
+    //            Debug.Log("sample3hit");
+
+    //        }
+    //    }
+
+    //    //Sampl4当たり判定をする処理
+    //    if (col.gameObject.tag == "Mouse" && m_name == BaseName.Sample4)
+    //    {
+    //        // Debug.Log("Sample4");
+    //        if (Input.GetMouseButton(0))
+    //        {
+    //            Debug.Log("sample4hit");
+
+    //        }
+    //    }
+    //}
 }

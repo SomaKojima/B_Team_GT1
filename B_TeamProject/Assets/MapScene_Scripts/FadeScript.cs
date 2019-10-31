@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 public class FadeScript : MonoBehaviour
 {
+    //取得用変数
+    bool m_flag=false;
+
     //フェードインするときのMaterial
     [SerializeField]
     private Material m_transitionOut;
@@ -27,37 +30,54 @@ public class FadeScript : MonoBehaviour
     [SerializeField]
     private float m_fadeTime = 1.0f;
 
+    GameObject m_cameraChange;
+
     //マウスダウンの切り替えをする
-    bool m_MouseDownflag;
+    bool m_MouseDownflag=false;
 
+    GameObject m_pushButton;
 
+    bool m_pushActiveFlag = false;
 
+  
     void Start()
     {
         //最初はフェードアウトするコルーチンを呼ぶ
-        StartCoroutine(FadeOutTransition());
+       // StartCoroutine(FadeOutTransition());
 
         m_MouseDownflag = true;
+
+        m_pushButton = GameObject.Find("Cloud");
+
+        m_cameraChange = GameObject.Find("GameObjectAction");
+
     }
 
     void Update()
     {
 
-        //マウスボタンをを押したら
-        if (Input.GetMouseButtonDown(0))
+        m_flag = m_cameraChange.GetComponent<Camera_Change>().Flag;
+
+        //フラグがオンになったら
+        if (m_flag)
         {
-            m_MouseDownflag = !m_MouseDownflag;
-            if (m_MouseDownflag)
-            {
-                StartCoroutine(FadeOutTransition());
-            }
-            else
-            {
-                StartCoroutine(InTransition());
-            }
+            StartCoroutine(InTransition());
+        }
+
+        m_pushActiveFlag = m_pushButton.GetComponent<CloudMove>().OneLoopFlag;
+
+
+        if (m_pushActiveFlag)
+        {
+            this.GetComponent<UnityEngine.UI.Image>().enabled = true;
+        }
+        else
+        {
+            this.GetComponent<UnityEngine.UI.Image>().enabled = false;
         }
 
     }
+
 
     //フェードアウトするコルーチン
     IEnumerator FadeOutTransition()
@@ -66,7 +86,6 @@ public class FadeScript : MonoBehaviour
         if (OnTransition != null) { OnTransition.Invoke();}
 
         yield return new WaitForEndOfFrame();
-
     }
 
     //フェードインするコルーチン
@@ -76,6 +95,8 @@ public class FadeScript : MonoBehaviour
         if (OnComplete != null) { OnComplete.Invoke(); }
 
         yield return new WaitForEndOfFrame();
+
+        StartCoroutine(FadeOutTransition());
     }
 
    

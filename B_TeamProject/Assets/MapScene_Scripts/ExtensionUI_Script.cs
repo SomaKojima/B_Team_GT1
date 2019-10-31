@@ -10,12 +10,15 @@ public class ExtensionUI_Script : MonoBehaviour
     [SerializeField]
     private GameObject m_sample;
 
+    //アクティブフラグ
+    bool m_active;
+
     // Start is called before the first frame update
     void Start()
     {
-
-        m_extension.SetActive(false);
-        m_sample.SetActive(false);
+        m_active = false;
+        m_extension.SetActive(m_active);
+        m_sample.SetActive(m_active);
         
     }
 
@@ -28,8 +31,21 @@ public class ExtensionUI_Script : MonoBehaviour
 
     public void OnClick()
     {
-        m_extension.SetActive(true);
-        m_sample.SetActive(true);
+        m_active = !m_active;
+
+        Debug.Log("grigir");
+
+        if(m_active)
+        {
+            m_extension.SetActive(true);
+            m_sample.SetActive(true);
+        }
+        else
+        {
+            m_extension.SetActive(false);
+            m_sample.SetActive(false);
+        }
+      
     }
 
     //増築ボタンを押したら
