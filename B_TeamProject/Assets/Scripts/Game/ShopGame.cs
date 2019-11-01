@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShopGame : MonoBehaviour
 {
-    [SerializeField]
     Game game;
 
     [SerializeField]
@@ -19,6 +18,7 @@ public class ShopGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
         // ユニットの作成
         exchangeUnitManager.Add(CreateExchangeUnit.Create());
 

@@ -6,7 +6,7 @@ public class BaseMapGame : MonoBehaviour
 {
     // 総合監督の情報
     [SerializeField]
-    Game infoGame;
+    Game game;
 
     [SerializeField]
     FactoryOfEntityHuman factoryOfEntityHuman;
@@ -34,6 +34,7 @@ public class BaseMapGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
         managerOfEntityHuman.Initialize();
     }
 
@@ -42,12 +43,12 @@ public class BaseMapGame : MonoBehaviour
     {
         // 木こりの人数を合わせる
         InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.WOOD;
-        JudgeCount(infoGame.HumanManager.GetHumansOf(type).Count, managerOfEntityHuman.GetCountOf(type), type);
+        JudgeCount(game.HumanManager.GetHumansOf(type).Count, managerOfEntityHuman.GetCountOf(type), type);
 
         // 収集
         foreach (EntityHuman human in managerOfEntityHuman.CollectHumans)
         {
-            infoGame.BuildingManager.GetBuildingResource(entityBuildingResource.Type).AddCount(entityBuildingResource.GetBuildingResourceCount());
+            game.BuildingManager.GetBuildingResource(entityBuildingResource.Type).AddCount(entityBuildingResource.GetBuildingResourceCount());
             human.Move.OnCollectProcess();
         }
     }

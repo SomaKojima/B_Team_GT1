@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DebugMouse : MonoBehaviour
 {
+    [SerializeField]
+    Camera camera;
+
     // Start is called before the first frame update
     Vector3 m_clickPosition;
 
@@ -18,7 +21,7 @@ public class DebugMouse : MonoBehaviour
 
         m_clickPosition = Input.mousePosition;
         m_clickPosition.z = 10.0f;
-        Vector2 worldMousePos = Camera.main.ScreenToWorldPoint(m_clickPosition);
+        Vector2 worldMousePos = camera.ScreenToWorldPoint(m_clickPosition);
 
         transform.position = new Vector3(worldMousePos.x, worldMousePos.y, 0);
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 // 噴水のシーン
 public class FountainGame : MonoBehaviour
 {
-    [SerializeField]
     Game game;
 
     [SerializeField]
@@ -36,8 +35,10 @@ public class FountainGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
+
         // プレイヤーを選択するボタンを作成
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             managerOfSelectPlayer.Add(factorySelectPlayer.Create("", i));
         }

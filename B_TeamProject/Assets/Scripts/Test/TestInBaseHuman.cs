@@ -5,15 +5,12 @@ using UnityEngine;
 public class TestInBaseHuman : MonoBehaviour
 {
     // 総合監督の情報
-    [SerializeField]
-    Game infoGame;
-
-
+    Game game;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        game = GameObject.Find("Game").GetComponent<Game>();
     }
 
     // Update is called once per frame
@@ -22,11 +19,11 @@ public class TestInBaseHuman : MonoBehaviour
         // 木こり生成
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            infoGame.HumanManager.AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD));
+            game.HumanManager.AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD));
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            infoGame.HumanManager.DeleteHumansOf(InfoOfHuman.HUMAN_TYPE.WOOD, 1);
+            game.HumanManager.DeleteHumansOf(InfoOfHuman.HUMAN_TYPE.WOOD, 1);
         }
     }
 }
