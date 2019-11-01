@@ -26,6 +26,7 @@ public class SampleQRReader : MonoBehaviour
 
     // RawImageオブジェクト
     public RawImage image = null;
+    public RawImage picImage = null;
 
     // QRコード読みとりテキスト
     private string readStr = null;
@@ -93,6 +94,12 @@ public class SampleQRReader : MonoBehaviour
             image.texture = qrTexture;
         }
 
+        // Webカメラが存在していたら
+        if(webCam != null)
+        {
+            // 映っているものをそのまま表示
+            picImage.texture = webCam;
+        }
         // Bキー押下で
         if (Input.GetKeyDown(KeyCode.B))
         {
