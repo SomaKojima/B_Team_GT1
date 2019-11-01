@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class EntityHuman : MonoBehaviour
 {
+    [SerializeField]
+    MoveOfHuman move;
+
     // 人種
     InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.NONE;
 
-
+    bool isCollect = false;
 
     /// <summary>
     /// 初期化
@@ -36,5 +39,15 @@ public class EntityHuman : MonoBehaviour
     public InfoOfHuman.HUMAN_TYPE Type
     {
         get { return type; }
+    }
+
+    public MoveOfHuman Move
+    {
+        get { return move; }
+    }
+
+    public bool IsCollect
+    {
+        get { return move.IsCollect; }
     }
 }

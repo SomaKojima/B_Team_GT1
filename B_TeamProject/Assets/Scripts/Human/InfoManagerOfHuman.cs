@@ -36,7 +36,7 @@ public class InfoManagerOfHuman : MonoBehaviour
             countOfType[(int)info.Type] += 1;
         }
 
-        Debug.Log("増えた ：" + info.Type.ToString());
+        Debug.Log("増えた人の情報 ：" + info.Type.ToString());
     }
 
     // 人間の削除
@@ -55,7 +55,7 @@ public class InfoManagerOfHuman : MonoBehaviour
         {
             countOfType[(int)info.Type] -= 1;
         }
-        Debug.Log("減った ：" + info.Type.ToString());
+        Debug.Log("減った人の情報 ：" + info.Type.ToString());
     }
 
     // 人種別にリストから消す

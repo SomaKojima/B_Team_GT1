@@ -7,6 +7,9 @@ public class Game : MonoBehaviour
     [SerializeField]
     InfoManagerOfHuman humanManager;
 
+    [SerializeField]
+    InfoManagerOfBuildingResource buildingManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,4 +28,8 @@ public class Game : MonoBehaviour
         get { return humanManager; }
     }
     
+    public InfoManagerOfBuildingResource BuildingManager
+    {
+        get { return buildingManager; }
+    }
 }

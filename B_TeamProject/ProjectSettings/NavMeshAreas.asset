@@ -12,7 +12,7 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: walk
-    cost: 6
+    cost: 10
   - name: not
     cost: 100
   - name: outside

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ManagerOfEntityHuman : MonoBehaviour
 {
     List<EntityHuman> humans = new List<EntityHuman>();
+    List<EntityHuman> collectHumnas = new List<EntityHuman>();
     int[] countOfType = new int[(int)InfoOfHuman.HUMAN_TYPE.MAX];
 
     // Start is called before the first frame update
@@ -24,7 +25,15 @@ public class ManagerOfEntityHuman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        collectHumnas.Clear();
+        // リクエスト別のリストに追加する
+        foreach (EntityHuman human in humans)
+        {
+            if (human.IsCollect)
+            {
+                collectHumnas.Add(human);
+            }
+        }
     }
 
     public void Add(EntityHuman human)
@@ -77,6 +86,12 @@ public class ManagerOfEntityHuman : MonoBehaviour
                 break;
             }
         }
+    }
+
+
+    public List<EntityHuman> CollectHumans
+    {
+        get { return collectHumnas; }
     }
 
     public int GetCountOf(InfoOfHuman.HUMAN_TYPE type)

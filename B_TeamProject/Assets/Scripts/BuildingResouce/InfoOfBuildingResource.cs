@@ -16,6 +16,8 @@ public class InfoOfBuildingResource
     // 人間の種別
     BUILDING_RESOUCE_TYPE type = BUILDING_RESOUCE_TYPE.NONE;
 
+    int count = 0;
+
     public void Initialize(BUILDING_RESOUCE_TYPE _type)
     {
         type = _type;
@@ -42,9 +44,19 @@ public class InfoOfBuildingResource
         {
             case InfoOfHuman.HUMAN_TYPE.WOOD:
                 return BUILDING_RESOUCE_TYPE.WOOD;
-                break;
         }
 
         return BUILDING_RESOUCE_TYPE.NONE;
+    }
+
+    public void AddCount(int add)
+    {
+        count += add;
+        Debug.Log(type + "の資源量 : " + count);
+    }
+
+    public int Count
+    {
+        get { return count; }
     }
 }

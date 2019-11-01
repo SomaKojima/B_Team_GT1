@@ -16,6 +16,18 @@ public class BaseMapGame : MonoBehaviour
 
     [SerializeField]
     ManagerOfRoutePosition managerOfRoutePosition;
+
+    [SerializeField]
+    FactoryOfEntityBuildingResource factoryOfEntityBuildingResource;
+
+    [SerializeField]
+    ManagerOfEntityBuildingResource managerOfEntityBuildingResource;
+
+    [SerializeField]
+    EntityBuildingResource entityBuildingResource;
+
+    [SerializeField]
+    Transform entityBuildingResourcePosition;
     
 
 
@@ -32,11 +44,12 @@ public class BaseMapGame : MonoBehaviour
         InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.WOOD;
         JudgeCount(infoGame.HumanManager.GetHumansOf(type).Count, managerOfEntityHuman.GetCountOf(type), type);
 
-        // 目的地に移動
-        //foreach (EntityHuman human in managerOfEntityHuman.Humans)
-        //{
-        //    human.TargetPosition = ChangeToVector3FromMoveType(human.MoveType, human.transform.position);
-        //}
+        // 収集
+        foreach (EntityHuman human in managerOfEntityHuman.CollectHumans)
+        {
+            infoGame.BuildingManager.GetBuildingResource(entityBuildingResource.Type).AddCount(entityBuildingResource.GetBuildingResourceCount());
+            human.Move.OnCollectProcess();
+        }
     }
 
     // 人数を合わせる
@@ -50,7 +63,8 @@ public class BaseMapGame : MonoBehaviour
                 type,
                 managerOfRoutePosition.Home + new Vector3(0, 10.0f, 0),
                 managerOfRoutePosition.Home,
-                managerOfRoutePosition.EntityBuildingResource
+                managerOfRoutePosition.EntityBuildingResource,
+                "CollectPoint"
                 ));
         }
         if (sabun < 0)

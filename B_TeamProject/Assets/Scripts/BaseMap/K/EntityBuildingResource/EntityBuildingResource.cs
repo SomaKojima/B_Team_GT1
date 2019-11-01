@@ -6,7 +6,7 @@ public class EntityBuildingResource : MonoBehaviour
 {
     const int COUNT = 100;
 
-    InfoOfBuildingResource.BUILDING_RESOUCE_TYPE type = InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.NONE;
+    InfoOfBuildingResource.BUILDING_RESOUCE_TYPE type = InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.WOOD;
 
     // Start is called before the first frame update
     void Start()
