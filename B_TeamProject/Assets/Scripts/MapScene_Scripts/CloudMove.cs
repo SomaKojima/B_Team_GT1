@@ -25,6 +25,15 @@ public class CloudMove : MonoBehaviour
     //カメラオブジェクト
     GameObject m_cameraChange;
 
+    enum Type
+    {
+        Change,
+        FadeOut,
+        FadeIn,
+    }
+
+    [SerializeField]
+    Type m_usetype;
 
     enum MoveType
     {
@@ -42,7 +51,7 @@ public class CloudMove : MonoBehaviour
     bool m_oneroopFlag = false;
 
     [SerializeField]
-    bool m_flag;
+    bool m_directionFlag;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +60,31 @@ public class CloudMove : MonoBehaviour
 
         m_cameraChange = GameObject.Find("GameObjectAction");
 
+
+        if(m_usetype==Type.FadeOut)
+        {
+            if (m_movetype == MoveType.Left)
+            {
+                m_rect.localPosition = new Vector3(-336f, m_posY, 0);
+            }
+            else if (m_movetype == MoveType.Right)
+            {
+                m_rect.localPosition = new Vector3(347f, m_posY, 0);
+            }
+        }
+
+
+        if (m_usetype == Type.FadeIn)
+        {
+            if (m_movetype == MoveType.Left)
+            {
+                m_rect.localPosition = new Vector3(-1089f, m_posY, 0);
+            }
+            else if (m_movetype == MoveType.Right)
+            {
+                m_rect.localPosition = new Vector3(1100f, m_posY, 0);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -63,18 +97,35 @@ public class CloudMove : MonoBehaviour
         if (m_cameraflag)
         {
             m_oneroopFlag = true;
-            this.GetComponent<UnityEngine.UI.Image>().enabled = true;
+           this.GetComponent<UnityEngine.UI.Image>().enabled = true;
         }
 
+
+        switch (m_usetype)
+        {
+            case Type.Change:
+                if (m_movetype == MoveType.Left)
+                {
+                    MoveCloud(-1089f, -336f);
+                }
+                if (m_movetype == MoveType.Right)
+                {
+                    MoveCloud(347f, 1100f);
+                }
+                break;
+            case Type.FadeOut:
+                CloudFadeOut(-1089f, 1100f);
+                break;
+            case Type.FadeIn:
+                CloudFadeIn(347f ,- 336f);
+                break;
+
+        }
+
+
+
        
-        if (m_movetype == MoveType.Left)
-        {
-            MoveCloud(-1089f, -336f);
-        }
-        if (m_movetype == MoveType.Right)
-        {
-            MoveCloud(347f, 1100f);
-        }
+
     }
 
    
@@ -140,10 +191,70 @@ public class CloudMove : MonoBehaviour
 
     }
 
-    private void Awake()
+   //フェードアウトする
+    public void CloudFadeOut(float left_target_posX,float right_target_posX)
     {
-        DontDestroyOnLoad(this.gameObject);
+        this.GetComponent<UnityEngine.UI.Image>().enabled = true;
+
+        if (m_directionFlag)
+        {
+            //trueなら左に動く
+           // 
+
+            m_rect.localPosition -= new Vector3(20, 0, 0);
+
+            if (m_rect.localPosition.x <= left_target_posX)
+            {
+                m_rect.localPosition = new Vector3(left_target_posX, m_posY, 0);
+
+            }
+        }
+        else
+        {
+            //falseなら右に動く
+           // 
+
+            m_rect.localPosition += new Vector3(20, 0, 0);
+
+            if (m_rect.localPosition.x >= right_target_posX)
+            {
+                m_rect.localPosition = new Vector3(right_target_posX, m_posY, 0);
+            }
+        }
+
     }
+
+    //フェードインする
+    public void CloudFadeIn(float right_target_posX, float left_target_posX)
+    {
+        this.GetComponent<UnityEngine.UI.Image>().enabled = true;
+
+
+        if (m_directionFlag)
+        {
+            //trueなら右に動く
+           
+            m_rect.localPosition += new Vector3(20, 0, 0);
+
+            if (m_rect.localPosition.x >= left_target_posX)
+            {
+                m_rect.localPosition = new Vector3(left_target_posX, m_posY, 0);
+
+            }
+        }
+        else
+        {
+            //falseなら左に動く
+
+            m_rect.localPosition -= new Vector3(20, 0, 0);
+
+            if (m_rect.localPosition.x <= right_target_posX)
+            {
+                m_rect.localPosition = new Vector3(right_target_posX, m_posY, 0);
+            }
+        }
+    }
+    
 
 
     //ワンループしてる時のフラグ

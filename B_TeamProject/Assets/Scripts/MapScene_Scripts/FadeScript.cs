@@ -117,4 +117,19 @@ public class FadeScript : MonoBehaviour
         }
         material.SetFloat("_Alpha", 1);
     }
+
+
+    //フェードアウトする
+    public void FadeOut()
+    {
+        StartCoroutine(FadeOutTransition());
+    }
+
+
+    //フェードインする
+    public void FadeIn()
+    {
+        StartCoroutine(InTransition());
+    }
+
 }
