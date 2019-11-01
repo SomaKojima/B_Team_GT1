@@ -18,7 +18,6 @@ public class InfoManagerOfHuman : MonoBehaviour
         AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.COAL_MIEAR));
         AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD));
         AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.ENGINEER));
-        
     }
 
 
@@ -37,7 +36,7 @@ public class InfoManagerOfHuman : MonoBehaviour
             countOfType[(int)info.Type] += 1;
         }
 
-        Debug.Log("増えた ：" + info.Type.ToString());
+        Debug.Log("増えた人の情報 ：" + info.Type.ToString());
     }
 
     // 人間の削除
@@ -56,7 +55,7 @@ public class InfoManagerOfHuman : MonoBehaviour
         {
             countOfType[(int)info.Type] -= 1;
         }
-        Debug.Log("減った ：" + info.Type.ToString());
+        Debug.Log("減った人の情報 ：" + info.Type.ToString());
     }
 
     // 人種別にリストから消す
@@ -80,7 +79,7 @@ public class InfoManagerOfHuman : MonoBehaviour
     }
 
     // 人種別に人間を取得
-    public InfoOfHuman[] GetHumansOf(InfoOfHuman.HUMAN_TYPE type)
+    public List<InfoOfHuman> GetHumansOf(InfoOfHuman.HUMAN_TYPE type)
     {
         List<InfoOfHuman> buf = new List<InfoOfHuman>();
         foreach (InfoOfHuman info in humans)
@@ -91,7 +90,7 @@ public class InfoManagerOfHuman : MonoBehaviour
             }
         }
 
-        return buf.ToArray();
+        return new List<InfoOfHuman>(buf);
     }
    
 
@@ -102,9 +101,14 @@ public class InfoManagerOfHuman : MonoBehaviour
         return false;
     }
 
-    public InfoOfHuman[] GetHumans()
+    public int GetCountOf(InfoOfHuman.HUMAN_TYPE type)
     {
-        return humans.ToArray();
+        return countOfType[(int)type];
+    }
+
+    public List<InfoOfHuman> GetHumans()
+    {
+        return humans;
     }
     
 }
