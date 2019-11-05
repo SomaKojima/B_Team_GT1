@@ -110,5 +110,4 @@ public class InfoManagerOfHuman : MonoBehaviour
     {
         return humans;
     }
-    
 }

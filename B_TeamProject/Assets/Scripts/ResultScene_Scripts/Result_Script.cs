@@ -22,6 +22,8 @@ public class Result_Script : MonoBehaviour
 
 
 
+
+
     //順位を紐づける
     enum Ranking
     {
@@ -45,17 +47,19 @@ public class Result_Script : MonoBehaviour
     };
 
 
+    bool m_clickFlag = false;
+
 
     void Start()
     {
 
         Sprite[] m_sprite =
-     {
+        {
             Resources.Load<Sprite>("Sprite\\Result\\gold_medal"),
             Resources.Load<Sprite>("Sprite\\Result\\medal_silver"),
             Resources.Load<Sprite>("Sprite\\Result\\medal_bronze"),
             Resources.Load<Sprite>("Sprite\\Result\\medal_light_blue")
-    };
+         };
 
         for (int i=0;i< NUM; i++)
         {
@@ -65,22 +69,26 @@ public class Result_Script : MonoBehaviour
             m_ranking[i].AddComponent<SpriteRenderer>();
 
             //オブジェクトにスプライトを貼り付ける
-            m_ranking[i].GetComponent<SpriteRenderer>().sprite = m_sprite[i];
+            //m_ranking[i].GetComponent<SpriteRenderer>().sprite = m_sprite[i]; 
 
-            
-           
+
+           // m_valueBox[i];
+
+
         }
-       
-
-        
-
-        ////テクスチャのロード
-        //m_one = Resources.Load<Sprite>("Sprite\\Result\\gold_medal");
-        //m_two = Resources.Load<Sprite>("Sprite\\Result\\medal_silver");
-        //m_three= Resources.Load<Sprite>("Sprite\\Result\\medal_bronze");
-        //m_four= Resources.Load<Sprite>("Sprite\\Result\\medal_light_blue");
 
     }
+
+    public void Onclick()
+    {
+        m_clickFlag = true;
+    }
+
+    public void OnClickProcess()
+    {
+        m_clickFlag = false;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -98,25 +106,20 @@ public class Result_Script : MonoBehaviour
         switch (m_rank)
         {
             case Ranking.One:
-                OneWin();
+                m_ranking[0].SetActive(true);
                 break;
-
+            case Ranking.Two:
+                m_ranking[1].SetActive(true);
+                break;
+            case Ranking.Three:
+                m_ranking[2].SetActive(true);
+                break;
+            case Ranking.Four:
+                m_ranking[3].SetActive(true);
+                break;
         }
 
     }
-
-    public void OneWin()
-    {
-        m_ranking[0].SetActive(true);
-
-        for(int i=1;i<4;i++)
-        {
-            m_ranking[i].SetActive(false);
-        }
-    }
-
-
-    
 
     //ソートする関数（出来てる確証なし）
     public void Judge(Dictionary<int,int> info)
