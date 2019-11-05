@@ -31,7 +31,9 @@ public class BaseMapGame : MonoBehaviour
 
     [SerializeField]
     CheckClick exchangeGate;
-    
+
+    [SerializeField]
+    UIButtonClick cancelButton;
 
 
     // Start is called before the first frame update
@@ -61,6 +63,12 @@ public class BaseMapGame : MonoBehaviour
             Debug.Log("gate");
             exchangeGate.OnClickProcess();
             game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
+        }
+
+        if (cancelButton.IsClick)
+        {
+            cancelButton.OnClickProcess();
+            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.MAP);
         }
     }
 

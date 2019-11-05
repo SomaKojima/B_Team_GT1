@@ -53,4 +53,8 @@ public class MapScene_Test : MonoBehaviour
         get { return m_name; }
     }
 
+    public bool IsClick
+    {
+        get { return m_clickFlag; }
+    }
 }

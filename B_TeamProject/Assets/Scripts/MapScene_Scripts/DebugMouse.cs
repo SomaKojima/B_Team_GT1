@@ -25,7 +25,4 @@ public class DebugMouse : MonoBehaviour
 
         transform.position = new Vector3(worldMousePos.x, worldMousePos.y, 0);
     }
-
-  
-
 }
