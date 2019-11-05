@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Button_Event : MonoBehaviour
 {
+
+    //マウスクリックフラグ
+    bool m_clickFlag;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +21,15 @@ public class Button_Event : MonoBehaviour
         
     }
 
+    public void OnClickProcess()
+    {
+        m_clickFlag = false;
+    }
+
     public void OnClick()
     {
         //クリックしたときの処理を記入（恐らくシーン遷移かと思われる）
+
+        m_clickFlag = true;
     }
 }
