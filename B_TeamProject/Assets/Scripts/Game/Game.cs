@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     CameraManager camerasManager;
+    
 
 
     // Start is called before the first frame update
@@ -23,7 +24,6 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public InfoManagerOfHuman HumanManager

@@ -9,7 +9,8 @@ public class CameraType : MonoBehaviour
         BASE_MAP,
         MAP,
         SHOP,
-        FUNSUI
+        FUNSUI,
+        SELECT_EXCHANGE
     }
 
     [SerializeField]

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CollectPoint
   - Mouse
+  - Canvas
   layers:
   - Default
   - TransparentFX

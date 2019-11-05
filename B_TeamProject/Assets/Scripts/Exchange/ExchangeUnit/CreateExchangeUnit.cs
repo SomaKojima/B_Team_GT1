@@ -16,6 +16,13 @@ public class CreateExchangeUnit
 
     }
 
+    static public ExchangeUnit CreateNone()
+    {
+        ExchangeUnit unit = new ExchangeUnit();
+
+        return unit;
+    }
+
     static public ExchangeUnit Create()
     {
         ExchangeUnit unit = new ExchangeUnit();

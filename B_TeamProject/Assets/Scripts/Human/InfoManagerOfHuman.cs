@@ -39,6 +39,14 @@ public class InfoManagerOfHuman : MonoBehaviour
         Debug.Log("増えた人の情報 ：" + info.Type.ToString());
     }
 
+    public void AddHumans(List<InfoOfHuman> list)
+    {
+        foreach (InfoOfHuman human in list)
+        {
+            AddHumans(human);
+        }
+    }
+
     // 人間の削除
     public void DeleteHuman(InfoOfHuman info, int index = -1)
     {
@@ -78,6 +86,25 @@ public class InfoManagerOfHuman : MonoBehaviour
         }
     }
 
+    public void DeleteHumansOf(List<InfoOfHuman> list)
+    {
+        if (list.Count == 0) return;
+
+        int[] count = new int[(int)InfoOfHuman.HUMAN_TYPE.MAX];
+        for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
+        {
+            count[i] = 0;
+        }
+        foreach (InfoOfHuman human in list)
+        {
+            count[(int)human.Type] += 1;
+        }
+        for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
+        {
+            DeleteHumansOf((InfoOfHuman.HUMAN_TYPE)i, count[i]);
+        }
+    }
+
     // 人種別に人間を取得
     public List<InfoOfHuman> GetHumansOf(InfoOfHuman.HUMAN_TYPE type)
     {
@@ -92,11 +119,31 @@ public class InfoManagerOfHuman : MonoBehaviour
 
         return new List<InfoOfHuman>(buf);
     }
-   
 
-    public bool CheckHumansOf(InfoOfHuman.HUMAN_TYPE type)
+    public bool CheckHumansOf(List<InfoOfHuman> list)
     {
-        if (countOfType[(int)type] > 0) return true;
+        if (list.Count == 0) return true;
+
+        int[] count = new int[(int)InfoOfHuman.HUMAN_TYPE.MAX];
+        for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
+        {
+            count[i] = 0;
+        }
+        foreach (InfoOfHuman human in list)
+        {
+            count[(int)human.Type] += 1;
+            if (count[(int)human.Type] > countOfType[(int)human.Type])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool CheckHumansOf(InfoOfHuman.HUMAN_TYPE type, int count)
+    {
+        if (countOfType[(int)type] > count) return true;
 
         return false;
     }

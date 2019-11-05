@@ -15,20 +15,38 @@ public class ShopGame : MonoBehaviour
     [SerializeField]
     ExcB_Factory buttonFactory;
 
+    [SerializeField]
+    UIButtonClick cancelButton;
+
     // Start is called before the first frame update
     void Start()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
+
+        ///-----------------------------------------------------
+        /// テスト用のユニットを作成
+        ///-----------------------------------------------------
+        ExchangeUnit unitNecce = CreateExchangeUnit.CreateNone();
+        InfoOfHuman humanNecce = new InfoOfHuman();
+        humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+        unitNecce.AddNecessaty(humanNecce);
+        exchangeUnitManager.Add(unitNecce);
+
+        ExchangeUnit unitPre = CreateExchangeUnit.CreateNone();
+        InfoOfHuman humanPre = new InfoOfHuman();
+        humanPre.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+        unitPre.AddPresentation(humanPre);
+        exchangeUnitManager.Add(unitPre);
+
+
         // ユニットの作成
+        exchangeUnitManager.Add(CreateExchangeUnit.Create());
         exchangeUnitManager.Add(CreateExchangeUnit.Create());
 
         // ユニットからボタンを作成
         foreach (ExchangeUnit unit in exchangeUnitManager.Units)
         {
-            buttonManager.AddButton(buttonFactory.CreateButton(
-                unit.PresentationHuman.Type.ToString(),
-                unit.NecessatyHuman.Type.ToString(),
-                unit.ID));
+            buttonManager.AddButton(buttonFactory.CreateButton(unit));
         }
     }
 
@@ -42,6 +60,12 @@ public class ShopGame : MonoBehaviour
             // ボタンの処理
             button.OnClickProcess();
         }
+
+        if(cancelButton.IsClick)
+        {
+            cancelButton.OnClickProcess();
+            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
+        }
     }
 
     // 交換の処理
@@ -53,15 +77,18 @@ public class ShopGame : MonoBehaviour
         Debug.Log("ボタンのID:" + id + "ユニットのID:" + unit.ID);
         if (unit != null)
         {
-            if (game.HumanManager.CheckHumansOf(unit.NecessatyHuman.Type))
+            if (game.HumanManager.CheckHumansOf(unit.NecessatyHumans))
             {
-                game.HumanManager.DeleteHumansOf(unit.NecessatyHuman.Type, 1);
-                game.HumanManager.AddHumans(unit.PresentationHuman);
+                game.HumanManager.DeleteHumansOf(unit.NecessatyHumans);
+                game.HumanManager.AddHumans(unit.PresentationHumans);
                 Debug.Log("交換できました");
             }
             else
             {
-                Debug.Log(unit.NecessatyHuman.Type.ToString() + "がいません");
+                foreach (InfoOfHuman human in unit.NecessatyHumans)
+                {
+                    Debug.Log(human.Type.ToString() + "がいません");
+                }
             }
         }
     }

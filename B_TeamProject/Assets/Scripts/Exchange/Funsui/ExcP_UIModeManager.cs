@@ -22,6 +22,9 @@ public class ExcP_UIModeManager : MonoBehaviour
     [SerializeField]
     OKButton OK_Button;
 
+    [SerializeField]
+    
+
     EXCP_UI_MODE mode = EXCP_UI_MODE.EXCP_UI_MODE_NONE;
 
     // Start is called before the first frame update
@@ -39,6 +42,16 @@ public class ExcP_UIModeManager : MonoBehaviour
     public void Initialize()
     {
         ChangeMode(EXCP_UI_MODE.SELECT_PLAYER);
+    }
+
+    public void BackMode()
+    {
+        mode = (EXCP_UI_MODE)((int)mode - 1);
+        if (mode < 0)
+        {
+            mode = 0;
+        }
+        ChangeMode(mode);
     }
 
     public void ChangeMode(EXCP_UI_MODE _mode)
@@ -59,5 +72,10 @@ public class ExcP_UIModeManager : MonoBehaviour
                 Debug.Log("QR_MODE");
                 break;
         }
+    }
+
+    public EXCP_UI_MODE Mode
+    {
+        get { return mode; }
     }
 }

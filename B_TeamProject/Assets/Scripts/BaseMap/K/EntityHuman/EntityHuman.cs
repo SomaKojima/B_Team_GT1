@@ -33,7 +33,6 @@ public class EntityHuman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public InfoOfHuman.HUMAN_TYPE Type
@@ -50,4 +49,5 @@ public class EntityHuman : MonoBehaviour
     {
         get { return move.IsCollect; }
     }
+    
 }

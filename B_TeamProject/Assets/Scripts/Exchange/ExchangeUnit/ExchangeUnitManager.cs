@@ -21,6 +21,7 @@ public class ExchangeUnitManager : MonoBehaviour
     public void Add(ExchangeUnit unit)
     {
         units.Add(unit);
+        unit.ID = units.Count;
     }
 
     // IDからユニットを取得

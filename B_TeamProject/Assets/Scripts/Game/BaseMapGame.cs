@@ -28,6 +28,9 @@ public class BaseMapGame : MonoBehaviour
 
     [SerializeField]
     Transform entityBuildingResourcePosition;
+
+    [SerializeField]
+    CheckClick exchangeGate;
     
 
 
@@ -50,6 +53,14 @@ public class BaseMapGame : MonoBehaviour
         {
             game.BuildingManager.GetBuildingResource(entityBuildingResource.Type).AddCount(entityBuildingResource.GetBuildingResourceCount());
             human.Move.OnCollectProcess();
+        }
+
+        // 交換エリアに移動
+        if (exchangeGate.IsClick)
+        {
+            Debug.Log("gate");
+            exchangeGate.OnClickProcess();
+            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
         }
     }
 
@@ -74,4 +85,6 @@ public class BaseMapGame : MonoBehaviour
             managerOfEntityHuman.DeleteHumansOf(type, sabun);
         }
     }
+
+   
 }

@@ -40,4 +40,9 @@ public class CameraManager : MonoBehaviour
             }
         }
     }
+
+    public CameraType.CAMERA_TYPE Type
+    {
+        get { return type; }
+    }
 }

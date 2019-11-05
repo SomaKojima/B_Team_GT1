@@ -28,6 +28,9 @@ public class FountainGame : MonoBehaviour
     [SerializeField]
     QRcodeManager qrCodeManager;
 
+    [SerializeField]
+    UIButtonClick cancelButton;
+
     // QRコードを生成する文字列
     [SerializeField]
     string testStr;
@@ -80,7 +83,7 @@ public class FountainGame : MonoBehaviour
         ///-------------------------------------------------------------------------------------------------------
         if (SelectExchange_OKButton.IsClick)
         {
-            SelectExchange_OKButton.OnClick();
+            SelectExchange_OKButton.OnClickProcess();
 
             // QRコード表示
             qrCodeManager.SetActiveQRcode(true);
@@ -127,11 +130,25 @@ public class FountainGame : MonoBehaviour
             // UIの切り替え
             uiModeManager.ChangeMode(ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE);
         }
-        else
+
+        if(uiModeManager.Mode != ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE)
         {
             // QRコード非表示
             qrCodeManager.SetActiveQRcode(false);
         }
 
+
+        ///-------------------------------------------------------------------------------------------------------
+        ///戻るボタンの処理
+        ///-------------------------------------------------------------------------------------------------------
+        if (cancelButton.IsClick)
+        {
+            if (uiModeManager.Mode == ExcP_UIModeManager.EXCP_UI_MODE.SELECT_PLAYER)
+            {
+                game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
+            }
+            cancelButton.OnClickProcess();
+            uiModeManager.BackMode();
+        }
     }
 }
