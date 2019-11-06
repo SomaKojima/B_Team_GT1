@@ -140,10 +140,25 @@ public class Message : MonoBehaviour
         isOneMessage = false;
         isEndMessage = false;
     }
+
+    public void AddMessage(string message)
+    {
+        this.allMessage += message;
+        splitMessage = Regex.Split(allMessage, @"\s*" + splitString + @"\s*", RegexOptions.IgnorePatternWhitespace);
+       
+        isEndMessage = false;
+    }
+
     //　他のスクリプトから新しいメッセージを設定しUIをアクティブにする
     public void SetMessagePanel(string message)
     {
         SetMessage(message);
         transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+
+    public string SplitString
+    {
+        get { return splitString; }
     }
 }
