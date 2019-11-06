@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class LogScroll : MonoBehaviour
 {
     [SerializeField]
+    float speed = 0.1f;
+
+    [SerializeField]
     RectTransform maskRect;
 
     [SerializeField]
@@ -14,14 +17,21 @@ public class LogScroll : MonoBehaviour
     [SerializeField]
     Scrollbar horizonScrollbar;
 
+    [SerializeField]
+    GameObject scrollArea;
+
     RectTransform rectTransform;
     Vector3 startPosition;
+    int endChildCount = 0;
+
+    bool isPointerDown = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        rectTransform = scrollArea.GetComponent<RectTransform>();
         startPosition = rectTransform.localPosition;
+        endChildCount = scrollArea.transform.childCount;
     }
 
     // Update is called once per frame
@@ -36,6 +46,20 @@ public class LogScroll : MonoBehaviour
             rectTransform.localPosition.z
             );
 
+        // 自動的に一番新しいログに移動
+        if (endChildCount != scrollArea.transform.childCount)
+        {
+            verticalScrollbar.value = 1.0f;
+        }
+        endChildCount = scrollArea.transform.childCount;
+
+
+        if (Input.GetMouseButton(0) && isPointerDown)
+        {
+            verticalScrollbar.value += Input.GetAxis("Mouse Y") * speed;
+            verticalScrollbar.value  = Mathf.Clamp(verticalScrollbar.value, 0.0f, 1.0f);
+        }
+
 
         ///----------------------------------------------
         /// 横スクロール
@@ -45,6 +69,12 @@ public class LogScroll : MonoBehaviour
             rectTransform.localPosition.y,
             rectTransform.localPosition.z
             );
+
+        if (Input.GetMouseButton(0) && isPointerDown)
+        {
+            horizonScrollbar.value += Input.GetAxis("Mouse X") * speed;
+            horizonScrollbar.value = Mathf.Clamp(horizonScrollbar.value, 0.0f, 1.0f);
+        }
     }
 
     float ScrollValue(float size, float maskSize, float startPosition, float value, bool turn = false)
@@ -60,6 +90,19 @@ public class LogScroll : MonoBehaviour
             return startPosition - size * value;
         }
         return startPosition + size * value;
+    }
+
+
+    public void OnPointerDown()
+    {
+        isPointerDown = true;
+        Debug.Log("Down");
+    }
+
+    public void OnPointerUp()
+    {
+        isPointerDown = false;
+        Debug.Log("Up");
     }
 }
 
