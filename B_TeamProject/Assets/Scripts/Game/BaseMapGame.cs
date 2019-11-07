@@ -35,6 +35,12 @@ public class BaseMapGame : MonoBehaviour
     [SerializeField]
     UIButtonClick cancelButton;
 
+    [SerializeField]
+    GenerateFloorInstance factoryOfFloor;
+
+    [SerializeField]
+    CheckClick woodPanel;
+
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +78,14 @@ public class BaseMapGame : MonoBehaviour
             cancelButton.OnClickProcess();
             game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.MAP);
         }
+
+        if (woodPanel.IsClick)
+        {
+            game.CreateLogUI("増築しました");
+            woodPanel.OnClickProcess();
+            factoryOfFloor.Create();
+        }
+
     }
 
     // 人数を合わせる

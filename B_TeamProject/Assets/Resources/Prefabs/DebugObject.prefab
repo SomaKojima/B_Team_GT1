@@ -130,11 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6413540115556313631}
     m_Modifications:
-    - target: {fileID: 7824947608855360427, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
-        type: 3}
-      propertyPath: m_Name
-      value: Game
-      objectReference: {fileID: 0}
     - target: {fileID: 7824947608855360426, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -190,11 +185,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7824947608855360427, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_Name
+      value: Game
+      objectReference: {fileID: 0}
     - target: {fileID: 7824947608855360425, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
         type: 3}
       propertyPath: camerasManager
       value: 
       objectReference: {fileID: 6342766336347924039}
+    - target: {fileID: 1202510253793705957, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510253793705957, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -44.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510253793705957, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 454.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510253793705957, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 437.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510254108678053, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510254108678053, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510254108678053, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510254199938334, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510254199938334, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43b372fecf7bbd40a0e8e15eeb6a750, type: 3}
 --- !u!4 &2093955566240424849 stripped
