@@ -53,7 +53,9 @@ public class BaseMapGame : MonoBehaviour
         // 収集
         foreach (EntityHuman human in managerOfEntityHuman.CollectHumans)
         {
-            game.BuildingManager.GetBuildingResource(entityBuildingResource.Type).AddCount(entityBuildingResource.GetBuildingResourceCount());
+            int count = entityBuildingResource.GetBuildingResourceCount();
+            game.CreateLogUI(entityBuildingResource.Type.ToString() + " x" + game.BuildingManager.GetBuildingResource(entityBuildingResource.Type).Count.ToString());
+            game.BuildingManager.GetBuildingResource(entityBuildingResource.Type).AddCount(count);
             human.Move.OnCollectProcess();
         }
 

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    List<GameObject> cameras = new List<GameObject>();
-
     [SerializeField]
     CameraType.CAMERA_TYPE type = CameraType.CAMERA_TYPE.BASE_MAP;
+
+    List<Camera> cameras = new List<Camera>();
+    Camera currentCumera = null;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class CameraManager : MonoBehaviour
         {
             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("MainCamera"))
             {
-                cameras.Add(obj);
+                cameras.Add(obj.GetComponent<Camera>());
             }
             ChangeType(type);
         }
@@ -30,15 +31,21 @@ public class CameraManager : MonoBehaviour
     public void ChangeType(CameraType.CAMERA_TYPE _type)
     {
         type = _type;
-        foreach (GameObject obj in cameras)
+        foreach (Camera obj in cameras)
         {
-            obj.SetActive(false);
+            obj.gameObject.SetActive(false);
 
             if (obj.GetComponent<CameraType>().Type == type)
             {
-                obj.SetActive(true);
+                currentCumera = obj;
+                obj.gameObject.SetActive(true);
             }
         }
+    }
+
+    public Camera GetCamera()
+    {
+        return currentCumera;
     }
 
     public CameraType.CAMERA_TYPE Type

@@ -72,7 +72,7 @@ public class LogScroll : MonoBehaviour
 
         if (Input.GetMouseButton(0) && isPointerDown)
         {
-            horizonScrollbar.value += Input.GetAxis("Mouse X") * speed;
+            horizonScrollbar.value += Input.GetAxis("Mouse X") * -speed;
             horizonScrollbar.value = Mathf.Clamp(horizonScrollbar.value, 0.0f, 1.0f);
         }
     }

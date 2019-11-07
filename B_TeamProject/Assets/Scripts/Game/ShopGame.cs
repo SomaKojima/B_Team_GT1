@@ -80,16 +80,64 @@ public class ShopGame : MonoBehaviour
             if (game.HumanManager.CheckHumansOf(unit.NecessatyHumans))
             {
                 game.HumanManager.DeleteHumansOf(unit.NecessatyHumans);
+
                 game.HumanManager.AddHumans(unit.PresentationHumans);
-                Debug.Log("交換できました");
+                CreateLogUIOfExchange(unit.NecessatyHumans, unit.PresentationHumans);
             }
             else
             {
-                foreach (InfoOfHuman human in unit.NecessatyHumans)
-                {
-                    Debug.Log(human.Type.ToString() + "がいません");
-                }
+                game.CreateLogUI("交換に必要な人数が足りません");
             }
         }
+    }
+
+    void CreateLogUIOfExchange(List<InfoOfHuman> delete, List<InfoOfHuman> get)
+    {
+        string buf = "";
+        for (int i = 0; i < delete.Count; i++)
+        {
+            buf += delete[i].Type.ToString();
+            if (i != delete.Count - 1)
+            {
+                buf += "と";
+            }
+        }
+        buf += "を\n";
+
+        for (int i = 0; i < get.Count; i++)
+        {
+            buf += get[i].Type.ToString();
+            if (i != get.Count - 1)
+            {
+                buf += "と";
+            }
+        }
+        game.CreateLogUI(buf + "に交換した");
+    }
+
+    void CreateLogUIOfGetHumans(List<InfoOfHuman> list)
+    {
+        foreach (InfoOfHuman human in list)
+        {
+            game.CreateLogUI(human.Type.ToString() + "を手に入れた");
+        }
+    }
+
+    void CreateLogUIOfDeleteHumans(List<InfoOfHuman> list)
+    {
+        foreach (InfoOfHuman human in list)
+        {
+            game.CreateLogUI(human.Type.ToString() + "を失った");
+        }
+    }
+
+    void CreateLogUIOfMissing(List<InfoOfHuman> list)
+    {
+        string buf = "";
+        foreach (InfoOfHuman human in list)
+        {
+            buf += human.Type.ToString() + "\n";
+        }
+        game.CreateLogUI(buf  + "がいません");
     }
 }
