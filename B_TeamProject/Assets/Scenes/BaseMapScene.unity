@@ -2602,7 +2602,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c637634652a2b5a4a9a40959706764fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5122093088272929627, guid: 09e2978198019e941affa1a5849d6b09, type: 3}
+  woodPrefab: {fileID: 5122093088272929627, guid: 09e2978198019e941affa1a5849d6b09,
+    type: 3}
+  engineerPrefab: {fileID: 1395515171711954489, guid: 050627d3d0697034f94a07f044d65699,
+    type: 3}
+  coalMinerPrefab: {fileID: 1100945734171975105, guid: 8f5e064bc473e614e949e48a977a5bb2,
+    type: 3}
   parent: {fileID: 1001704271}
 --- !u!4 &1506936514
 Transform:
@@ -2796,7 +2801,7 @@ PrefabInstance:
     - target: {fileID: 8487882444193826169, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6413540115556313631, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
@@ -2853,6 +2858,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7001084964020727774, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2867,31 +2897,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.2800293
-      objectReference: {fileID: 0}
-    - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8897151a5c3610f4a981a2eeea132779, type: 3}
@@ -3345,7 +3350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd32d98ee702574e8d1f8bc4c2ab494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  woodPrefab: {fileID: 0}
+  machinePrefab: {fileID: 0}
+  orePrefab: {fileID: 0}
   parent: {fileID: 0}
 --- !u!1 &1794977587
 GameObject:

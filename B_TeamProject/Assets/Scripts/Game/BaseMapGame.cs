@@ -53,7 +53,7 @@ public class BaseMapGame : MonoBehaviour
     void Update()
     {
         // 木こりの人数を合わせる
-        InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.WOOD;
+        InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.COAL_MIEAR;
         JudgeCount(game.HumanManager.GetHumansOf(type).Count, managerOfEntityHuman.GetCountOf(type), type);
 
         // 収集
