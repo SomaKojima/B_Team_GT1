@@ -530,6 +530,10 @@ C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Deb
 C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Debug\UnityEngine.VideoModule.xml
 C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Debug\UnityEngine.WindModule.xml
 C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Debug\UnityEngine.XRModule.xml
-C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.dll
 C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.pdb
+C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Debug\DOTween.dll
+C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Debug\DOTween.xml
+C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.csproj.CopyComplete

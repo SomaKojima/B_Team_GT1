@@ -8,7 +8,9 @@ public class InfoOfBuildingResource
     public enum BUILDING_RESOUCE_TYPE
     {
         NONE = -1,
-        WOOD,
+        WOOD,       // 建材
+        MACHINE,    // 機械
+        ORE,        // 鉱石
 
         MAX
     };

@@ -10,9 +10,9 @@ public class InfoOfHuman
     public enum HUMAN_TYPE
     {
         NONE = -1,
-        WOOD,
-        ENGINEER,
-        COAL_MIEAR,
+        WOOD,           // 木こり
+        ENGINEER,       // 技術者(エンジニア)
+        COAL_MIEAR,     // 炭鉱夫
 
         MAX
     };
