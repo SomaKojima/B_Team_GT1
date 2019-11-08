@@ -31,36 +31,14 @@ public class FadeScript : MonoBehaviour
     void Start()
     {
         //最初はフェードアウトするコルーチンを呼ぶ
-        //this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
 
-        StartCoroutine(Fade());
-
-    }
-
-    void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            //StartCoroutine(InTransition());
-        }
-       
+        //StartCoroutine(Fade());
 
     }
 
+   
 
-
-    //public IEnumerator Fade()
-    //{
-
-
-    //    StartCoroutine(InTransition());
-
-
-
-    //    StartCoroutine(FadeOutTransition());
-
-    //    yield return new WaitForEndOfFrame();
-    //}
 
     public IEnumerator Fade()
     {

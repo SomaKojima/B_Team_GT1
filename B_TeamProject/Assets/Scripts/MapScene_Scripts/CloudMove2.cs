@@ -13,7 +13,16 @@ public class CloudMove2 : MonoBehaviour
     private Image m_cloud3L;
     private Image m_cloud4R;
     private Image m_cloud5R;
-  
+
+
+    enum FirstPosition
+    {
+        Out,
+        In,
+    }
+    [SerializeField]
+    FirstPosition m_first;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,27 +32,30 @@ public class CloudMove2 : MonoBehaviour
         m_cloud3L = transform.Find("Cloud (3)").GetComponent<Image>();
         m_cloud4R = transform.Find("Cloud (1)").GetComponent<Image>();
         m_cloud5R = transform.Find("Cloud (4)").GetComponent<Image>();
-       
-        //if (m_fadeFlag)
-        //{
 
-        //    m_cloudL.rectTransform.localPosition = new Vector3(-336f, -58, 0);
-        //    m_cloud2L.rectTransform.localPosition = new Vector3(-336f, 692, 0);
-        //    m_cloud3L.rectTransform.localPosition = new Vector3(-336f, -762.4f, 0);
 
-        //    m_cloud4R.rectTransform.localPosition = new Vector3(196f, -422, 0);
-        //    m_cloud5R.rectTransform.localPosition = new Vector3(196f, 311, 0);
-        //}
-        //else
-        //{
-        //    m_cloudL.rectTransform.localPosition = new Vector3(-1089f, -58, 0);
-        //    m_cloud2L.rectTransform.localPosition = new Vector3(-1089f, 692, 0);
-        //    m_cloud3L.rectTransform.localPosition = new Vector3(-1089f, -762.4f, 0);
+        if (m_first== FirstPosition.In)
+        {
 
-        //    m_cloud4R.rectTransform.localPosition = new Vector3(1100f, -422, 0);
-        //    m_cloud5R.rectTransform.localPosition = new Vector3(1100f, 311, 0);
+            m_cloudL.rectTransform.localPosition = new Vector3(-336f, -58, 0);
+            m_cloud2L.rectTransform.localPosition = new Vector3(-336f, 692, 0);
+            m_cloud3L.rectTransform.localPosition = new Vector3(-336f, -762.4f, 0);
 
-        //}
+            m_cloud4R.rectTransform.localPosition = new Vector3(196f, -422, 0);
+            m_cloud5R.rectTransform.localPosition = new Vector3(196f, 311, 0);
+        }
+
+        if(m_first==FirstPosition.Out)
+        {
+            m_cloudL.rectTransform.localPosition = new Vector3(-1089f, -58, 0);
+            m_cloud2L.rectTransform.localPosition = new Vector3(-1089f, 692, 0);
+            m_cloud3L.rectTransform.localPosition = new Vector3(-1089f, -762.4f, 0);
+
+            m_cloud4R.rectTransform.localPosition = new Vector3(1100f, -422, 0);
+            m_cloud5R.rectTransform.localPosition = new Vector3(1100f, 311, 0);
+
+        }
+      
     }
 
     bool m_outStart = false;
@@ -256,20 +268,6 @@ public class CloudMove2 : MonoBehaviour
       
       
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-        StartCoroutine(FadeOut());
-
-      
-    }
-
-
-  
-   
+ 
 
 }
