@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Funsui : MonoBehaviour
 {
+    bool isClick = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +19,18 @@ public class Funsui : MonoBehaviour
         
     }
 
+    public void OnClickProcess()
+    {
+        isClick = false;
+    }
+
     public void OnClick()
     {
-        SceneManager.LoadScene("FunsuiScene");
+        isClick = true;
+    }
+
+    public bool IsClick
+    {
+        get { return isClick; }
     }
 }

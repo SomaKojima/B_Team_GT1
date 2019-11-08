@@ -52,7 +52,7 @@ public class InfoOfBuildingResource
     public void AddCount(int add)
     {
         count += add;
-        Debug.Log(type + "の資源量 : " + count);
+        //Debug.Log(type + "の資源量 : " + count);
     }
 
     public int Count

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShopGame : MonoBehaviour
 {
-    [SerializeField]
     Game game;
 
     [SerializeField]
@@ -16,19 +15,38 @@ public class ShopGame : MonoBehaviour
     [SerializeField]
     ExcB_Factory buttonFactory;
 
+    [SerializeField]
+    UIButtonClick cancelButton;
+
     // Start is called before the first frame update
     void Start()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
+
+        ///-----------------------------------------------------
+        /// テスト用のユニットを作成
+        ///-----------------------------------------------------
+        ExchangeUnit unitNecce = CreateExchangeUnit.CreateNone();
+        InfoOfHuman humanNecce = new InfoOfHuman();
+        humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+        unitNecce.AddNecessaty(humanNecce);
+        exchangeUnitManager.Add(unitNecce);
+
+        ExchangeUnit unitPre = CreateExchangeUnit.CreateNone();
+        InfoOfHuman humanPre = new InfoOfHuman();
+        humanPre.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+        unitPre.AddPresentation(humanPre);
+        exchangeUnitManager.Add(unitPre);
+
+
         // ユニットの作成
+        exchangeUnitManager.Add(CreateExchangeUnit.Create());
         exchangeUnitManager.Add(CreateExchangeUnit.Create());
 
         // ユニットからボタンを作成
         foreach (ExchangeUnit unit in exchangeUnitManager.Units)
         {
-            buttonManager.AddButton(buttonFactory.CreateButton(
-                unit.PresentationHuman.Type.ToString(),
-                unit.NecessatyHuman.Type.ToString(),
-                unit.ID));
+            buttonManager.AddButton(buttonFactory.CreateButton(unit));
         }
     }
 
@@ -42,6 +60,12 @@ public class ShopGame : MonoBehaviour
             // ボタンの処理
             button.OnClickProcess();
         }
+
+        if(cancelButton.IsClick)
+        {
+            cancelButton.OnClickProcess();
+            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
+        }
     }
 
     // 交換の処理
@@ -53,16 +77,67 @@ public class ShopGame : MonoBehaviour
         Debug.Log("ボタンのID:" + id + "ユニットのID:" + unit.ID);
         if (unit != null)
         {
-            if (game.HumanManager.CheckHumansOf(unit.NecessatyHuman.Type))
+            if (game.HumanManager.CheckHumansOf(unit.NecessatyHumans))
             {
-                game.HumanManager.DeleteHumansOf(unit.NecessatyHuman.Type, 1);
-                game.HumanManager.AddHumans(unit.PresentationHuman);
-                Debug.Log("交換できました");
+                game.HumanManager.DeleteHumansOf(unit.NecessatyHumans);
+
+                game.HumanManager.AddHumans(unit.PresentationHumans);
+                CreateLogUIOfExchange(unit.NecessatyHumans, unit.PresentationHumans);
             }
             else
             {
-                Debug.Log(unit.NecessatyHuman.Type.ToString() + "がいません");
+                game.CreateLogUI("交換に必要な人数が足りません");
             }
         }
+    }
+
+    void CreateLogUIOfExchange(List<InfoOfHuman> delete, List<InfoOfHuman> get)
+    {
+        string buf = "";
+        for (int i = 0; i < delete.Count; i++)
+        {
+            buf += delete[i].Type.ToString();
+            if (i != delete.Count - 1)
+            {
+                buf += "と";
+            }
+        }
+        buf += "を\n";
+
+        for (int i = 0; i < get.Count; i++)
+        {
+            buf += get[i].Type.ToString();
+            if (i != get.Count - 1)
+            {
+                buf += "と";
+            }
+        }
+        game.CreateLogUI(buf + "に交換した");
+    }
+
+    void CreateLogUIOfGetHumans(List<InfoOfHuman> list)
+    {
+        foreach (InfoOfHuman human in list)
+        {
+            game.CreateLogUI(human.Type.ToString() + "を手に入れた");
+        }
+    }
+
+    void CreateLogUIOfDeleteHumans(List<InfoOfHuman> list)
+    {
+        foreach (InfoOfHuman human in list)
+        {
+            game.CreateLogUI(human.Type.ToString() + "を失った");
+        }
+    }
+
+    void CreateLogUIOfMissing(List<InfoOfHuman> list)
+    {
+        string buf = "";
+        foreach (InfoOfHuman human in list)
+        {
+            buf += human.Type.ToString() + "\n";
+        }
+        game.CreateLogUI(buf  + "がいません");
     }
 }

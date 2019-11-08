@@ -6,7 +6,7 @@ public class BaseMapGame : MonoBehaviour
 {
     // 総合監督の情報
     [SerializeField]
-    Game infoGame;
+    Game game;
 
     [SerializeField]
     FactoryOfEntityHuman factoryOfEntityHuman;
@@ -28,12 +28,24 @@ public class BaseMapGame : MonoBehaviour
 
     [SerializeField]
     Transform entityBuildingResourcePosition;
-    
+
+    [SerializeField]
+    CheckClick exchangeGate;
+
+    [SerializeField]
+    UIButtonClick cancelButton;
+
+    [SerializeField]
+    GenerateFloorInstance factoryOfFloor;
+
+    [SerializeField]
+    CheckClick woodPanel;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
         managerOfEntityHuman.Initialize();
     }
 
@@ -42,14 +54,38 @@ public class BaseMapGame : MonoBehaviour
     {
         // 木こりの人数を合わせる
         InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.WOOD;
-        JudgeCount(infoGame.HumanManager.GetHumansOf(type).Count, managerOfEntityHuman.GetCountOf(type), type);
+        JudgeCount(game.HumanManager.GetHumansOf(type).Count, managerOfEntityHuman.GetCountOf(type), type);
 
         // 収集
         foreach (EntityHuman human in managerOfEntityHuman.CollectHumans)
         {
-            infoGame.BuildingManager.GetBuildingResource(entityBuildingResource.Type).AddCount(entityBuildingResource.GetBuildingResourceCount());
+            int count = entityBuildingResource.GetBuildingResourceCount();
+            game.CreateLogUI(entityBuildingResource.Type.ToString() + " x" + game.BuildingManager.GetBuildingResource(entityBuildingResource.Type).Count.ToString());
+            game.BuildingManager.GetBuildingResource(entityBuildingResource.Type).AddCount(count);
             human.Move.OnCollectProcess();
         }
+
+        // 交換エリアに移動
+        if (exchangeGate.IsClick)
+        {
+            Debug.Log("gate");
+            exchangeGate.OnClickProcess();
+            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
+        }
+
+        if (cancelButton.IsClick)
+        {
+            cancelButton.OnClickProcess();
+            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.MAP);
+        }
+
+        if (woodPanel.IsClick)
+        {
+            game.CreateLogUI("増築しました");
+            woodPanel.OnClickProcess();
+            factoryOfFloor.Create();
+        }
+
     }
 
     // 人数を合わせる
@@ -73,4 +109,6 @@ public class BaseMapGame : MonoBehaviour
             managerOfEntityHuman.DeleteHumansOf(type, sabun);
         }
     }
+
+   
 }

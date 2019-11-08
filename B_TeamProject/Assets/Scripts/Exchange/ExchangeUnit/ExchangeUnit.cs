@@ -5,36 +5,54 @@ using UnityEngine;
 public class ExchangeUnit
 {
     // 提示される人間
-    InfoOfHuman presentationHuman = new InfoOfHuman();
+    List<InfoOfHuman> presentationHumans = new List<InfoOfHuman>();
 
     // 必要となる人間
-    InfoOfHuman necessatyHuman = new InfoOfHuman();
+    List<InfoOfHuman> necessatyHumans = new List<InfoOfHuman>();
 
     int id = 0;
-
-    public void Initialize(InfoOfHuman presentation, InfoOfHuman necessaty)
-    {
-        presentationHuman = presentation;
-        necessatyHuman = necessaty;
-    }
     
     /// <summary>
     /// 人間の情報をランダムで設定する
     /// </summary>
     public void RandomSet()
     {
-        presentationHuman.RandomSet();
-        necessatyHuman.RandomSet();
+        int random = Random.Range(1, 5);
+        for (int i = 0; i < random; i++)
+        {
+            InfoOfHuman human = new InfoOfHuman();
+            human.RandomSet();
+            presentationHumans.Add(human);
+        }
+
+        random = Random.Range(1, 5);
+        for (int i = 0; i < random; i++)
+        {
+            InfoOfHuman human = new InfoOfHuman();
+            human.RandomSet();
+            necessatyHumans.Add(human);
+        }
     }
 
-    public InfoOfHuman PresentationHuman
+
+    public void AddPresentation(InfoOfHuman info)
     {
-        get { return presentationHuman; }
+        presentationHumans.Add(info);
     }
 
-    public InfoOfHuman NecessatyHuman
+    public void AddNecessaty(InfoOfHuman info)
     {
-        get { return necessatyHuman; }
+        necessatyHumans.Add(info);
+    }
+
+    public List<InfoOfHuman> PresentationHumans
+    {
+        get { return presentationHumans; }
+    }
+
+    public List<InfoOfHuman> NecessatyHumans
+    {
+        get { return necessatyHumans; }
     }
     
     public int ID

@@ -18,7 +18,6 @@ public class MapScene_TestManager : MonoBehaviour
         {
             bases.Add(m_obj[i]);
         }
-       
     }
 
     // Update is called once per frame
