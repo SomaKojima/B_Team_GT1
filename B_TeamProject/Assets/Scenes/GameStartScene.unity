@@ -169,6 +169,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7824947608855360427, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_Name
+      value: Game
+      objectReference: {fileID: 0}
     - target: {fileID: 7824947608855360426, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -224,16 +229,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2999113105351980668, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
-        type: 3}
-      propertyPath: type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7824947608855360427, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
-        type: 3}
-      propertyPath: m_Name
-      value: Game
-      objectReference: {fileID: 0}
     - target: {fileID: 311157105876610519, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -274,6 +269,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 539.95
       objectReference: {fileID: 0}
+    - target: {fileID: 2999113105351980668, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510254172582040, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.2800293
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202510254172582040, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 574
+      objectReference: {fileID: 0}
     - target: {fileID: 1202510253793705957, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -308,16 +318,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.090026855
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202510254172582040, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.2800293
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202510254172582040, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 574
       objectReference: {fileID: 0}
     - target: {fileID: 808824400904727682, guid: c43b372fecf7bbd40a0e8e15eeb6a750,
         type: 3}
@@ -500,6 +500,7 @@ GameObject:
   - component: {fileID: 891787717}
   - component: {fileID: 891787718}
   - component: {fileID: 8491474368536607556}
+  - component: {fileID: 8491474368536607557}
   m_Layer: 0
   m_Name: LoadAddScene
   m_TagString: Untagged
@@ -521,3 +522,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLoad: 1
   scenePath: Assets/Scenes/SelectExchangeScene.unity
+--- !u!114 &8491474368536607557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491474368536607555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232db6af7bc379144b5a15f7402f142a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoad: 1
+  scenePath: Assets/Scenes/BaseMapScene/CaveScene.unity

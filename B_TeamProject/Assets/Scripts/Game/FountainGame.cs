@@ -145,7 +145,7 @@ public class FountainGame : MonoBehaviour
         {
             if (uiModeManager.Mode == ExcP_UIModeManager.EXCP_UI_MODE.SELECT_PLAYER)
             {
-                game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
+                game.CamerasManager.Undo();
             }
             cancelButton.OnClickProcess();
             uiModeManager.BackMode();

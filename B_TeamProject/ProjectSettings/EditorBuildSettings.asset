@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameStartScene.unity
     guid: 8230fc2f67b21d344af96913b3ce8a66
-  - enabled: 1
-    path: Assets/Scenes/BaseScene/B_BackGroundScene.unity
-    guid: 7fdc5197245af944bb2e06a35087544a
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/ShopScene.unity
     guid: 8747292e668707143a9b3164403805eb
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SelectExchangeScene.unity
     guid: 227c7bf0948839b4ca92d5d0f2a0c0cc
+  - enabled: 1
+    path: Assets/Scenes/BaseMapScene/CaveScene.unity
+    guid: dbe3843fcb4919645b993962e1b03dc5
   m_configObjects: {}

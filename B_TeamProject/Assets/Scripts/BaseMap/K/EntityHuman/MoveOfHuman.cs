@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class MoveOfHuman : MonoBehaviour
 {
-    const float SPEED = 0.1f;
-    const float COLLECT_DURING_TIME = 0.5f;
+    readonly float SPEED = 0.1f;
+    readonly float COLLECT_DURING_TIME = 0.5f;
     /// <summary>
     /// 行動一覧
     /// </summary>
@@ -18,17 +18,7 @@ public class MoveOfHuman : MonoBehaviour
         GO_TO_HOME,
 
         MOVE_NUM
-    }
-
-    public enum TARGET_POSITION_TYPE
-    {
-        NONE = -1,
-        HOME,
-        BUILDING_RESOURCE,
-
-        TARGET_POSITION_TYPE_MAX
-    }
-
+    };
 
     // 活動範囲
     [SerializeField]
@@ -44,13 +34,11 @@ public class MoveOfHuman : MonoBehaviour
     HUMAN_MOVE moveType = HUMAN_MOVE.COLLECT;
 
     Vector3 velocity = Vector3.zero;
-
-    TARGET_POSITION_TYPE targetPositionType = TARGET_POSITION_TYPE.BUILDING_RESOURCE;
+    
     Vector3 targetPosition = Vector3.zero;
-    Vector3 homePosition = Vector3.zero;
 
     string buildingResourceTag = "";
-    Vector3 buildingResourcePosition = Vector3.zero;
+
     bool isCollectHit = false;
     bool isCollect = false;
     float collectTime = 0.0f;
@@ -61,10 +49,8 @@ public class MoveOfHuman : MonoBehaviour
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
     }
 
-    public void Initialize(Vector3 _homePosition, Vector3 _buildingResoucePosition, string _buildingResourceTag)
+    public void Initialize(string _buildingResourceTag)
     {
-        homePosition = _homePosition;
-        buildingResourcePosition = _buildingResoucePosition;
         buildingResourceTag = _buildingResourceTag;
     }
 
@@ -82,21 +68,8 @@ public class MoveOfHuman : MonoBehaviour
         {
             velocity = new Vector3(velocity.x, velocity.y, velocity.z * -1);
         }
-
-        // 目的地に移動
-        switch (targetPositionType)
-        {
-            case TARGET_POSITION_TYPE.HOME:
-                targetPosition = homePosition;
-                break;
-            case TARGET_POSITION_TYPE.BUILDING_RESOURCE:
-                targetPosition = buildingResourcePosition;
-                break;
-        }
-        if (targetPositionType != TARGET_POSITION_TYPE.NONE)
-        {
-            MoveTargetPosition(targetPosition);
-        }
+       
+        MoveTargetPosition(targetPosition);
 
         if (isCollectHit)
         {
@@ -165,14 +138,9 @@ public class MoveOfHuman : MonoBehaviour
         get { return moveType; }
     }
 
-    public Vector3 HomePosition
+    public Vector3 TargetPosition
     {
-        set { homePosition = value; }
-    }
-
-    public Vector3 BuildingResourcePosition
-    {
-        set { buildingResourcePosition = value; }
+        set { targetPosition = value; }
     }
 
     public bool IsCollect

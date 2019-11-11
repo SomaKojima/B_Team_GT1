@@ -42,7 +42,7 @@ public class ScrollMove : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // 現在の座標を記憶
-            playerPos = moveObject.transform.position;
+            playerPos = moveObject.transform.localPosition;
             // マウスの座標を記憶
             mousePos = Input.mousePosition;
         }
@@ -51,7 +51,7 @@ public class ScrollMove : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             // 現在の座標を記憶
-            Vector3 prePos = moveObject.transform.position;
+            Vector3 prePos = moveObject.transform.localPosition;
             // タップ中の移動量を調整
             Vector3 diff = ((mousePos - Input.mousePosition)* 0.05f);
 
@@ -59,23 +59,23 @@ public class ScrollMove : MonoBehaviour
             diff.y = 0.0f;
             diff.z = 0.0f;
             // 移動できる範囲内に限り
-            if (-10.0f < moveObject.transform.position.x && moveObject.transform.position.x < 10.0f)
+            if (-10.0f < moveObject.transform.localPosition.x && moveObject.transform.localPosition.x < 10.0f)
             {
-                moveObject.transform.position = playerPos + diff;
+                moveObject.transform.localPosition = playerPos + diff;
             }
             // 座標矯正
-            if (moveObject.transform.position.x > 10.0f)
+            if (moveObject.transform.localPosition.x > 10.0f)
             {
-                moveObject.transform.position = CorrectionPosition(9.99f, moveObject.transform.position.y, moveObject.transform.position.z);
+                moveObject.transform.localPosition = CorrectionPosition(9.99f, moveObject.transform.localPosition.y, moveObject.transform.localPosition.z);
             }
-            if (moveObject.transform.position.x < -10.0f)
+            if (moveObject.transform.localPosition.x < -10.0f)
             {
-                moveObject.transform.position = CorrectionPosition(-9.99f, moveObject.transform.position.y, moveObject.transform.position.z);
+                moveObject.transform.localPosition = CorrectionPosition(-9.99f, moveObject.transform.localPosition.y, moveObject.transform.localPosition.z);
             }
 
             // 移動前後の位置の差から速度を求めてvelocityに保存しておく
             // ※掛ける値で移動量の大きさを変更する
-            velocity = ((moveObject.transform.position - prePos) * 0.5f) / Time.deltaTime;
+            velocity = ((moveObject.transform.localPosition - prePos) * 0.5f) / Time.deltaTime;
         }
         else
         {
@@ -83,19 +83,19 @@ public class ScrollMove : MonoBehaviour
             velocity *= Mathf.Pow(Attenuation, Time.deltaTime);
 
             // 移動できる範囲内に限り
-            if(-10.0f < moveObject.transform.position.x && moveObject.transform.position.x < 10.0f)
+            if(-10.0f < moveObject.transform.localPosition.x && moveObject.transform.localPosition.x < 10.0f)
             {
                 // プレイヤーを移動する
-                moveObject.transform.position += velocity * Time.deltaTime;
+                moveObject.transform.localPosition += velocity * Time.deltaTime;
 
                 // 座標矯正
-                if (moveObject.transform.position.x > 10.0f)
+                if (moveObject.transform.localPosition.x > 10.0f)
                 {
-                    moveObject.transform.position = CorrectionPosition(9.99f, moveObject.transform.position.y, moveObject.transform.position.z);
+                    moveObject.transform.localPosition = CorrectionPosition(9.99f, moveObject.transform.localPosition.y, moveObject.transform.localPosition.z);
                 }
-                if (moveObject.transform.position.x < -10.0f)
+                if (moveObject.transform.localPosition.x < -10.0f)
                 {
-                    moveObject.transform.position = CorrectionPosition(-9.99f, moveObject.transform.position.y, moveObject.transform.position.z);
+                    moveObject.transform.localPosition = CorrectionPosition(-9.99f, moveObject.transform.localPosition.y, moveObject.transform.localPosition.z);
                 }
             }
         }

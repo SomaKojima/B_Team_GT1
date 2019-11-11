@@ -64,7 +64,7 @@ public class ShopGame : MonoBehaviour
         if(cancelButton.IsClick)
         {
             cancelButton.OnClickProcess();
-            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
+            game.CamerasManager.Undo();
         }
     }
 

@@ -7,6 +7,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     CameraType.CAMERA_TYPE type = CameraType.CAMERA_TYPE.BASE_MAP;
 
+    List<CameraType.CAMERA_TYPE> undo = new List<CameraType.CAMERA_TYPE>();
+
     List<Camera> cameras = new List<Camera>();
     Camera currentCumera = null;
 
@@ -30,6 +32,8 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeType(CameraType.CAMERA_TYPE _type)
     {
+        Debug.Log("add undo");
+        undo.Add(type);
         type = _type;
         foreach (Camera obj in cameras)
         {
@@ -41,6 +45,30 @@ public class CameraManager : MonoBehaviour
                 obj.gameObject.SetActive(true);
             }
         }
+    }
+
+    public void Undo()
+    {
+        Debug.Log("undo");
+        if (undo.Count == 0) return;
+
+        type = undo[undo.Count - 1];
+        undo.RemoveAt(undo.Count - 1);
+        foreach (Camera obj in cameras)
+        {
+            obj.gameObject.SetActive(false);
+
+            if (obj.GetComponent<CameraType>().Type == type)
+            {
+                currentCumera = obj;
+                obj.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public CameraType.CAMERA_TYPE BeforeType()
+    {
+        return undo[undo.Count - 1];
     }
 
     public Camera GetCamera()
