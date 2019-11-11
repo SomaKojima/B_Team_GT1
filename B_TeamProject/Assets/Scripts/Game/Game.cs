@@ -26,6 +26,8 @@ public class Game : MonoBehaviour
     [SerializeField]
     FactoryOfLogUI factoryOfLogUI;
 
+    CameraType.CAMERA_TYPE current = CameraType.CAMERA_TYPE.WOOD;
+
 
     // Start is called before the first frame update
     void Start()
@@ -73,5 +75,28 @@ public class Game : MonoBehaviour
     public FactoryOfLogUI FactoryOfLogUI
     {
         get { return factoryOfLogUI; }
+    }
+
+    public CameraType.CAMERA_TYPE Current
+    {
+        get;
+        set;
+    }
+
+    public InfoOfHuman.PLACE_TYPE GetHumanPlaceType()
+    {
+        return ChangeToHumnaPlaceTypeFromCameraType(current);
+    }
+
+    public InfoOfHuman.PLACE_TYPE ChangeToHumnaPlaceTypeFromCameraType(CameraType.CAMERA_TYPE _type)
+    {
+        switch (_type)
+        {
+            case CameraType.CAMERA_TYPE.WOOD:
+                return InfoOfHuman.PLACE_TYPE.CAVE;
+            case CameraType.CAMERA_TYPE.Cave:
+                return InfoOfHuman.PLACE_TYPE.WOOD;
+        }
+        return InfoOfHuman.PLACE_TYPE.NONE;
     }
 }

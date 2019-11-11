@@ -27,9 +27,11 @@ public class MapGame : MonoBehaviour
                 {
                     case MapScene_Test.BaseName.Cave:
                         game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.Cave);
+                        game.Current = CameraType.CAMERA_TYPE.Cave;
                         break;
                     case MapScene_Test.BaseName.Forest:
                         game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.WOOD);
+                        game.Current = CameraType.CAMERA_TYPE.WOOD;
                         break;
                 }
             }

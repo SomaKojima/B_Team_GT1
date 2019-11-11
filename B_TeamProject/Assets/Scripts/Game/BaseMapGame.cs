@@ -9,6 +9,9 @@ public class BaseMapGame : MonoBehaviour
     Game game;
 
     [SerializeField]
+    CameraType cameraType;
+
+    [SerializeField]
     FactoryOfEntityHuman factoryOfEntityHuman;
 
     [SerializeField]
@@ -49,7 +52,7 @@ public class BaseMapGame : MonoBehaviour
     {
         // 木こりの人数を合わせる
         InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.WOOD;
-        JudgeCount(game.HumanManager.GetHumansOf(type).Count, managerOfEntityHuman.GetCountOf(type), type);
+        JudgeCount(game.HumanManager.GetHumansOf(type, game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)).Count, managerOfEntityHuman.GetCountOf(type), type);
 
         // 収集
         foreach (EntityHuman human in managerOfEntityHuman.CollectHumans)

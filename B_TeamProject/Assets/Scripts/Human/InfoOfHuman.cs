@@ -17,12 +17,24 @@ public class InfoOfHuman
         MAX
     };
 
+    public enum PLACE_TYPE
+    {
+        NONE = -1,
+        WOOD,
+        CAVE,
+
+        MAX
+    }
+
     // 人間の種別
     HUMAN_TYPE type = HUMAN_TYPE.NONE;
 
-    public void Initialize(HUMAN_TYPE _type)
+    PLACE_TYPE placeType = PLACE_TYPE.NONE;
+
+    public void Initialize(HUMAN_TYPE _type, PLACE_TYPE _placeType)
     {
         type = _type;
+        placeType = _placeType;
     }
 
 
@@ -38,6 +50,11 @@ public class InfoOfHuman
     public HUMAN_TYPE Type
     {
         get { return type; }
+    }
+
+    public PLACE_TYPE PlaceType
+    {
+        get { return placeType; }
     }
 }
 

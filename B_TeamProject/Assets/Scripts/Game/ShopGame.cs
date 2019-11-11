@@ -28,13 +28,13 @@ public class ShopGame : MonoBehaviour
         ///-----------------------------------------------------
         ExchangeUnit unitNecce = CreateExchangeUnit.CreateNone();
         InfoOfHuman humanNecce = new InfoOfHuman();
-        humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+        humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD, game.GetHumanPlaceType());
         unitNecce.AddNecessaty(humanNecce);
         exchangeUnitManager.Add(unitNecce);
 
         ExchangeUnit unitPre = CreateExchangeUnit.CreateNone();
         InfoOfHuman humanPre = new InfoOfHuman();
-        humanPre.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+        humanPre.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD, game.GetHumanPlaceType());
         unitPre.AddPresentation(humanPre);
         exchangeUnitManager.Add(unitPre);
 
