@@ -7,6 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class CloudMove : MonoBehaviour
 {
+
+    private Image m_cloudL;
+    private Image m_cloud2L;
+    private Image m_cloud3L;
+    private Image m_cloud4R;
+    private Image m_cloud5R;
+
+
     //レクトトランスフォーム
     RectTransform m_rect;
 
@@ -23,7 +31,7 @@ public class CloudMove : MonoBehaviour
     private bool m_moveFlag;
 
     //カメラオブジェクト
-    GameObject m_cameraChange;
+  //  GameObject m_cameraChange;
 
     enum Type
     {
@@ -35,14 +43,14 @@ public class CloudMove : MonoBehaviour
     [SerializeField]
     Type m_usetype;
 
-    enum MoveType
-    {
-        Left,
-        Right,
-    }
+    //enum MoveType
+    //{
+    //    Left,
+    //    Right,
+    //}
 
-    [SerializeField]
-    MoveType m_movetype;
+    //[SerializeField]
+    //MoveType m_movetype;
 
     //雲が動く回数
     int m_Count = 0;
@@ -58,138 +66,128 @@ public class CloudMove : MonoBehaviour
     {
         m_rect = GetComponent<RectTransform>();
 
-        m_cameraChange = GameObject.Find("GameObjectAction");
+        //m_cameraChange = GameObject.Find("GameObjectAction");
 
 
-        if(m_usetype==Type.FadeOut)
+        // 子オブジェクトからコンポーネントを取得する
+        m_cloudL = transform.Find("Cloud").GetComponent<Image>();
+        m_cloud2L = transform.Find("Cloud (2)").GetComponent<Image>();
+        m_cloud3L = transform.Find("Cloud (3)").GetComponent<Image>();
+        m_cloud4R = transform.Find("Cloud (1)").GetComponent<Image>();
+        m_cloud5R = transform.Find("Cloud (4)").GetComponent<Image>();
+
+
+        if (m_fadeFlag)
         {
-            if (m_movetype == MoveType.Left)
-            {
-                m_rect.localPosition = new Vector3(-336f, m_posY, 0);
-            }
-            else if (m_movetype == MoveType.Right)
-            {
-                m_rect.localPosition = new Vector3(347f, m_posY, 0);
-            }
+
+            m_cloudL.rectTransform.localPosition= new Vector3(-336f, -58, 0);
+            m_cloud2L.rectTransform.localPosition = new Vector3(-336f, 692, 0);
+            m_cloud3L.rectTransform.localPosition = new Vector3(-336f, -762.4f, 0);
+
+            m_cloud4R.rectTransform.localPosition = new Vector3(196f, -422, 0);
+            m_cloud5R.rectTransform.localPosition = new Vector3(196f, 311, 0);
+
+            //if (m_movetype == MoveType.Left)
+            //{
+            //    m_rect.localPosition = new Vector3(-336f, m_posY, 0);
+            //}
+            //else if (m_movetype == MoveType.Right)
+            //{
+            //    m_rect.localPosition = new Vector3(347f, m_posY, 0);
+            //}
         }
 
 
-        if (m_usetype == Type.FadeIn)
-        {
-            if (m_movetype == MoveType.Left)
-            {
-                m_rect.localPosition = new Vector3(-1089f, m_posY, 0);
-            }
-            else if (m_movetype == MoveType.Right)
-            {
-                m_rect.localPosition = new Vector3(1100f, m_posY, 0);
-            }
-        }
+        //if (m_usetype == Type.FadeIn)
+        //{
+        //    if (m_movetype == MoveType.Left)
+        //    {
+        //        m_rect.localPosition = new Vector3(-1089f, m_posY, 0);
+        //    }
+        //    else if (m_movetype == MoveType.Right)
+        //    {
+        //        m_rect.localPosition = new Vector3(1100f, m_posY, 0);
+        //    }
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        FadeOut();
         //カメラでボタンを押したときにオンになったフラグ
-        m_cameraflag = m_cameraChange.GetComponent<Camera_Change>().Flag;
+       // m_cameraflag = m_cameraChange.GetComponent<Camera_Change>().Flag;
 
         //カメラ切り替えボタンを押したら
-        if (m_cameraflag)
-        {
-            m_oneroopFlag = true;
-           this.GetComponent<UnityEngine.UI.Image>().enabled = true;
-        }
+        //if (m_cameraflag)
+        //{
+        //    m_oneroopFlag = true;
+        //   this.GetComponent<UnityEngine.UI.Image>().enabled = true;
+        //}
 
 
-        switch (m_usetype)
-        {
-            case Type.Change:
-                if (m_movetype == MoveType.Left)
-                {
-                    MoveCloud(-1089f, -336f);
-                }
-                if (m_movetype == MoveType.Right)
-                {
-                    MoveCloud(347f, 1100f);
-                }
-                break;
-            case Type.FadeOut:
-                CloudFadeOut(-1089f, 1100f);
-                break;
-            case Type.FadeIn:
-                CloudFadeIn(347f ,- 336f);
-                break;
+        //switch (m_usetype)
+        //{
+        //    case Type.Change:
+        //        if (m_movetype == MoveType.Left)
+        //        {
+        //            MoveCloud(-1089f, -336f);
+        //        }
+        //        if (m_movetype == MoveType.Right)
+        //        {
+        //            MoveCloud(347f, 1100f);
+        //        }
+        //        break;
+        //    case Type.FadeOut:
+        //        CloudFadeOut(-1089f, 1100f);
+        //        break;
+        //    case Type.FadeIn:
+        //        CloudFadeIn(347f ,- 336f);
+        //        break;
 
-        }
+        //}
 
 
+        
 
        
 
     }
 
-   
-
-    //雲
-    void MoveCloud(float posX,float target_posX)
+    bool m_fadeFlag = false;
+    public void FadeOut()
     {
-        //一往復フラグがオンになったら
-        if(m_oneroopFlag)
-        {
-            if (m_moveFlag)
-            {
-                m_rect.localPosition -= new Vector3(20, 0, 0);
-            }
-            else
-            {
-                m_rect.localPosition += new Vector3(15, 0, 0);
-            }
-        }
-     
-   
-        //左に動く
-        if (m_rect.localPosition.x <= posX)
-        {
-            m_rect.localPosition = new Vector3(posX, m_posY, 0);
-            m_moveFlag = false;
-            m_Count += 1;
-        }
 
-        
+        m_cloudL.rectTransform.localPosition -= new Vector3(20, 0, 0);
+        m_cloud2L.rectTransform.localPosition -= new Vector3(20, 0, 0);
+        m_cloud3L.rectTransform.localPosition -= new Vector3(20, 0, 0);
+        m_cloud4R.rectTransform.localPosition += new Vector3(20, 0, 0);
+        m_cloud5R.rectTransform.localPosition += new Vector3(20, 0, 0);
 
-        //右に動く
-        if (m_rect.localPosition.x >= target_posX)
+        if (m_cloudL.rectTransform.localPosition.x <= -1089f)
         {
-            m_rect.localPosition = new Vector3(target_posX, m_posY, 0);
-            m_moveFlag = true;
-            m_Count += 1;
+            m_cloudL.rectTransform.localPosition = new Vector3(-1089f, -58, 0);
+            m_cloud2L.rectTransform.localPosition = new Vector3(-1089f, 692, 0);
+            m_cloud3L.rectTransform.localPosition = new Vector3(-1089f, -762.4f, 0);
 
         }
 
-        //一往復となったら
-        if (m_Count>=2)
+        if(m_cloud4R.rectTransform.localPosition.x>= 1100f)
         {
-            if (m_movetype == MoveType.Left)
-            {
-                m_rect.localPosition = new Vector3(posX, m_posY, 0);
-            }
-            if (m_movetype == MoveType.Right)
-            {
-                m_rect.localPosition = new Vector3(target_posX, m_posY, 0);
-            }
-
-            m_oneroopFlag = false;
-
+            m_cloud4R.rectTransform.localPosition=new Vector3(1100f, -422, 0);
+            m_cloud5R.rectTransform.localPosition = new Vector3(1100f, 311, 0);
         }
 
-        //一往復終わったらカウントをリセットする
-        if (m_oneroopFlag==false)
-        {
-            m_Count = 0;
-            this.GetComponent<UnityEngine.UI.Image>().enabled = false;
-        }
+      
+
+        m_fadeFlag = true;
 
     }
+
+
+    //雲
+   
 
    //フェードアウトする
     public void CloudFadeOut(float left_target_posX,float right_target_posX)

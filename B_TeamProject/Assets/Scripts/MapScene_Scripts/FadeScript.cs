@@ -7,9 +7,6 @@ using UnityEngine.Events;
 
 public class FadeScript : MonoBehaviour
 {
-    //取得用変数
-    bool m_flag=false;
-
     //フェードインするときのMaterial
     [SerializeField]
     private Material m_transitionOut;
@@ -19,87 +16,70 @@ public class FadeScript : MonoBehaviour
     private Material m_transitionIn;
 
     //トランジションする
-    [SerializeField]
-    private UnityEvent OnTransition;
+    //[SerializeField]
+   // private UnityEvent OnTransition;
 
     //イベントが完了する
-    [SerializeField]
-    private UnityEvent OnComplete;
+    //[SerializeField]
+   // private UnityEvent OnComplete;
 
     //フェード時間
     [SerializeField]
     private float m_fadeTime = 1.0f;
 
-    GameObject m_cameraChange;
 
-    //マウスダウンの切り替えをする
-    bool m_MouseDownflag=false;
-
-    GameObject m_pushButton;
-
-    bool m_pushActiveFlag = false;
-
-  
     void Start()
     {
         //最初はフェードアウトするコルーチンを呼ぶ
-       // StartCoroutine(FadeOutTransition());
+        this.gameObject.SetActive(false);
 
-        m_MouseDownflag = true;
+        //StartCoroutine(Fade());
 
-        m_pushButton = GameObject.Find("Cloud");
-
-        m_cameraChange = GameObject.Find("GameObjectAction");
-
-    }
-
-    void Update()
-    {
-
-        m_flag = m_cameraChange.GetComponent<Camera_Change>().Flag;
-
-        //フラグがオンになったら
-        if (m_flag)
-        {
-            StartCoroutine(InTransition());
-        }
-
-        m_pushActiveFlag = m_pushButton.GetComponent<CloudMove>().OneLoopFlag;
-
-
-        if (m_pushActiveFlag)
-        {
-            this.GetComponent<UnityEngine.UI.Image>().enabled = true;
-        }
-        else
-        {
-            this.GetComponent<UnityEngine.UI.Image>().enabled = false;
-        }
-
-    }
-
-
-    //フェードアウトするコルーチン
-    IEnumerator FadeOutTransition()
-    {
-        yield return Animate(m_transitionOut, 1);
-        if (OnTransition != null) { OnTransition.Invoke();}
-
-        yield return new WaitForEndOfFrame();
-    }
-
-    //フェードインするコルーチン
-    IEnumerator InTransition()
-    {
-        yield return Animate(m_transitionIn, m_fadeTime);
-        if (OnComplete != null) { OnComplete.Invoke(); }
-
-        yield return new WaitForEndOfFrame();
-
-        StartCoroutine(FadeOutTransition());
     }
 
    
+
+
+    public IEnumerator Fade()
+    {
+        this.gameObject.SetActive(true);
+        yield return Animate(m_transitionIn, m_fadeTime);
+       // if (OnComplete != null) { OnComplete.Invoke(); }
+
+        yield return new WaitForEndOfFrame();
+
+        //  StartCoroutine(FadeOutTransition());
+        yield return Animate(m_transitionOut, 1);
+        //if (OnTransition != null) { OnTransition.Invoke(); }
+
+        yield return new WaitForEndOfFrame();
+        this.gameObject.SetActive(false);
+
+    }
+
+    //フェードアウトするコルーチン
+    public IEnumerator FadeOutTransition()
+    {
+        this.gameObject.SetActive(true);
+        yield return Animate(m_transitionOut, 1);
+        //if (OnTransition != null) { OnTransition.Invoke(); }
+
+        yield return new WaitForEndOfFrame();
+       this.gameObject.SetActive(false);
+    }
+
+    //フェードインするコルーチン
+    public IEnumerator InTransition()
+    {
+       
+        yield return Animate(m_transitionIn, m_fadeTime);
+        //if (OnComplete != null) { OnComplete.Invoke(); }
+
+        yield return new WaitForEndOfFrame();
+      
+    }
+
+
     /// <summary>
     /// time秒かけてトランジションを行う
     /// </summary>
@@ -120,16 +100,7 @@ public class FadeScript : MonoBehaviour
 
 
     //フェードアウトする
-    public void FadeOut()
-    {
-        StartCoroutine(FadeOutTransition());
-    }
 
 
-    //フェードインする
-    public void FadeIn()
-    {
-        StartCoroutine(InTransition());
-    }
 
 }

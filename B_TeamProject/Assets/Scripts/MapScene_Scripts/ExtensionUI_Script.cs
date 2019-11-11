@@ -5,13 +5,16 @@ using UnityEngine;
 public class ExtensionUI_Script : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_extension;
+    private GameObject m_extension = null;
 
     [SerializeField]
-    private GameObject m_sample;
+    private GameObject m_sample = null;
 
     //アクティブフラグ
     bool m_active;
+
+    //ボタンを押したら
+    bool m_clickFlag;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +34,22 @@ public class ExtensionUI_Script : MonoBehaviour
 
     public void OnClick()
     {
+        m_clickFlag = true;
+    }
+
+    public void OnClickProcess()
+    {
+        m_clickFlag = false;
+    }
+
+    //ボタン
+    public void MenuClick()
+    {
         m_active = !m_active;
 
-        Debug.Log("grigir");
+        Debug.Log("buttonがおされたよ");
 
-        if(m_active)
+        if (m_active)
         {
             m_extension.SetActive(true);
             m_sample.SetActive(true);
@@ -45,19 +59,19 @@ public class ExtensionUI_Script : MonoBehaviour
             m_extension.SetActive(false);
             m_sample.SetActive(false);
         }
-      
     }
+
 
     //増築ボタンを押したら
     public void ExtensionClick()
     {
-        Debug.Log("rara");
+        Debug.Log("増築でございます");
     }
 
     //サンプルボタンを押したら
     public void SampleClick()
     {
-        Debug.Log("sample");
+        Debug.Log("サンプル");
     }
 
 }

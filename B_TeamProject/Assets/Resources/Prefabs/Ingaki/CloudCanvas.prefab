@@ -88,12 +88,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_transitionOut: {fileID: 2100000, guid: 593d12719a800a84182719356097fafb, type: 2}
   m_transitionIn: {fileID: 2100000, guid: a44aaf0959ae4e942862d6e7986a9bde, type: 2}
-  OnTransition:
-    m_PersistentCalls:
-      m_Calls: []
-  OnComplete:
-    m_PersistentCalls:
-      m_Calls: []
   m_fadeTime: 1
 --- !u!1 &8090086082333570648
 GameObject:
@@ -107,6 +101,7 @@ GameObject:
   - component: {fileID: 8090086082333570653}
   - component: {fileID: 8090086082333570650}
   - component: {fileID: 8090086082333570651}
+  - component: {fileID: 3705424837568896810}
   m_Layer: 5
   m_Name: CloudCanvas
   m_TagString: Untagged
@@ -199,6 +194,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3705424837568896810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090086082333570648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4b77c54412cd5448dd8f305b9ebf62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8090086081258673018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,7 +328,13 @@ PrefabInstance:
       propertyPath: m_posY
       value: -762.4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
 --- !u!224 &9184860081415378402 stripped
 RectTransform:
@@ -461,7 +474,13 @@ PrefabInstance:
       propertyPath: m_state
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
 --- !u!224 &9184860081295863198 stripped
 RectTransform:
@@ -591,7 +610,13 @@ PrefabInstance:
       propertyPath: m_posY
       value: 692
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
 --- !u!224 &9184860082563796154 stripped
 RectTransform:
@@ -736,7 +761,13 @@ PrefabInstance:
       propertyPath: m_state
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
 --- !u!224 &9184860082085898925 stripped
 RectTransform:
@@ -866,7 +897,13 @@ PrefabInstance:
       propertyPath: m_posY
       value: -58
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1095201512728856219, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc62d7325535820498d81e4b294a41b4, type: 3}
 --- !u!224 &8090086082884726628 stripped
 RectTransform:
