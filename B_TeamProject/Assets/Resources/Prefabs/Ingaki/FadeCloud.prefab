@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3705424837568896810}
   - component: {fileID: 336146700123442417}
   m_Layer: 5
-  m_Name: CloudCanvas
+  m_Name: FadeCloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadescript: {fileID: 8090086081363657241}
+  image: {fileID: 8090086081363657240}
   fadeTime: 1
 --- !u!222 &336146700123442417
 CanvasRenderer:
