@@ -18,7 +18,7 @@ public class Result_ScoreScript : MonoBehaviour
     //ソートの値を取得
     int[] m_valueBox = new int[NUM];
 
-    private static int MAGNIFICATION = 10000;
+   
 
     // スプライトを格納する変数
     [SerializeField]
