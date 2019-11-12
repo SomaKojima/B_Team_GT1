@@ -16,11 +16,11 @@ public class CreateInfoOfHuman : MonoBehaviour
         
     }
 
-    static public InfoOfHuman CreateInfo(InfoOfHuman.HUMAN_TYPE type)
+    static public InfoOfHuman CreateInfo(InfoOfHuman.HUMAN_TYPE type, InfoOfHuman.PLACE_TYPE _placeType)
     {
         InfoOfHuman info = new InfoOfHuman();
 
-        info.Initialize(type);
+        info.Initialize(type, _placeType);
 
         return info;
     }

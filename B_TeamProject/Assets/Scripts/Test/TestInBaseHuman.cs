@@ -7,6 +7,9 @@ public class TestInBaseHuman : MonoBehaviour
     // 総合監督の情報
     Game game;
 
+    [SerializeField]
+    CameraType cameraType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +20,13 @@ public class TestInBaseHuman : MonoBehaviour
     void Update()
     {
         // 木こり生成
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            game.HumanManager.AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD));
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            game.HumanManager.DeleteHumansOf(InfoOfHuman.HUMAN_TYPE.WOOD, 1);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && cameraType.Type == game.Current)
+        //{
+        //    game.HumanManager.AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD, game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)));
+        //}
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    game.HumanManager.DeleteHumansOf(InfoOfHuman.HUMAN_TYPE.WOOD, 1);
+        //}
     }
 }

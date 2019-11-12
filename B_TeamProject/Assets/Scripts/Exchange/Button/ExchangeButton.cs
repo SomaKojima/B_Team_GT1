@@ -46,7 +46,6 @@ public class ExchangeButton : MonoBehaviour
     public void OnClick()
     {
         isPress = true;
-        Debug.Log("ボタン押された");
     }
 
     public bool IsPress
