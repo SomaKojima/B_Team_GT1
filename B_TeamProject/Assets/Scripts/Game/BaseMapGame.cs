@@ -52,7 +52,12 @@ public class BaseMapGame : MonoBehaviour
     {
         // 木こりの人数を合わせる
         InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.WOOD;
-        JudgeCount(game.HumanManager.GetHumansOf(type, game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)).Count, managerOfEntityHuman.GetCountOf(type), type);
+        Debug.Log(cameraType.Type.ToString() + " : " + game.HumanManager.GetCountOf(game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)));
+        if (game.HumanManager.GetCountOf(game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)) > managerOfEntityHuman.Humans.Count)
+        {
+            int infoCount = game.HumanManager.GetHumansOf(type, game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)).Count;
+            JudgeCount(infoCount, managerOfEntityHuman.GetCountOf(type), type);
+        }
 
         // 収集
         foreach (EntityHuman human in managerOfEntityHuman.CollectHumans)
@@ -61,7 +66,7 @@ public class BaseMapGame : MonoBehaviour
             EntityBuildingResource entity = managerOfEntityBuildingResource.EntityBRs[0];
             int count = entity.GetBuildingResourceCount();
             game.CreateLogUI(entity.Type.ToString() + " x" + game.BuildingManager.GetBuildingResource(entity.Type).Count.ToString());
-            game.BuildingManager.GetBuildingResource(entity.Type).AddCount(count);
+            //game.BuildingManager.GetBuildingResource(entity.Type).AddCount(count);
             human.Move.OnCollectProcess();
         }
 
@@ -74,7 +79,6 @@ public class BaseMapGame : MonoBehaviour
         // 交換エリアに移動
         if (exchangeGate.IsClick)
         {
-            Debug.Log("gate");
             exchangeGate.OnClickProcess();
             game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
         }

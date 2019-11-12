@@ -53,8 +53,6 @@ public class InfoManagerOfHuman : MonoBehaviour
     public void AddHumans(InfoOfHuman info)
     {
         humans.Add(info);
-
-        Debug.Log("増えた人の情報 ：" + info.Type.ToString());
     }
 
     public void AddHumans(List<InfoOfHuman> list)
@@ -76,7 +74,6 @@ public class InfoManagerOfHuman : MonoBehaviour
         {
             humans.RemoveAt(humans.IndexOf(info));
         }
-        Debug.Log("減った人の情報 ：" + info.Type.ToString());
     }
 
     // 人種別にリストから消す

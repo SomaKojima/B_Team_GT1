@@ -321,16 +321,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7001084964020727774, guid: 8897151a5c3610f4a981a2eeea132779,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 55.699997
-      objectReference: {fileID: 0}
-    - target: {fileID: 7001084964020727774, guid: 8897151a5c3610f4a981a2eeea132779,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -44.300003
-      objectReference: {fileID: 0}
     - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -361,6 +351,21 @@ PrefabInstance:
       propertyPath: type
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7001084964020727774, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001084964020727774, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -44.300003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965391272305929607, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8897151a5c3610f4a981a2eeea132779, type: 3}
 --- !u!1001 &1900247429
@@ -373,7 +378,7 @@ PrefabInstance:
     - target: {fileID: 4813130906440569392, guid: 0772aa78f85e3b74191421749328ac7d,
         type: 3}
       propertyPath: m_Name
-      value: BaseMapScene
+      value: BaseMapScen
       objectReference: {fileID: 0}
     - target: {fileID: 4813130906440569394, guid: 0772aa78f85e3b74191421749328ac7d,
         type: 3}

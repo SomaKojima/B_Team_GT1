@@ -31,6 +31,11 @@ public class InfoOfHuman
 
     PLACE_TYPE placeType = PLACE_TYPE.NONE;
 
+    public void Initialize(HUMAN_TYPE _type)
+    {
+        type = _type;
+    }
+
     public void Initialize(HUMAN_TYPE _type, PLACE_TYPE _placeType)
     {
         type = _type;
@@ -55,6 +60,7 @@ public class InfoOfHuman
     public PLACE_TYPE PlaceType
     {
         get { return placeType; }
+        set { placeType = value; }
     }
 }
 

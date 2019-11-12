@@ -8,6 +8,8 @@ public class LogUI : MonoBehaviour
     [SerializeField]
     Text text;
 
+    bool isVisible = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +25,16 @@ public class LogUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public string Text
+    {
+        set { text.text = value; }
+    }
+
+    public bool IsVisible
+    {
+        get { return isVisible; }
+        set { isVisible = value; }
     }
 }

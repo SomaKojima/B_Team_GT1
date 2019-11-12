@@ -128,7 +128,6 @@ public class MoveOfHuman : MonoBehaviour
 
     public void OnCollectProcess()
     {
-        Debug.Log("採取");
         isCollect = false;
     }
     

@@ -352,15 +352,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1889444076}
     m_Modifications:
-    - target: {fileID: 2939515000136953568, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
+    - target: {fileID: 5314490044331378802, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
         type: 3}
-      propertyPath: m_Name
-      value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 2939515000136953568, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: type
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2939515000136953597, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
         type: 3}
@@ -417,10 +412,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5314490044331378802, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
+    - target: {fileID: 2939515000136953568, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
         type: 3}
-      propertyPath: type
-      value: 4
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939515000136953568, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a, type: 3}
@@ -678,11 +678,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1397848417}
     m_Modifications:
-    - target: {fileID: 19711490922377560, guid: e891d25c44d86fd4f9ecfc4b47258c3d,
-        type: 3}
-      propertyPath: m_Name
-      value: CancelButton
-      objectReference: {fileID: 0}
     - target: {fileID: 19711490922377563, guid: e891d25c44d86fd4f9ecfc4b47258c3d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -787,6 +782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19711490922377560, guid: e891d25c44d86fd4f9ecfc4b47258c3d,
+        type: 3}
+      propertyPath: m_Name
+      value: CancelButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e891d25c44d86fd4f9ecfc4b47258c3d, type: 3}
@@ -977,8 +977,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 1319516903
-  m_SortingOrder: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1397848417
 RectTransform:

@@ -28,13 +28,13 @@ public class ShopGame : MonoBehaviour
         ///-----------------------------------------------------
         ExchangeUnit unitNecce = CreateExchangeUnit.CreateNone();
         InfoOfHuman humanNecce = new InfoOfHuman();
-        humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD, game.GetHumanPlaceType());
+        humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
         unitNecce.AddNecessaty(humanNecce);
         exchangeUnitManager.Add(unitNecce);
 
         ExchangeUnit unitPre = CreateExchangeUnit.CreateNone();
         InfoOfHuman humanPre = new InfoOfHuman();
-        humanPre.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD, game.GetHumanPlaceType());
+        humanPre.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
         unitPre.AddPresentation(humanPre);
         exchangeUnitManager.Add(unitPre);
 
@@ -81,6 +81,11 @@ public class ShopGame : MonoBehaviour
             {
                 game.HumanManager.DeleteHumansOf(unit.NecessatyHumans);
 
+                // 交換時の初期化
+                foreach (InfoOfHuman human in unit.PresentationHumans)
+                {
+                    human.PlaceType = game.GetHumanPlaceType();
+                }
                 game.HumanManager.AddHumans(unit.PresentationHumans);
                 CreateLogUIOfExchange(unit.NecessatyHumans, unit.PresentationHumans);
             }
