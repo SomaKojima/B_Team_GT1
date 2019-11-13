@@ -6,12 +6,13 @@ public class ManagerOfEntityHuman : MonoBehaviour
 {
     List<EntityHuman> humans = new List<EntityHuman>();
     List<EntityHuman> collectHumnas = new List<EntityHuman>();
+    List<List<EntityHuman>> moveTypeOf = new List<List<EntityHuman>>();
+
     int[] countOfType = new int[(int)InfoOfHuman.HUMAN_TYPE.MAX];
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     public void Initialize()
@@ -20,12 +21,22 @@ public class ManagerOfEntityHuman : MonoBehaviour
         {
             countOfType[i] = 0;
         }
+
+        for (int i = 0; i < (int)MoveOfHuman.HUMAN_MOVE.MOVE_NUM; i++)
+        {
+            moveTypeOf.Add(new List<EntityHuman>());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         collectHumnas.Clear();
+        for (int i = 0; i < (int)MoveOfHuman.HUMAN_MOVE.MOVE_NUM; i++)
+        {
+            moveTypeOf[i].Clear();
+        }
+
         // リクエスト別のリストに追加する
         foreach (EntityHuman human in humans)
         {
@@ -33,6 +44,7 @@ public class ManagerOfEntityHuman : MonoBehaviour
             {
                 collectHumnas.Add(human);
             }
+            moveTypeOf[(int)human.Move.MoveType].Add(human);
         }
     }
 
@@ -92,6 +104,11 @@ public class ManagerOfEntityHuman : MonoBehaviour
     public List<EntityHuman> CollectHumans
     {
         get { return collectHumnas; }
+    }
+
+    public List<List<EntityHuman>> MoveTypeHumansOf
+    {
+        get { return moveTypeOf; }
     }
 
     public int GetCountOf(InfoOfHuman.HUMAN_TYPE type)

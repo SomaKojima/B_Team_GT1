@@ -29,7 +29,7 @@ public class GenerateFloorInstance : MonoBehaviour
 
     public void Create()
     {
-        GameObject instance = Instantiate(prefab, new Vector3(floorBase.transform.position.x, floorBase.transform.position.y + GENERATE_HEIGHT, floorBase.transform.position.z), Quaternion.identity);
+        GameObject instance = Instantiate(prefab, new Vector3(floorBase.transform.localPosition.x, floorBase.transform.localPosition.y + GENERATE_HEIGHT, floorBase.transform.localPosition.z), Quaternion.identity);
         instance.transform.SetParent(parent.transform, false);
 
     }

@@ -28,55 +28,33 @@ public class FadeScript : MonoBehaviour
     private float m_fadeTime = 1.0f;
 
 
+    bool isProcess = false;
+
     void Start()
     {
-        //最初はフェードアウトするコルーチンを呼ぶ
-        this.gameObject.SetActive(false);
 
         //StartCoroutine(Fade());
 
     }
-
-   
-
-
-    public IEnumerator Fade()
-    {
-        this.gameObject.SetActive(true);
-        yield return Animate(m_transitionIn, m_fadeTime);
-       // if (OnComplete != null) { OnComplete.Invoke(); }
-
-        yield return new WaitForEndOfFrame();
-
-        //  StartCoroutine(FadeOutTransition());
-        yield return Animate(m_transitionOut, 1);
-        //if (OnTransition != null) { OnTransition.Invoke(); }
-
-        yield return new WaitForEndOfFrame();
-        this.gameObject.SetActive(false);
-
-    }
-
+    
     //フェードアウトするコルーチン
-    public IEnumerator FadeOutTransition()
+    public IEnumerator FadeOutTransition(float time)
     {
-        this.gameObject.SetActive(true);
-        yield return Animate(m_transitionOut, 1);
+        isProcess = true;
+        yield return Animate(m_transitionOut, time);
         //if (OnTransition != null) { OnTransition.Invoke(); }
 
         yield return new WaitForEndOfFrame();
-       this.gameObject.SetActive(false);
     }
 
     //フェードインするコルーチン
-    public IEnumerator InTransition()
+    public IEnumerator InTransition(float time)
     {
-       
-        yield return Animate(m_transitionIn, m_fadeTime);
+        isProcess = true;
+         yield return Animate(m_transitionIn, time);
         //if (OnComplete != null) { OnComplete.Invoke(); }
 
         yield return new WaitForEndOfFrame();
-      
     }
 
 
@@ -96,11 +74,15 @@ public class FadeScript : MonoBehaviour
             current += Time.deltaTime;
         }
         material.SetFloat("_Alpha", 1);
+        isProcess = false;
     }
 
 
     //フェードアウトする
 
-
+    public bool IsProcess
+    {
+        get { return isProcess; }
+    }
 
 }

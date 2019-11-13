@@ -10,6 +10,9 @@ public class FactoryOfEntityBuildingResource : MonoBehaviour
     [SerializeField]
     GameObject parent;
 
+    [SerializeField]
+    Transform createPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +25,11 @@ public class FactoryOfEntityBuildingResource : MonoBehaviour
         
     }
 
-    public EntityBuildingResource Create(InfoOfBuildingResource.BUILDING_RESOUCE_TYPE _type, Vector3 position)
+    public EntityBuildingResource Create(InfoOfBuildingResource.BUILDING_RESOUCE_TYPE _type)
     {
         GameObject instance = Instantiate(prefab);
         instance.transform.SetParent(parent.transform, false);
-        instance.transform.position = position;
+        instance.transform.position = createPosition.position;
 
         EntityBuildingResource br = instance.GetComponent<EntityBuildingResource>();
         br.Initialize(_type);

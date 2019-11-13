@@ -8,6 +8,8 @@ public class CameraType : MonoBehaviour
     {
         BASE_MAP,
         MAP,
+        WOOD,
+        Cave,
         SHOP,
         FUNSUI,
         SELECT_EXCHANGE

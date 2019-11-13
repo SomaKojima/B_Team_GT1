@@ -6,6 +6,9 @@ public class EntityBuildingResource : MonoBehaviour
 {
     const int COUNT = 100;
 
+    [SerializeField]
+    Transform collectPos;
+
     InfoOfBuildingResource.BUILDING_RESOUCE_TYPE type = InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.WOOD;
 
     // Start is called before the first frame update
@@ -33,5 +36,10 @@ public class EntityBuildingResource : MonoBehaviour
     public InfoOfBuildingResource.BUILDING_RESOUCE_TYPE Type
     {
         get { return type; }
+    }
+
+    public Vector3 CollectPos
+    {
+        get { return collectPos.position; }
     }
 }

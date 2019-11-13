@@ -42,8 +42,6 @@ public class MapScene_Test : MonoBehaviour
     //クリックした
     public void OnClick()
     {
-        Debug.Log(m_name.ToString());
-
         m_clickFlag = true;
     }
 

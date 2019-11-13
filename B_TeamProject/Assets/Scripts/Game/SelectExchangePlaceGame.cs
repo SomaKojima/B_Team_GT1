@@ -39,7 +39,7 @@ public class SelectExchangePlaceGame : MonoBehaviour
         if (cancelButton.IsClick)
         {
             cancelButton.OnClickProcess();
-            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.BASE_MAP);
+            game.CamerasManager.Undo();
         }
     }
 

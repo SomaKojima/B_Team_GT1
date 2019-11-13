@@ -5,38 +5,54 @@ using UnityEngine;
 public class InfoManagerOfHuman : MonoBehaviour
 {
     List<InfoOfHuman> humans = new List<InfoOfHuman>();
-    int[] countOfType = new int[(int)InfoOfHuman.HUMAN_TYPE.MAX];
+
+    List<List<InfoOfHuman>> typeHumans = new List<List<InfoOfHuman>>();
+    List<List<InfoOfHuman>> placeHumnas = new List<List<InfoOfHuman>>();
     
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
         {
-            countOfType[i] = 0;
+            typeHumans.Add(new List<InfoOfHuman>());
         }
 
-        AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.COAL_MIEAR));
-        AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD));
-        AddHumans(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.ENGINEER));
+        for (int i = 0; i < (int)InfoOfHuman.PLACE_TYPE.MAX; i++)
+        {
+            placeHumnas.Add(new List<InfoOfHuman>());
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
+        {
+            typeHumans[(int)i].Clear();
+        }
 
+        for (int i = 0; i < (int)InfoOfHuman.PLACE_TYPE.MAX; i++)
+        {
+            placeHumnas[(int)i].Clear();
+        }
+
+        foreach (InfoOfHuman human in humans)
+        {
+
+            typeHumans[(int)human.Type].Add(human);
+
+            if (human.PlaceType != InfoOfHuman.PLACE_TYPE.NONE)
+            {
+                placeHumnas[(int)human.PlaceType].Add(human);
+            }
+        }
     }
 
     // 人間の追加
     public void AddHumans(InfoOfHuman info)
     {
         humans.Add(info);
-        if (0 <= (int)info.Type && (int)info.Type < (int)InfoOfHuman.HUMAN_TYPE.MAX)
-        {
-            countOfType[(int)info.Type] += 1;
-        }
-
-        Debug.Log("増えた人の情報 ：" + info.Type.ToString());
     }
 
     public void AddHumans(List<InfoOfHuman> list)
@@ -58,12 +74,6 @@ public class InfoManagerOfHuman : MonoBehaviour
         {
             humans.RemoveAt(humans.IndexOf(info));
         }
-
-        if (0 <= (int)info.Type && (int)info.Type < (int)InfoOfHuman.HUMAN_TYPE.MAX)
-        {
-            countOfType[(int)info.Type] -= 1;
-        }
-        Debug.Log("減った人の情報 ：" + info.Type.ToString());
     }
 
     // 人種別にリストから消す
@@ -132,7 +142,7 @@ public class InfoManagerOfHuman : MonoBehaviour
         foreach (InfoOfHuman human in list)
         {
             count[(int)human.Type] += 1;
-            if (count[(int)human.Type] > countOfType[(int)human.Type])
+            if (count[(int)human.Type] > typeHumans[(int)human.Type].Count)
             {
                 return false;
             }
@@ -143,18 +153,37 @@ public class InfoManagerOfHuman : MonoBehaviour
 
     public bool CheckHumansOf(InfoOfHuman.HUMAN_TYPE type, int count)
     {
-        if (countOfType[(int)type] > count) return true;
+        if (typeHumans[(int)type].Count > count) return true;
 
         return false;
     }
 
     public int GetCountOf(InfoOfHuman.HUMAN_TYPE type)
     {
-        return countOfType[(int)type];
+        return typeHumans[(int)type].Count;
     }
 
     public List<InfoOfHuman> GetHumans()
     {
         return humans;
+    }
+
+    public int GetCountOf(InfoOfHuman.PLACE_TYPE _type)
+    {
+        return placeHumnas[(int)_type].Count;
+    }
+
+    public List<InfoOfHuman> GetHumansOf(InfoOfHuman.HUMAN_TYPE type, InfoOfHuman.PLACE_TYPE _placeType)
+    {
+        List<InfoOfHuman> buf = new List<InfoOfHuman>();
+        foreach (InfoOfHuman info in placeHumnas[(int)_placeType])
+        {
+            if (info.Type == type)
+            {
+                buf.Add(info);
+            }
+        }
+
+        return new List<InfoOfHuman>(buf);
     }
 }

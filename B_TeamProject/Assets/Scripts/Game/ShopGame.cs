@@ -64,7 +64,7 @@ public class ShopGame : MonoBehaviour
         if(cancelButton.IsClick)
         {
             cancelButton.OnClickProcess();
-            game.CamerasManager.ChangeType(CameraType.CAMERA_TYPE.SELECT_EXCHANGE);
+            game.CamerasManager.Undo();
         }
     }
 
@@ -81,6 +81,11 @@ public class ShopGame : MonoBehaviour
             {
                 game.HumanManager.DeleteHumansOf(unit.NecessatyHumans);
 
+                // 交換時の初期化
+                foreach (InfoOfHuman human in unit.PresentationHumans)
+                {
+                    human.PlaceType = game.GetHumanPlaceType();
+                }
                 game.HumanManager.AddHumans(unit.PresentationHumans);
                 CreateLogUIOfExchange(unit.NecessatyHumans, unit.PresentationHumans);
             }

@@ -15,7 +15,10 @@ public class ManagerOfEntityBuildingResource : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (EntityBuildingResource obj in entityBRs)
+        {
+
+        }
     }
 
     public void Add(EntityBuildingResource entity)
@@ -26,5 +29,10 @@ public class ManagerOfEntityBuildingResource : MonoBehaviour
     public List<EntityBuildingResource> EntityBRs
     {
         get { return entityBRs; }
+    }
+
+    public Vector3 FirstPosition
+    {
+        get { return EntityBRs[0].gameObject.transform.position; }
     }
 }
