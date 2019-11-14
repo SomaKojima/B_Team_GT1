@@ -27,9 +27,21 @@ public class ShopGame : MonoBehaviour
         /// テスト用のユニットを作成
         ///-----------------------------------------------------
         ExchangeUnit unitNecce = CreateExchangeUnit.CreateNone();
+
+
         InfoOfHuman humanNecce = new InfoOfHuman();
         humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+
+
         unitNecce.AddNecessaty(humanNecce);
+
+        humanNecce = new InfoOfHuman();
+        humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+
+
+        unitNecce.AddPresentation(humanNecce);
+
+
         exchangeUnitManager.Add(unitNecce);
 
         ExchangeUnit unitPre = CreateExchangeUnit.CreateNone();

@@ -7,6 +7,7 @@ public class ExchangeUnit
     // 提示される人間
     List<InfoOfHuman> presentationHumans = new List<InfoOfHuman>();
 
+
     // 必要となる人間
     List<InfoOfHuman> necessatyHumans = new List<InfoOfHuman>();
 
