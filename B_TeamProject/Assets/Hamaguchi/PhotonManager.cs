@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PhotonManager : Photon.MonoBehaviour
@@ -18,6 +19,18 @@ public class PhotonManager : Photon.MonoBehaviour
     private GameObject m_NameInputField;
     [SerializeField]
     private GameObject m_RoomNameInputField;
+    [SerializeField]
+    private GameObject m_RoomList;
+    [SerializeField]
+    private GameObject m_Room1BtnObj;
+    [SerializeField]
+    private GameObject m_Room2BtnObj;
+    [SerializeField]
+    private GameObject m_Room3BtnObj;
+    [SerializeField]
+    private GameObject m_Room4BtnObj;
+    [SerializeField]
+    private GameObject m_UpdateBtnObj;
 
     /// <summary>ルーム名</summary>
     private string m_RoomName = string.Empty;
@@ -34,6 +47,7 @@ public class PhotonManager : Photon.MonoBehaviour
 
     }
 
+    //ロビーに接続した時に呼ばれるコールバックメソッド
     void OnJoinedLobby()
     {
         Debug.Log("ロビーに接続しました");
@@ -75,13 +89,18 @@ public class PhotonManager : Photon.MonoBehaviour
     void OnJoinedRoom()
     {
         Debug.Log("ルームに入りました");
-        m_JoinBtnObj.GetComponent<Button>().interactable = false;
-        m_CreateBtnObj.GetComponent<Button>().interactable = false;
+        m_RoomNameInputField.SetActive(false);
+        m_CreateRoomBtnObj.SetActive(false);
+        m_RoomList.SetActive(false);
+        m_UpdateBtnObj.SetActive(false);
+        SceneManager.LoadScene("RoomScene");
     }
 
-    void OnCreateRoom()
+    //ルーム作成した時に呼ばれるコールバックメソッド
+    void OnCreatedRoom()
     {
-
+        Debug.Log("ルームを作成しました");
+        Debug.Log(m_RoomName);
     }
 
     //ルーム一覧が取れると
@@ -90,7 +109,7 @@ public class PhotonManager : Photon.MonoBehaviour
         //ルーム一覧を取る
         RoomInfo[] rooms = PhotonNetwork.GetRoomList();
         if (rooms.Length == 0)
-        {   
+        {
             //Debug.Log("ルームが一つもありません");
         }
         else
@@ -98,18 +117,13 @@ public class PhotonManager : Photon.MonoBehaviour
             //ルームが1件以上ある時ループでRoomInfo情報をログ出力
             for (int i = 0; i < rooms.Length; i++)
             {
-                Debug.Log("RoomName:" + rooms[i].name);
-                Debug.Log("userName:" + rooms[i].customProperties["userName"]);
-                Debug.Log("userId:" + rooms[i].customProperties["userId"]);
+                //Debug.Log("RoomName:" + rooms[i].name);
+                //Debug.Log("userName:" + rooms[i].customProperties["userName"]);
+                //Debug.Log("userId:" + rooms[i].customProperties["userId"]);
                 //GameObject.Find("StatusText").GetComponent<Text>().text = rooms[i].name;
             }
         }
 
-    }
-
-    public void JoinRoom()
-    {
-        //PhotonNetwork.JoinRoom("user1");
     }
 
     //名前決定ボタンを押した際に呼ぶメソッド
@@ -128,6 +142,63 @@ public class PhotonManager : Photon.MonoBehaviour
         m_JoinBtnObj.SetActive(false);
         m_RoomNameInputField.SetActive(true);
         m_CreateRoomBtnObj.SetActive(true);
+    }
+
+    //部屋参加選択ボタンを押した際に呼ぶメソッド
+    public void JoinScene()
+    {
+        m_CreateBtnObj.SetActive(false);
+        m_JoinBtnObj.SetActive(false);
+        m_RoomList.SetActive(true);
+        m_UpdateBtnObj.SetActive(true);
+
+        UpdateRoomData();
+    }
+
+    //ルームリストを更新する
+    public void UpdateRoomData()
+    {
+        m_Room1BtnObj.SetActive(false);
+        m_Room2BtnObj.SetActive(false);
+        m_Room3BtnObj.SetActive(false);
+        m_Room4BtnObj.SetActive(false);
+
+        //ルーム一覧を取る
+        RoomInfo[] rooms = PhotonNetwork.GetRoomList();
+        if (rooms.Length == 0)
+        {
+            Debug.Log("ルームが一つもありません");
+        }
+        else
+        {
+            //ルームが1件以上ある時ループでRoomInfo情報をログ出力
+            for (int i = 0; i < rooms.Length; i++)
+            {
+                Debug.Log("number:" + i);
+                Debug.Log("RoomName:" + rooms[i].name);
+                Debug.Log("PlayerCount:" + rooms[i].playerCount);
+                switch(i)
+                {
+                    case 0:
+                        m_Room1BtnObj.SetActive(true);
+                        m_Room1BtnObj.GetComponent<RoomButton>().Set(rooms[i]);
+                        break;
+                    case 1:
+                        m_Room2BtnObj.SetActive(true);
+                        m_Room2BtnObj.GetComponent<RoomButton>().Set(rooms[i]);
+                        break;
+                    case 2:
+                        m_Room3BtnObj.SetActive(true);
+                        m_Room3BtnObj.GetComponent<RoomButton>().Set(rooms[i]);
+                        break;
+                    case 3:
+                        m_Room4BtnObj.SetActive(true);
+                        m_Room4BtnObj.GetComponent<RoomButton>().Set(rooms[i]);
+                        break;
+                }
+                
+            }
+        }
     }
 
     //名前の入力欄が変更された時に呼ばれるコールバックメソッド
@@ -150,7 +221,7 @@ public class PhotonManager : Photon.MonoBehaviour
     //部屋名の入力欄が変更された時に呼ばれるコールバックメソッド
     public void InputRoomLogger()
     {
-        string inputValue = m_NameInputField.GetComponent<InputField>().text;
+        string inputValue = m_RoomNameInputField.GetComponent<InputField>().text;
 
         m_RoomName = inputValue;
 
