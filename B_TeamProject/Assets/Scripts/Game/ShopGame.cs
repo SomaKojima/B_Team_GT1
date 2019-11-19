@@ -10,13 +10,19 @@ public class ShopGame : MonoBehaviour
     ExchangeUnitManager exchangeUnitManager;
 
     [SerializeField]
-    ExcB_Manager buttonManager;
-
-    [SerializeField]
-    ExcB_Factory buttonFactory;
-
-    [SerializeField]
     UIButtonClick cancelButton;
+
+    [SerializeField]
+    GameObject saiteiButtons;
+
+    [SerializeField]
+    FactoryOfCommonExchangeButton factoryButton;
+
+    [SerializeField]
+    ManagerOfCommonExchangeButton managerButton;
+    
+    [SerializeField]
+    SelectNecessaryWindow selectNecessaryWindow;
 
     // Start is called before the first frame update
     void Start()
@@ -26,32 +32,63 @@ public class ShopGame : MonoBehaviour
         CreateButton();
 
         // 三すくみ交換ボタン
-        CreateWoodToCoalMinerButton();
-        CreateCoalMinerToEngineerButton();
-        CreateEngineerToWoodButton();
+        //CreateWoodToCoalMinerButton();
+        //CreateCoalMinerToEngineerButton();
+        //CreateEngineerToWoodButton();
 
         // ユニットからボタンを作成
-        foreach (ExchangeUnit uni in exchangeUnitManager.Units)
+        List<InfoOfHuman> humans = new List<InfoOfHuman>();
+        List<InfoOfBuildingResource> brs = new List<InfoOfBuildingResource>();
+
+
+        // 最低を有効にする
+        saiteiButtons.SetActive(true);
+
+        // 交換のボタンを作成
+        foreach (ExchangeUnit unit in exchangeUnitManager.Units)
         {
-            buttonManager.AddButton(buttonFactory.CreateButton(uni));
+            if (unit.NecessaryCount >= 0)
+            {
+                managerButton.Add(factoryButton.Create(unit.ID, unit.NecessaryCount, unit.PresentationHumans, unit.PresentationBRs));
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ボタンが押された
-        foreach (ExchangeButton button in buttonManager.GetPressedButtons())
-        {
-            Exchange(button.ID);
-            // ボタンの処理
-            button.OnClickProcess();
-        }
-
+        // 戻るボタン
         if(cancelButton.IsClick)
         {
             cancelButton.OnClickProcess();
             game.CamerasManager.Undo();
+        }
+
+        // 最低のボタンが押された
+        foreach (CommonExchangeButton button in managerButton.GetClicks())
+        {
+            button.OnClickProcess();
+            selectNecessaryWindow.Initialize(button.Necessary);
+            selectNecessaryWindow.gameObject.SetActive(true);
+        }
+
+        // 最低の交換をする
+        if (selectNecessaryWindow.IsExchange)
+        {
+            selectNecessaryWindow.OnExchangeClickProcess();
+            
+        }
+
+        foreach(CommonSelectIcon icon in selectNecessaryWindow.MgrCommonSelectIcon.SelectIcons)
+        {
+            if (icon.BRType != InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.NONE)
+            {
+                icon.CurrentCount = game.BuildingManager.GetBuildingResource(icon.BRType).Count;
+            }
+            if (icon.HumanType != InfoOfHuman.HUMAN_TYPE.NONE)
+            {
+                icon.CurrentCount = game.HumanManager.GetCountOf(icon.HumanType);
+            }
         }
     }
 
@@ -136,96 +173,72 @@ public class ShopGame : MonoBehaviour
 
     void CreateButton()
     {
-
         ///-----------------------------------------------------
         /// 
         ///-----------------------------------------------------
-        ExchangeUnit unit = CreateExchangeUnit.CreateNone();
-
-        InfoOfHuman human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
-        unit.AddNecessaty(human);
-
-        human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
-        unit.AddNecessaty(human);
-
-        human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.COAL_MIEAR);
-        unit.AddPresentation(human);
-
+        List<InfoOfHuman> humans = new List<InfoOfHuman>();
+        humans.Add(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD, InfoOfHuman.PLACE_TYPE.NONE));
+        ExchangeUnit unit = CreateExchangeUnit.Create(humans, null, 0);
         exchangeUnitManager.Add(unit);
 
 
-
-
-        ///-----------------------------------------------------
-        /// テスト用のユニットを作成
-        ///-----------------------------------------------------
-        ExchangeUnit unitNecce = CreateExchangeUnit.CreateNone();
-        InfoOfHuman humanNecce = new InfoOfHuman();
-        humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
-        unitNecce.AddNecessaty(humanNecce);
-        exchangeUnitManager.Add(unitNecce);
-
-        ExchangeUnit unitPre = CreateExchangeUnit.CreateNone();
-        InfoOfHuman humanPre = new InfoOfHuman();
-        humanPre.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
-        unitPre.AddPresentation(humanPre);
-        exchangeUnitManager.Add(unitPre);
-    }
-
-    /// <summary>
-    /// 木こりをコストに炭鉱夫を取得できるボタンを生成
-    /// </summary>
-    void CreateWoodToCoalMinerButton()
-    {
-        ExchangeUnit unit = CreateExchangeUnit.CreateNone();
-
-        InfoOfHuman human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
-        unit.AddNecessaty(human);
-
-        human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.COAL_MIEAR);
-        unit.AddPresentation(human);
-
+        humans.Clear();
+        humans.Add(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD, InfoOfHuman.PLACE_TYPE.NONE));
+        unit = CreateExchangeUnit.Create(null, null, 1);
         exchangeUnitManager.Add(unit);
     }
 
-    /// <summary>
-    /// 炭鉱夫をコストにエンジニアを取得できるボタンを生成
-    /// </summary>
-    void CreateCoalMinerToEngineerButton()
-    {
-        ExchangeUnit unit = CreateExchangeUnit.CreateNone();
+    ///// <summary>
+    ///// 木こりをコストに炭鉱夫を取得できるボタンを生成
+    ///// </summary>
+    //void CreateWoodToCoalMinerButton()
+    //{
+    //    ExchangeUnit unit = CreateExchangeUnit.CreateNone();
 
-        InfoOfHuman human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.COAL_MIEAR);
-        unit.AddNecessaty(human);
+    //    InfoOfHuman human = new InfoOfHuman();
+    //    human.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+    //    unit.AddNecessaty(human);
 
-        human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.ENGINEER);
-        unit.AddPresentation(human);
+    //    human = new InfoOfHuman();
+    //    human.Initialize(InfoOfHuman.HUMAN_TYPE.COAL_MIEAR);
+    //    unit.AddPresentation(human);
 
-        exchangeUnitManager.Add(unit);
-    }
+    //    exchangeUnitManager.Add(unit);
+    //}
 
-    /// <summary>
-    /// エンジニアをコストに木こりを取得できるボタンを生成
-    /// </summary>
-    void CreateEngineerToWoodButton()
-    {
-        ExchangeUnit unit = CreateExchangeUnit.CreateNone();
+    ///// <summary>
+    ///// 炭鉱夫をコストにエンジニアを取得できるボタンを生成
+    ///// </summary>
+    //void CreateCoalMinerToEngineerButton()
+    //{
+    //    ExchangeUnit unit = CreateExchangeUnit.CreateNone();
 
-        InfoOfHuman human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.ENGINEER);
-        unit.AddNecessaty(human);
+    //    InfoOfHuman human = new InfoOfHuman();
+    //    human.Initialize(InfoOfHuman.HUMAN_TYPE.COAL_MIEAR);
+    //    unit.AddNecessaty(human);
 
-        human = new InfoOfHuman();
-        human.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
-        unit.AddPresentation(human);
+    //    human = new InfoOfHuman();
+    //    human.Initialize(InfoOfHuman.HUMAN_TYPE.ENGINEER);
+    //    unit.AddPresentation(human);
 
-        exchangeUnitManager.Add(unit);
-    }
+    //    exchangeUnitManager.Add(unit);
+    //}
+
+    ///// <summary>
+    ///// エンジニアをコストに木こりを取得できるボタンを生成
+    ///// </summary>
+    //void CreateEngineerToWoodButton()
+    //{
+    //    ExchangeUnit unit = CreateExchangeUnit.CreateNone();
+
+    //    InfoOfHuman human = new InfoOfHuman();
+    //    human.Initialize(InfoOfHuman.HUMAN_TYPE.ENGINEER);
+    //    unit.AddNecessaty(human);
+
+    //    human = new InfoOfHuman();
+    //    human.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
+    //    unit.AddPresentation(human);
+
+    //    exchangeUnitManager.Add(unit);
+    //}
 }

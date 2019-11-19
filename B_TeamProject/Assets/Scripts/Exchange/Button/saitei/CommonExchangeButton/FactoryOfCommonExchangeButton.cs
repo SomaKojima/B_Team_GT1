@@ -23,13 +23,13 @@ public class FactoryOfCommonExchangeButton : MonoBehaviour
     }
 
 
-    public CommonExchangeButton Create(int necessary, List<InfoOfHuman> humans, List<InfoOfBuildingResource> buildingResources)
+    public CommonExchangeButton Create(int id, int necessary, List<InfoOfHuman> humans, List<InfoOfBuildingResource> buildingResources)
     {
         GameObject instance = Instantiate(prefab);
         instance.transform.SetParent(parent.transform, false);
 
         CommonExchangeButton button = instance.GetComponent<CommonExchangeButton>();
-        button.Initialize(necessary, humans, buildingResources);
+        button.Initialize(id, necessary, humans, buildingResources);
 
         return button;
     }

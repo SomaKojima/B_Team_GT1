@@ -10,6 +10,15 @@ public class TextCommonExchange : MonoBehaviour
     [SerializeField]
     ManagerOfCommonExchangeButton managerButton;
 
+    [SerializeField]
+    FactoryOfCommonSelectIcon factorySelectIcon;
+
+    [SerializeField]
+    ManagerOfCommonSelectIcon managerSelectIcon;
+
+    [SerializeField]
+    SelectNecessaryWindow selectNecessaryWindow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +32,23 @@ public class TextCommonExchange : MonoBehaviour
         humans.Add(human);
 
         InfoOfBuildingResource br = CreateInfoOfBuildingResource.CreateInfo(InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.MACHINE);
-        br.AddCount(100);
+        br.AddCount(10);
         brs.Add(br);
 
-        managerButton.Add(factoryButton.Create(10, humans, brs));
+        managerButton.Add(factoryButton.Create(0,10, humans, brs));
+
+
+        
+        // アイコンの作成
+        for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
+        {
+            managerSelectIcon.Add(factorySelectIcon.Create((InfoOfHuman.HUMAN_TYPE)i));
+        }
+        for (int i = 0; i < (int)InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.MAX; i++)
+        {
+            managerSelectIcon.Add(factorySelectIcon.Create((InfoOfBuildingResource.BUILDING_RESOUCE_TYPE)i));
+        }
+
     }
 
     // Update is called once per frame
@@ -34,7 +56,17 @@ public class TextCommonExchange : MonoBehaviour
     {
         foreach (CommonExchangeButton button in managerButton.GetClicks())
         {
-
+            button.OnClickProcess();
+            selectNecessaryWindow.Initialize(button.Necessary);
+            selectNecessaryWindow.gameObject.SetActive(true);
         }
+
+        int count = 0;
+        foreach (CommonSelectIcon icon in managerSelectIcon.SelectIcons)
+        {
+            count += icon.Count;
+        }
+        selectNecessaryWindow.Count = count;
+
     }
 }

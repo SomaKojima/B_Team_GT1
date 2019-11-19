@@ -17,7 +17,8 @@ public class CommonSelectIcon : MonoBehaviour
     [SerializeField]
     Text currentCountText;
 
-    int id = 0;
+    InfoOfBuildingResource.BUILDING_RESOUCE_TYPE brType = InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.NONE;
+    InfoOfHuman.HUMAN_TYPE humanType = InfoOfHuman.HUMAN_TYPE.NONE;
 
     int count = 0;
     int currentCount = 0;
@@ -41,11 +42,11 @@ public class CommonSelectIcon : MonoBehaviour
     void Update()
     {
         countText.text = count.ToString();
-        currentCountText.text = "/ " + currentCount.ToString();
+        currentCountText.text = currentCount.ToString();
     }
 
     // 初期化
-    public void Initialize(Sprite _sprite, int _id)
+    public void Initialize(Sprite _sprite, InfoOfBuildingResource.BUILDING_RESOUCE_TYPE _brType, InfoOfHuman.HUMAN_TYPE _humanType)
     {
         iconImage.sprite = _sprite;
         count = 0;
@@ -53,7 +54,8 @@ public class CommonSelectIcon : MonoBehaviour
         countText.text = count.ToString();
         currentCountText.text = "/ " + currentCount.ToString();
 
-        id = _id;
+        brType = _brType;
+        humanType = _humanType;
     }
 
     // カウントの加算
@@ -79,6 +81,7 @@ public class CommonSelectIcon : MonoBehaviour
     // 入力中の処理
     public void OnClickProcess()
     {
+
         if (IsClickProcess())
         {
             if (isPlus)
@@ -158,9 +161,14 @@ public class CommonSelectIcon : MonoBehaviour
         return false;
     }
 
-    public int ID
+    public InfoOfBuildingResource.BUILDING_RESOUCE_TYPE BRType
     {
-        get { return id; }
+        get { return brType; }
+    }
+
+    public InfoOfHuman.HUMAN_TYPE HumanType
+    {
+        get { return humanType; }
     }
 
     public int Count

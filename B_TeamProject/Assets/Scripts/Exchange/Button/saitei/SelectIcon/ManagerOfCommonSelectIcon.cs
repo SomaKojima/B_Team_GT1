@@ -15,7 +15,13 @@ public class ManagerOfCommonSelectIcon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (CommonSelectIcon icon in selectIcons)
+        {
+            if (icon.IsDownPointer)
+            {
+                icon.OnClickProcess();
+            }
+        }
     }
 
     public void Add(CommonSelectIcon icon)

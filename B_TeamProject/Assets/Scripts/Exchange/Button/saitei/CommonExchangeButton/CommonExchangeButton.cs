@@ -14,6 +14,10 @@ public class CommonExchangeButton : MonoBehaviour
     [SerializeField]
     Text necessaryText;
 
+    int necessary = 0;
+
+    int id = 0;
+
     bool isClick = false;
 
     // Start is called before the first frame update
@@ -28,8 +32,10 @@ public class CommonExchangeButton : MonoBehaviour
         
     }
 
-    public void Initialize(int necessary, List<InfoOfHuman> humans, List<InfoOfBuildingResource> buildingResources)
+    public void Initialize(int _id, int _necessary, List<InfoOfHuman> humans, List<InfoOfBuildingResource> buildingResources)
     {
+        id = _id;
+        necessary = _necessary;
         necessaryText.text = necessary.ToString();
 
         foreach (InfoOfHuman human in humans)
@@ -56,5 +62,15 @@ public class CommonExchangeButton : MonoBehaviour
     public bool IsClick
     {
         get { return isClick; }
+    }
+
+    public int Necessary
+    {
+        get { return necessary; }
+    }
+
+    public int ID
+    {
+        get { return id; }
     }
 }
