@@ -537,3 +537,5 @@ C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Deb
 C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
 C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\obj\Debug\Assembly-CSharp.csproj.CopyComplete
+C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Debug\Unity.2D.Sprite.Editor.dll
+C:\Users\s172179\Documents\git\GraduateProduct_B_team\B_TeamProject\Temp\bin\Debug\Unity.2D.Sprite.Editor.pdb
