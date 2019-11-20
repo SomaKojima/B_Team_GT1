@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class RoomManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class RoomManager : MonoBehaviour
     private GameObject m_Player3;
     [SerializeField]
     private GameObject m_Player4;
+    [SerializeField]
+    private GameObject m_StartBtnObj;
 
     // Start is called before the first frame update
     void Start()
@@ -74,5 +78,22 @@ public class RoomManager : MonoBehaviour
                 }
             }
         }
+
+        
+        if(players.Length == 4)
+        {
+            m_StartBtnObj.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            m_StartBtnObj.GetComponent<Button>().interactable = false;
+        }
+
+        m_StartBtnObj.GetComponent<Button>().interactable = true;
+    }
+
+    public void GameStart()
+    {
+        SceneManager.LoadScene("GameStartScene");
     }
 }
