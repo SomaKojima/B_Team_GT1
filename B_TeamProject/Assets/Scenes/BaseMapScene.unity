@@ -559,5 +559,25 @@ PrefabInstance:
       propertyPath: road
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2995474812228998499, guid: 0772aa78f85e3b74191421749328ac7d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 190446103907898348, guid: 0772aa78f85e3b74191421749328ac7d,
+        type: 3}
+      propertyPath: m_Name
+      value: TMP SubMesh [LiberationSans SDF Material + LiberationSans SDF Atlas]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214942169482206801, guid: 0772aa78f85e3b74191421749328ac7d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084744279496571044, guid: 0772aa78f85e3b74191421749328ac7d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0772aa78f85e3b74191421749328ac7d, type: 3}

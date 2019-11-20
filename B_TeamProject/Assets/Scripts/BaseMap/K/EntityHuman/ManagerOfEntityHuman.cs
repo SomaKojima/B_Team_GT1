@@ -55,7 +55,6 @@ public class ManagerOfEntityHuman : MonoBehaviour
         {
             countOfType[(int)human.Type] += 1;
         }
-        Debug.Log("増えた人 ：" + human.Type.ToString());
     }
     
     // 人間の削除
@@ -77,7 +76,6 @@ public class ManagerOfEntityHuman : MonoBehaviour
 
         // ゲームオブジェクトの破棄
         Destroy(entity.gameObject);
-        Debug.Log("減った人 ：" + entity.Type.ToString());
     }
 
     // 人種別にリストから消す

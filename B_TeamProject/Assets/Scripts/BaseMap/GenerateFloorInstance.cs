@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class GenerateFloorInstance : MonoBehaviour
 {
-    const float GENERATE_HEIGHT = 30.0f;
+    const float GENERATE_HEIGHT = 10.0f;
 
     [SerializeField]
-    GameObject prefab;
+    GameObject floorPrefab;
+
+    [SerializeField]
+    GameObject floorBasePrefab;
+
     // 基盤拠点
     [SerializeField]
-    public GameObject floorBase;
+    public Transform createPosition;
 
     [SerializeField]
     public GameObject parent;
@@ -27,10 +31,19 @@ public class GenerateFloorInstance : MonoBehaviour
     }
 
 
-    public void Create()
+    public void CreateFloor()
     {
-        GameObject instance = Instantiate(prefab, new Vector3(floorBase.transform.localPosition.x, floorBase.transform.localPosition.y + GENERATE_HEIGHT, floorBase.transform.localPosition.z), Quaternion.identity);
+        GameObject instance = Instantiate(floorPrefab, new Vector3(createPosition.localPosition.x, createPosition.localPosition.y + GENERATE_HEIGHT, createPosition.localPosition.z), Quaternion.identity);
         instance.transform.SetParent(parent.transform, false);
+    }
 
+    public FloorBase CreateFloorBase()
+    {
+        GameObject instance = Instantiate(floorBasePrefab, new Vector3(createPosition.localPosition.x, createPosition.localPosition.y + GENERATE_HEIGHT, createPosition.localPosition.z), Quaternion.identity);
+        instance.transform.SetParent(parent.transform, false);
+        
+        FloorBase floorBase = instance.GetComponent<FloorBase>();
+
+        return floorBase;
     }
 }
