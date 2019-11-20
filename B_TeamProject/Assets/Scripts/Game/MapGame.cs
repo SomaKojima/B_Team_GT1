@@ -9,6 +9,9 @@ public class MapGame : MonoBehaviour
     [SerializeField]
     MapScene_TestManager MSTManager;
 
+    [SerializeField]
+    GameObject firstSelectText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,7 @@ public class MapGame : MonoBehaviour
             if (test.IsClick)
             {
                 test.OnClickProcess();
+                firstSelectText.SetActive(false);
                 switch (test.Name)
                 {
                     case MapScene_Test.BaseName.Cave:

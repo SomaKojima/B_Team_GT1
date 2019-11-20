@@ -41,7 +41,6 @@ public class InfoManagerOfHuman : MonoBehaviour
     // 人間の追加
     public void AddHumans(InfoOfHuman info)
     {
-        Debug.Log(humans.Count);
         humans.Add(info);
         Place_Type_Humans[(int)info.PlaceType][(int)info.Type].Add(info);
         isChange = true;
@@ -58,7 +57,6 @@ public class InfoManagerOfHuman : MonoBehaviour
     // 人間の削除
     public void DeleteHuman(InfoOfHuman info, int index = -1)
     {
-        Debug.Log(humans.Count);
         if (index < 0)
         {
             humans.Remove(info);

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ManagerOfRoutePosition : MonoBehaviour
 {
-    [SerializeField]
-    Transform home;
+    Transform home = null;
 
     [SerializeField]
     Transform entityBuildingResource;
@@ -25,14 +24,15 @@ public class ManagerOfRoutePosition : MonoBehaviour
 
     }
 
-    public Vector3 Home
+    public Transform Home
     {
-        get { return home.position; }
+        get { return home; }
+        set { home = value; }
     }
 
-    public Vector3 EntityBuildingResource
+    public Transform EntityBuildingResource
     {
-        get { return entityBuildingResource.position; }
+        get { return entityBuildingResource; }
     }
 
     public float RoadZ

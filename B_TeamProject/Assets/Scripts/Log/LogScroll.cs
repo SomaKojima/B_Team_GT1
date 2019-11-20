@@ -96,13 +96,11 @@ public class LogScroll : MonoBehaviour
     public void OnPointerDown()
     {
         isPointerDown = true;
-        Debug.Log("Down");
     }
 
     public void OnPointerUp()
     {
         isPointerDown = false;
-        Debug.Log("Up");
     }
 }
 

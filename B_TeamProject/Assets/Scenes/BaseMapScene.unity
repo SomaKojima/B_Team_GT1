@@ -373,7 +373,7 @@ PrefabInstance:
     - target: {fileID: 8487882444193826169, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6413540115556313631, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
@@ -433,27 +433,32 @@ PrefabInstance:
     - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342766336347924039, guid: 8897151a5c3610f4a981a2eeea132779,
+        type: 3}
+      propertyPath: type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963912376483, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
@@ -469,11 +474,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -44.300003
-      objectReference: {fileID: 0}
-    - target: {fileID: 6342766336347924039, guid: 8897151a5c3610f4a981a2eeea132779,
-        type: 3}
-      propertyPath: type
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8897151a5c3610f4a981a2eeea132779, type: 3}
@@ -557,6 +557,26 @@ PrefabInstance:
     - target: {fileID: 4813130905333000280, guid: 0772aa78f85e3b74191421749328ac7d,
         type: 3}
       propertyPath: road
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995474812228998499, guid: 0772aa78f85e3b74191421749328ac7d,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 190446103907898348, guid: 0772aa78f85e3b74191421749328ac7d,
+        type: 3}
+      propertyPath: m_Name
+      value: TMP SubMesh [LiberationSans SDF Material + LiberationSans SDF Atlas]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214942169482206801, guid: 0772aa78f85e3b74191421749328ac7d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084744279496571044, guid: 0772aa78f85e3b74191421749328ac7d,
+        type: 3}
+      propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
