@@ -88,6 +88,8 @@ public class RoomManager : MonoBehaviour
         {
             m_StartBtnObj.GetComponent<Button>().interactable = false;
         }
+
+        m_StartBtnObj.GetComponent<Button>().interactable = true;
     }
 
     public void GameStart()
