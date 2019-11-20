@@ -56,7 +56,7 @@ public class RoomManager : MonoBehaviour
         else
         {
             for (int i = 0; i < players.Length; i++)
-            {
+            {   
                 switch (players[i].ID)
                 {
                     case 1:
