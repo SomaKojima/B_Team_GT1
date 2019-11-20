@@ -57,7 +57,7 @@ public class TextCommonExchange : MonoBehaviour
         foreach (CommonExchangeButton button in managerButton.GetClicks())
         {
             button.OnClickProcess();
-            selectNecessaryWindow.Initialize(button.Necessary);
+            //selectNecessaryWindow.Initialize(button.Necessary);
             selectNecessaryWindow.gameObject.SetActive(true);
         }
 

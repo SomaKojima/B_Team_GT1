@@ -178,6 +178,8 @@ MonoBehaviour:
   excCountText: {fileID: 1637537197}
   exchangeButton: {fileID: 352635045}
   CancelButton: {fileID: 1601973891}
+  factorySelectIcon: {fileID: 1986488837}
+  managerSelectIcon: {fileID: 1497929104}
 --- !u!1 &54121061
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,8 +938,6 @@ MonoBehaviour:
   saiteiButtons: {fileID: 2011756879}
   factoryButton: {fileID: 1651823531}
   managerButton: {fileID: 1560079958}
-  factorySelectIcon: {fileID: 1986488837}
-  managerSelectIcon: {fileID: 1497929104}
   selectNecessaryWindow: {fileID: 11853580}
 --- !u!4 &508548709
 Transform:
@@ -2859,8 +2859,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3042326239796994171, guid: 86afdc01f7e71494c87302d01b8f9ae7, type: 3}
   human_wood: {fileID: 21300000, guid: 5e582cb2dd9564840aebf68335beea1a, type: 3}
-  human_enginer: {fileID: 21300000, guid: 790098503a6b776408345880b4d5c96a, type: 3}
-  human_coal_miear: {fileID: 21300000, guid: aa08419d9b1726544828c4e5dce9ebdd, type: 3}
+  human_enginer: {fileID: 21300000, guid: aa08419d9b1726544828c4e5dce9ebdd, type: 3}
+  human_coal_miear: {fileID: 21300000, guid: 790098503a6b776408345880b4d5c96a, type: 3}
   br_machine: {fileID: 21300000, guid: 23f69ef2f0143304c884a3140bab604b, type: 3}
   br_ore: {fileID: 21300000, guid: d0afe285360e05647994a2747fcc88fe, type: 3}
   br_wood: {fileID: 21300000, guid: f6da052d018bbee4bb84779c232192db, type: 3}
@@ -3029,7 +3029,7 @@ PrefabInstance:
     - target: {fileID: 8487882444193826169, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6413540115556313631, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
@@ -3089,27 +3089,27 @@ PrefabInstance:
     - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963885010213, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7001084963705735070, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6342766336347924039, guid: 8897151a5c3610f4a981a2eeea132779,
         type: 3}

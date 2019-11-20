@@ -25,4 +25,20 @@ public class InfoManagerOfBuildingResource : MonoBehaviour
     {
         return buildingResources[(int)type];
     }
+
+    public void AddBRs(List<InfoOfBuildingResource> brs)
+    {
+        foreach (InfoOfBuildingResource br in brs)
+        {
+            buildingResources[(int)br.Type].AddCount(br.Count);
+        }
+    }
+
+    public void SubBRs(List<InfoOfBuildingResource> brs)
+    {
+        foreach (InfoOfBuildingResource br in brs)
+        {
+            buildingResources[(int)br.Type].SubCount(br.Count);
+        }
+    }
 }

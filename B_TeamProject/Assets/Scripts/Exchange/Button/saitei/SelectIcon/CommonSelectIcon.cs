@@ -41,6 +41,10 @@ public class CommonSelectIcon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (count > currentCount)
+        {
+            count = currentCount;
+        }
         countText.text = count.ToString();
         currentCountText.text = currentCount.ToString();
     }

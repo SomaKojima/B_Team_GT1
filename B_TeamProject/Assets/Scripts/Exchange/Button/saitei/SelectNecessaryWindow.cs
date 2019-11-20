@@ -32,11 +32,15 @@ public class SelectNecessaryWindow : MonoBehaviour
 
     int count = 0;
 
-    public void Initialize(int _necessary)
+    int id = 0;
+
+    public void Initialize(int _necessary, int _id)
     {
         necessary = _necessary;
         necessaryText.text = necessary.ToString();
         count = 0;
+
+        id = _id;
     }
 
     // Start is called before the first frame update
@@ -75,15 +79,7 @@ public class SelectNecessaryWindow : MonoBehaviour
         }
 
         // 交換する数を更新
-        if (necessary != 0)
-        {
-            int c = count / necessary;
-            excCountText.text = "x" + c.ToString();
-        }
-        else
-        {
-            excCountText.text = "x" + count.ToString();
-        }
+        excCountText.text = "x" + ExcCount().ToString();
 
         // 戻るボタン
         if (CancelButton.IsClick)
@@ -119,5 +115,62 @@ public class SelectNecessaryWindow : MonoBehaviour
     public ManagerOfCommonSelectIcon MgrCommonSelectIcon
     {
         get { return managerSelectIcon; }
+    }
+
+    public int[] GetHumanCount()
+    {
+        int[] count = new int[(int)InfoOfHuman.HUMAN_TYPE.MAX];
+        for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
+        {
+            count[i] = 0;
+        }
+
+        foreach (CommonSelectIcon icon in managerSelectIcon.SelectIcons)
+        {
+            if (icon.HumanType != InfoOfHuman.HUMAN_TYPE.NONE)
+            {
+                count[(int)icon.HumanType] = icon.Count;
+            }
+        }
+
+        return count;
+    }
+
+    public int[] GetBRCount()
+    {
+        int[] count = new int[(int)InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.MAX];
+        for (int i = 0; i < (int)InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.MAX; i++)
+        {
+            count[i] = 0;
+        }
+
+        foreach (CommonSelectIcon icon in managerSelectIcon.SelectIcons)
+        {
+            if (icon.BRType != InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.NONE)
+            {
+                count[(int)icon.BRType] = icon.Count;
+            }
+        }
+
+        return count;
+    }
+
+    public int ID
+    {
+        get { return id; }
+    }
+
+    public int ExcCount()
+    {
+        if (necessary != 0)
+        {
+            return count / necessary;
+           
+        }
+        else
+        {
+            if (count == 0) return 1;
+            return count;
+        }
     }
 }

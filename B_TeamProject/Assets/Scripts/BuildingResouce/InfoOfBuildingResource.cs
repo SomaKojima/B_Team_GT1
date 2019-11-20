@@ -57,6 +57,11 @@ public class InfoOfBuildingResource
         //Debug.Log(type + "の資源量 : " + count);
     }
 
+    public void SubCount(int sub)
+    {
+        count -= sub;
+    }
+
     public int Count
     {
         get { return count; }

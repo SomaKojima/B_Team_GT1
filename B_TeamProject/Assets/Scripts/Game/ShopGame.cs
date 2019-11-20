@@ -68,7 +68,7 @@ public class ShopGame : MonoBehaviour
         foreach (CommonExchangeButton button in managerButton.GetClicks())
         {
             button.OnClickProcess();
-            selectNecessaryWindow.Initialize(button.Necessary);
+            selectNecessaryWindow.Initialize(button.Necessary, button.ID);
             selectNecessaryWindow.gameObject.SetActive(true);
         }
 
@@ -76,9 +76,10 @@ public class ShopGame : MonoBehaviour
         if (selectNecessaryWindow.IsExchange)
         {
             selectNecessaryWindow.OnExchangeClickProcess();
-            
+            ExchangeSaitei();
         }
 
+        // 最低の素材選択の更新
         foreach(CommonSelectIcon icon in selectNecessaryWindow.MgrCommonSelectIcon.SelectIcons)
         {
             if (icon.BRType != InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.NONE)
@@ -101,22 +102,47 @@ public class ShopGame : MonoBehaviour
         Debug.Log("ボタンのID:" + id + "ユニットのID:" + unit.ID);
         if (unit != null)
         {
-            if (game.HumanManager.CheckHumansOf(unit.NecessatyHumans))
-            {
-                game.HumanManager.DeleteHumansOf(unit.NecessatyHumans);
+            game.HumanManager.DeleteHumansOf(unit.NecessatyHumans);
 
-                // 交換時の初期化
-                foreach (InfoOfHuman human in unit.PresentationHumans)
-                {
-                    human.PlaceType = game.GetHumanPlaceType();
-                }
-                game.HumanManager.AddHumans(unit.PresentationHumans);
-                CreateLogUIOfExchange(unit.NecessatyHumans, unit.PresentationHumans);
-            }
-            else
+            // 交換時の初期化
+            foreach (InfoOfHuman human in unit.PresentationHumans)
             {
-                game.CreateLogUI("交換に必要な人数が足りません");
+                human.PlaceType = game.GetHumanPlaceType();
             }
+            game.HumanManager.AddHumans(unit.PresentationHumans);
+            CreateLogUIOfExchange(unit.NecessatyHumans, unit.PresentationHumans);
+        }
+    }
+
+    void ExchangeSaitei()
+    {
+        // IDからユニットを取得
+        ExchangeUnit unit = exchangeUnitManager.Get(selectNecessaryWindow.ID);
+
+        // 人間を減らす
+        int[] count = selectNecessaryWindow.GetHumanCount();
+        for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
+        {
+            game.HumanManager.DeleteHumansOf((InfoOfHuman.HUMAN_TYPE)i, count[i]);
+        }
+
+        // 資源を減らす
+        count = selectNecessaryWindow.GetBRCount();
+        for (int i = 0; i < (int)InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.MAX; i++)
+        {
+            game.BuildingManager.GetBuildingResource((InfoOfBuildingResource.BUILDING_RESOUCE_TYPE)i).SubCount(count[i]);
+        }
+
+        // 人間の設置する場所を設定する
+        foreach (InfoOfHuman hu in unit.PresentationHumans)
+        {
+            hu.PlaceType = game.GetHumanPlaceType();
+        }
+        // 資源・人間を取得する
+        for (int i = 0; i < selectNecessaryWindow.ExcCount(); i++)
+        {
+            game.HumanManager.AddHumans(unit.PresentationHumans);
+            game.BuildingManager.AddBRs(unit.PresentationBRs);
         }
     }
 
@@ -177,14 +203,28 @@ public class ShopGame : MonoBehaviour
         /// 
         ///-----------------------------------------------------
         List<InfoOfHuman> humans = new List<InfoOfHuman>();
+        List<InfoOfHuman> neceHuman = new List<InfoOfHuman>();
         humans.Add(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD, InfoOfHuman.PLACE_TYPE.NONE));
         ExchangeUnit unit = CreateExchangeUnit.Create(humans, null, 0);
         exchangeUnitManager.Add(unit);
 
 
-        humans.Clear();
+        humans = new List<InfoOfHuman>();
+        neceHuman = new List<InfoOfHuman>();
         humans.Add(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.WOOD, InfoOfHuman.PLACE_TYPE.NONE));
         unit = CreateExchangeUnit.Create(null, null, 1);
+        exchangeUnitManager.Add(unit);
+
+        humans = new List<InfoOfHuman>();
+        neceHuman = new List<InfoOfHuman>();
+        humans.Add(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.ENGINEER, InfoOfHuman.PLACE_TYPE.NONE));
+        unit = CreateExchangeUnit.Create(humans, null, 1);
+        exchangeUnitManager.Add(unit);
+
+        humans = new List<InfoOfHuman>();
+        neceHuman = new List<InfoOfHuman>();
+        humans.Add(CreateInfoOfHuman.CreateInfo(InfoOfHuman.HUMAN_TYPE.COAL_MIEAR, InfoOfHuman.PLACE_TYPE.NONE));
+        unit = CreateExchangeUnit.Create(humans, null, 1);
         exchangeUnitManager.Add(unit);
     }
 
