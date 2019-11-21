@@ -18,6 +18,13 @@ public class ShopGame : MonoBehaviour
     [SerializeField]
     UIButtonClick cancelButton;
 
+    [SerializeField]
+    IconManager m_iconManger;
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +45,9 @@ public class ShopGame : MonoBehaviour
         humanNecce = new InfoOfHuman();
         humanNecce.Initialize(InfoOfHuman.HUMAN_TYPE.WOOD);
 
+        InfoOfBuildingResource resourcesNecce = new InfoOfBuildingResource();
+        resourcesNecce.Initialize(InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.WOOD);
+
 
         unitNecce.AddPresentation(humanNecce);
 
@@ -54,6 +64,10 @@ public class ShopGame : MonoBehaviour
         // ユニットの作成
         exchangeUnitManager.Add(CreateExchangeUnit.Create());
         exchangeUnitManager.Add(CreateExchangeUnit.Create());
+
+
+
+        m_iconManger = new IconManager();
 
         // ユニットからボタンを作成
         foreach (ExchangeUnit unit in exchangeUnitManager.Units)
@@ -78,6 +92,8 @@ public class ShopGame : MonoBehaviour
             cancelButton.OnClickProcess();
             game.CamerasManager.Undo();
         }
+
+        
     }
 
     // 交換の処理
