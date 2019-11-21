@@ -18,6 +18,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField]
     private GameObject m_StartBtnObj;
 
+    public bool StartFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,10 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(StartFlag==true)
+        {
+            SceneManager.LoadScene("GameStartScene");
+        }
     }
 
     //誰かがルームに入室したときに呼ばれるコールバックメソッド
@@ -79,21 +84,43 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        
-        if(players.Length == 4)
+
+        if(PhotonNetwork.isMasterClient)
         {
+            if (players.Length == 4)
+            {
+                m_StartBtnObj.GetComponent<Button>().interactable = true;
+            }
+            else
+            {
+                m_StartBtnObj.GetComponent<Button>().interactable = false;
+            }
+
             m_StartBtnObj.GetComponent<Button>().interactable = true;
         }
-        else
-        {
-            m_StartBtnObj.GetComponent<Button>().interactable = false;
-        }
-
-        m_StartBtnObj.GetComponent<Button>().interactable = true;
+        
     }
 
     public void GameStart()
     {
-        SceneManager.LoadScene("GameStartScene");
+        StartFlag = true;
+        
+    }
+
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            //データの送信
+            //stream.SendNext(hensu1);
+            
+        }
+        else
+        {
+            //データの受信
+            //this.hensu1 = (int)stream.ReceiveNext();
+            
+            
+        }
     }
 }
