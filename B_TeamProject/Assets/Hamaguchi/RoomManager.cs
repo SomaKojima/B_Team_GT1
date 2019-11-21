@@ -20,6 +20,8 @@ public class RoomManager : MonoBehaviour
 
     public bool StartFlag = false;
 
+    private int count = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,12 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(StartFlag==true)
+        if (StartFlag == true)
+        {
+            count++;
+        }
+
+        if (count > 60)
         {
             SceneManager.LoadScene("GameStartScene");
         }
