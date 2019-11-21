@@ -9,6 +9,24 @@ public class PVManager : Photon.MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PhotonPlayer[] players = PhotonNetwork.playerList;
+
+        int count = 0;
+        while (true)
+        {
+            if (count + 1 >= players.Length)
+            {
+                break;
+            }
+            if (players[count].ID > players[count + 1].ID)
+            {
+                PhotonPlayer playerA = players[count];
+                players[count] = players[count + 1];
+                players[count + 1] = playerA;
+            }
+            count++;
+        }
+
         for (int i = 0; i < 4; i++) 
         {
             playerInfos[i] = new PlayerInfo();
@@ -19,7 +37,7 @@ public class PVManager : Photon.MonoBehaviour
             playerInfos[i].Area5Point = 0;
             playerInfos[i].Area6Point = 0;
             playerInfos[i].TradeFlag = false;
-            playerInfos[i].PlayerID = PhotonNetwork.player.ID;
+            playerInfos[i].PlayerID = players[i].ID;
         }
     }
 
@@ -111,6 +129,11 @@ public class PVManager : Photon.MonoBehaviour
     public int MyIDGet()
     {
         return PhotonNetwork.player.ID;
+    }
+
+    public int PlayerIDGet(int PlayerNum)
+    {
+        return playerInfos[PlayerNum].PlayerID;
     }
 
     public void PLInfoTreadFlagSet(int ID,bool SetFlag)
