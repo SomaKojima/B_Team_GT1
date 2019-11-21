@@ -36,7 +36,13 @@ public class BaseMapGame : MonoBehaviour
     GenerateFloorInstance factoryOfFloor;
 
     [SerializeField]
-    CheckClick woodPanel;
+    CheckClick zouchikuPanel;
+
+    [SerializeField]
+    CheckClick kaitakuPanel;
+
+    FloorBase floorBase = null;
+
 
 
     // Start is called before the first frame update
@@ -90,26 +96,37 @@ public class BaseMapGame : MonoBehaviour
         }
 
         // 木の看板
-        if (woodPanel.IsClick)
+        if (zouchikuPanel.IsClick)
         {
-            game.CreateLogUI("増築しました");
-            woodPanel.OnClickProcess();
-            factoryOfFloor.Create();
+            zouchikuPanel.OnClickProcess();
+            if (floorBase != null)
+            {
+                game.CreateLogUI("増築しました");
+                factoryOfFloor.CreateFloor();
+            }
         }
 
+        if (kaitakuPanel.IsClick)
+        {
+            kaitakuPanel.OnClickProcess();
+            floorBase = factoryOfFloor.CreateFloorBase();
+            managerOfRoutePosition.Home = floorBase.RoutePosition;
+            kaitakuPanel.gameObject.SetActive(false);
+        }
     }
 
     // 人数を合わせる
     void JudgeCount(int InfoCount, int entityCount, InfoOfHuman.HUMAN_TYPE type)
     {
-        Debug.Log("info : " + InfoCount + ", entity : " + entityCount + ", type : " + type.ToString());
+        if (managerOfRoutePosition.Home == null) return;
+
         int sabun = InfoCount - entityCount;
         // 増やす
         for (int i = 0; i < sabun; i++)
         {
             managerOfEntityHuman.Add(factoryOfEntityHuman.Create(
                 type,
-                managerOfRoutePosition.Home + new Vector3(0, 10.0f, 0),
+                managerOfRoutePosition.Home.position + new Vector3(0, 10.0f, 0),
                 "CollectPoint"
                 ));
         }
