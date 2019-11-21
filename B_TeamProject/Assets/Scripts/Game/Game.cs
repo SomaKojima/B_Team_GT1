@@ -28,7 +28,8 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     CloudMove2 cloud;
-    
+
+    int buildingCount = 0;
 
     CameraType.CAMERA_TYPE current = CameraType.CAMERA_TYPE.WOOD;
 
@@ -145,5 +146,11 @@ public class Game : MonoBehaviour
                 return InfoOfHuman.PLACE_TYPE.CAVE;
         }
         return InfoOfHuman.PLACE_TYPE.NONE;
+    }
+
+    public int BuildingCount
+    {
+        get { return buildingCount; }
+        set { buildingCount = value; }
     }
 }

@@ -41,6 +41,11 @@ public class SelectNecessaryWindow : MonoBehaviour
         count = 0;
 
         id = _id;
+
+        foreach(CommonSelectIcon icon in managerSelectIcon.SelectIcons)
+        {
+            icon.Count = 0;
+        }
     }
 
     // Start is called before the first frame update

@@ -178,6 +178,7 @@ public class CommonSelectIcon : MonoBehaviour
     public int Count
     {
         get { return count; }
+        set { count = 0; }
     }
 
     public bool IsPlus

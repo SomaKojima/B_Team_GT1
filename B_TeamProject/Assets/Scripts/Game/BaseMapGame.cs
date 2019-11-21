@@ -43,8 +43,6 @@ public class BaseMapGame : MonoBehaviour
 
     FloorBase floorBase = null;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -101,7 +99,8 @@ public class BaseMapGame : MonoBehaviour
             zouchikuPanel.OnClickProcess();
             if (floorBase != null)
             {
-                game.CreateLogUI("増築しました");
+                game.BuildingCount = game.BuildingCount + 1;
+                game.CreateLogUI(game.BuildingCount.ToString() + "階を増築しました");
                 factoryOfFloor.CreateFloor();
             }
         }
@@ -109,9 +108,11 @@ public class BaseMapGame : MonoBehaviour
         if (kaitakuPanel.IsClick)
         {
             kaitakuPanel.OnClickProcess();
+            game.CreateLogUI("開拓しました");
             floorBase = factoryOfFloor.CreateFloorBase();
             managerOfRoutePosition.Home = floorBase.RoutePosition;
             kaitakuPanel.gameObject.SetActive(false);
+            game.BuildingCount = game.BuildingCount + 1;
         }
     }
 

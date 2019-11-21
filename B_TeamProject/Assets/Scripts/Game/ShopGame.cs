@@ -62,6 +62,7 @@ public class ShopGame : MonoBehaviour
         {
             cancelButton.OnClickProcess();
             game.CamerasManager.Undo();
+            selectNecessaryWindow.gameObject.SetActive(false);
         }
 
         // 最低のボタンが押された
@@ -77,6 +78,7 @@ public class ShopGame : MonoBehaviour
         {
             selectNecessaryWindow.OnExchangeClickProcess();
             ExchangeSaitei();
+            game.CreateLogUI("交換しました");
         }
 
         // 最低の素材選択の更新
