@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField]
-    CameraType.CAMERA_TYPE type = CameraType.CAMERA_TYPE.BASE_MAP;
+    CameraType.CAMERA_TYPE type = CameraType.CAMERA_TYPE.WOOD;
 
     List<CameraType.CAMERA_TYPE> undo = new List<CameraType.CAMERA_TYPE>();
     bool isChange = false;

@@ -5,7 +5,13 @@ using UnityEngine;
 public class FactoryOfEntityHuman : MonoBehaviour
 {
     [SerializeField]
-    GameObject prefab;
+    GameObject woodPefab;
+
+    [SerializeField]
+    GameObject coalMiearPrefab;
+
+    [SerializeField]
+    GameObject enginerPrefab;
 
     [SerializeField]
     GameObject parent;
@@ -25,7 +31,22 @@ public class FactoryOfEntityHuman : MonoBehaviour
 
     public EntityHuman Create(InfoOfHuman.HUMAN_TYPE _type, Vector3 _position, string tag)
     {
-        GameObject instance = Instantiate(prefab);
+        GameObject instance = null;
+
+        switch (_type)
+        {
+            case InfoOfHuman.HUMAN_TYPE.WOOD:
+                instance = Instantiate(woodPefab);
+                break;
+            case InfoOfHuman.HUMAN_TYPE.COAL_MIEAR:
+                instance = Instantiate(coalMiearPrefab);
+                break;
+            case InfoOfHuman.HUMAN_TYPE.ENGINEER:
+                instance = Instantiate(enginerPrefab);
+                break;
+        }
+
+        if (instance == null) return null;
         instance.transform.SetParent(parent.transform, false);
         instance.transform.position = _position;
 

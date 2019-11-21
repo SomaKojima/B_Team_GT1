@@ -3,7 +3,11 @@ guid: c637634652a2b5a4a9a40959706764fd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - woodPrefab: {instanceID: 0}
+  - engineerPrefab: {instanceID: 0}
+  - coalMinerPrefab: {instanceID: 0}
+  - parent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

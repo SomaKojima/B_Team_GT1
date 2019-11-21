@@ -1267,7 +1267,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c637634652a2b5a4a9a40959706764fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5122093088272929627, guid: 09e2978198019e941affa1a5849d6b09, type: 3}
+  woodPefab: {fileID: 5122093088272929627, guid: 09e2978198019e941affa1a5849d6b09,
+    type: 3}
+  coalMiearPrefab: {fileID: 1100945734171975105, guid: 2ea9743d62597ea44a33009af402a4f3,
+    type: 3}
+  enginerPrefab: {fileID: 1395515171711954489, guid: 07ac7dbbf0422174c82e3cb3403f6fe5,
+    type: 3}
   parent: {fileID: 4813130904777022558}
 --- !u!1 &4813130906440569392
 GameObject:
@@ -1596,6 +1601,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4813130906464698034}
     m_Modifications:
+    - target: {fileID: 19711490922377560, guid: e891d25c44d86fd4f9ecfc4b47258c3d,
+        type: 3}
+      propertyPath: m_Name
+      value: CancelButton
+      objectReference: {fileID: 0}
     - target: {fileID: 19711490922377563, guid: e891d25c44d86fd4f9ecfc4b47258c3d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1711,11 +1721,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 19711490922377560, guid: e891d25c44d86fd4f9ecfc4b47258c3d,
-        type: 3}
-      propertyPath: m_Name
-      value: CancelButton
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e891d25c44d86fd4f9ecfc4b47258c3d, type: 3}
 --- !u!114 &4795676584377334190 stripped
@@ -1743,6 +1748,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4813130906440569394}
     m_Modifications:
+    - target: {fileID: 2939515000136953568, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
+        type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
     - target: {fileID: 2939515000136953597, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1797,11 +1807,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2939515000136953568, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
-        type: 3}
-      propertyPath: m_Name
-      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 5314490044331378802, guid: 00f7c7d1c5ec9c847b2e3fef72e7aa0a,
         type: 3}

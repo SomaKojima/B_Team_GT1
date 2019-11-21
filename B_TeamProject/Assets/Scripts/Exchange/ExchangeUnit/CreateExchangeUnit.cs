@@ -15,18 +15,21 @@ public class CreateExchangeUnit
     {
 
     }
-
-    static public ExchangeUnit CreateNone()
+    
+    static public ExchangeUnit Create(List<InfoOfHuman> presHumans, List<InfoOfBuildingResource> presBRs, int neccesaryCount)
     {
         ExchangeUnit unit = new ExchangeUnit();
+
+        unit.Initialize(presHumans, presBRs, null, null, neccesaryCount);
 
         return unit;
     }
 
-    static public ExchangeUnit Create()
+    static public ExchangeUnit Create(List<InfoOfHuman> presHumans, List<InfoOfBuildingResource> presBRs, List<InfoOfHuman> neceHumans, List<InfoOfBuildingResource> neceBRs)
     {
         ExchangeUnit unit = new ExchangeUnit();
-        unit.RandomSet();
+
+        unit.Initialize(presHumans, presBRs, neceHumans, neceBRs);
 
         return unit;
     }

@@ -51,12 +51,11 @@ public class BaseMapGame : MonoBehaviour
     void Update()
     {
         // 木こりの人数を合わせる
-        InfoOfHuman.HUMAN_TYPE type = InfoOfHuman.HUMAN_TYPE.WOOD;
-        Debug.Log(cameraType.Type.ToString() + " : " + game.HumanManager.GetCountOf(game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)));
-        if (game.HumanManager.GetCountOf(game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)) > managerOfEntityHuman.Humans.Count)
+        InfoOfHuman.PLACE_TYPE placeType = game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type);
+        for (int i = 0; i < (int)InfoOfHuman.HUMAN_TYPE.MAX; i++)
         {
-            int infoCount = game.HumanManager.GetHumansOf(type, game.ChangeToHumnaPlaceTypeFromCameraType(cameraType.Type)).Count;
-            JudgeCount(infoCount, managerOfEntityHuman.GetCountOf(type), type);
+            InfoOfHuman.HUMAN_TYPE type = (InfoOfHuman.HUMAN_TYPE)i;
+            JudgeCount(game.HumanManager.GetHumansOf(type, placeType).Count, managerOfEntityHuman.GetCountOf(type), type);
         }
 
         // 収集
@@ -65,7 +64,7 @@ public class BaseMapGame : MonoBehaviour
             InfoOfBuildingResource.BUILDING_RESOUCE_TYPE buildingType = ChangeFromHumanType(human.Type);
             EntityBuildingResource entity = managerOfEntityBuildingResource.EntityBRs[0];
             int count = entity.GetBuildingResourceCount();
-            game.CreateLogUI(entity.Type.ToString() + " x" + game.BuildingManager.GetBuildingResource(entity.Type).Count.ToString());
+            //game.CreateLogUI(entity.Type.ToString() + " x" + game.BuildingManager.GetBuildingResource(entity.Type).Count.ToString());
             //game.BuildingManager.GetBuildingResource(entity.Type).AddCount(count);
             human.Move.OnCollectProcess();
         }
@@ -103,6 +102,7 @@ public class BaseMapGame : MonoBehaviour
     // 人数を合わせる
     void JudgeCount(int InfoCount, int entityCount, InfoOfHuman.HUMAN_TYPE type)
     {
+        Debug.Log("info : " + InfoCount + ", entity : " + entityCount + ", type : " + type.ToString());
         int sabun = InfoCount - entityCount;
         // 増やす
         for (int i = 0; i < sabun; i++)
@@ -116,7 +116,7 @@ public class BaseMapGame : MonoBehaviour
         if (sabun < 0)
         {
             // 減らす
-            managerOfEntityHuman.DeleteHumansOf(type, sabun);
+            managerOfEntityHuman.DeleteHumansOf(type, Mathf.Abs(sabun));
         }
     }
 

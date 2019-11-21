@@ -8,7 +8,9 @@ public class InfoOfBuildingResource
     public enum BUILDING_RESOUCE_TYPE
     {
         NONE = -1,
-        WOOD,
+        WOOD,       // 建材
+        MACHINE,    // 機械
+        ORE,        // 鉱石
 
         MAX
     };
@@ -53,6 +55,11 @@ public class InfoOfBuildingResource
     {
         count += add;
         //Debug.Log(type + "の資源量 : " + count);
+    }
+
+    public void SubCount(int sub)
+    {
+        count -= sub;
     }
 
     public int Count

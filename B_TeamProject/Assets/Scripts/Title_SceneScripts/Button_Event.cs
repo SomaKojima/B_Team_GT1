@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Button_Event : MonoBehaviour
 {
-
+    [SerializeField]
+    string sceneName;
     //マウスクリックフラグ
     bool m_clickFlag;
 
@@ -31,5 +32,7 @@ public class Button_Event : MonoBehaviour
         //クリックしたときの処理を記入（恐らくシーン遷移かと思われる）
 
         m_clickFlag = true;
+
+        SceneManager.LoadScene(sceneName);
     }
 }
