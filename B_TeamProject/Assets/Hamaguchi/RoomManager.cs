@@ -71,20 +71,36 @@ public class RoomManager : MonoBehaviour
         }
         else
         {
+            int count = 0;
+            while(true)
+            {
+                if(count+1>=players.Length)
+                {
+                    break;
+                }
+                if(players[count].ID> players[count+1].ID)
+                {
+                    PhotonPlayer playerA = players[count];
+                    players[count] = players[count + 1];
+                    players[count + 1] = playerA;
+                }
+                count++;
+            }
+
             for (int i = 0; i < players.Length; i++)
             {   
-                switch (players[i].ID)
+                switch (i)
                 {
-                    case 1:
+                    case 0:
                         m_Player1.GetComponentInChildren<Text>().text = "Player1\n" + players[i].name;
                         break;
-                    case 2:
+                    case 1:
                         m_Player2.GetComponentInChildren<Text>().text = "Player2\n" + players[i].name;
                         break;
-                    case 3:
+                    case 2:
                         m_Player3.GetComponentInChildren<Text>().text = "Player3\n" + players[i].name;
                         break;
-                    case 4:
+                    case 3:
                         m_Player4.GetComponentInChildren<Text>().text = "Player4\n" + players[i].name;
                         break;
                 }
