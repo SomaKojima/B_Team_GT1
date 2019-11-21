@@ -29,7 +29,11 @@ public class Game : MonoBehaviour
     [SerializeField]
     CloudMove2 cloud;
 
-    int buildingCount = 0;
+    [SerializeField]
+    PVManager pvManager;
+
+    [SerializeField]
+    List<Text> texts = new List<Text>(); 
 
     CameraType.CAMERA_TYPE current = CameraType.CAMERA_TYPE.WOOD;
 
@@ -67,6 +71,14 @@ public class Game : MonoBehaviour
         if (logManager.IsAddLogs)
         {
             UpdateLogUI();
+        }
+
+        pvManager.PLInfoAreaPointGet(pvManager.MyIDGet(), 1);
+
+        int i = 0;
+        foreach (Text text in texts)
+        {
+           
         }
     }
 
@@ -148,9 +160,8 @@ public class Game : MonoBehaviour
         return InfoOfHuman.PLACE_TYPE.NONE;
     }
 
-    public int BuildingCount
+    public PVManager PvManager
     {
-        get { return buildingCount; }
-        set { buildingCount = value; }
+        get { return pvManager; }
     }
 }

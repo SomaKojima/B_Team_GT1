@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PVManager : Photon.MonoBehaviour
 {
-    private PlayerInfo[] playerInfos;
+    private PlayerInfo[] playerInfos = new PlayerInfo[4];
 
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < 4; i++) 
         {
+            playerInfos[i] = new PlayerInfo();
             playerInfos[i].Area1Point = 0;
             playerInfos[i].Area2Point = 0;
             playerInfos[i].Area3Point = 0;

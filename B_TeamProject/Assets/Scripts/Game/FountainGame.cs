@@ -35,6 +35,8 @@ public class FountainGame : MonoBehaviour
     [SerializeField]
     string testStr;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -129,12 +131,16 @@ public class FountainGame : MonoBehaviour
 
             // UIの切り替え
             uiModeManager.ChangeMode(ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE);
+
+            game.PvManager.PLInfoTreadFlagSet(game.PvManager.MyIDGet(), true);
         }
 
-        if(uiModeManager.Mode != ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE)
+        if(uiModeManager.END != ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE &&
+            uiModeManager.IsChange)
         {
             // QRコード非表示
             qrCodeManager.SetActiveQRcode(false);
+            game.PvManager.PLInfoTreadFlagSet(game.PvManager.MyIDGet(), false);
         }
 
 

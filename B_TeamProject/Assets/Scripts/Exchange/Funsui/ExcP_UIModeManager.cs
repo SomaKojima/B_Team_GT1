@@ -27,6 +27,11 @@ public class ExcP_UIModeManager : MonoBehaviour
 
     EXCP_UI_MODE mode = EXCP_UI_MODE.EXCP_UI_MODE_NONE;
 
+
+    EXCP_UI_MODE end;
+
+    bool isChange = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +41,13 @@ public class ExcP_UIModeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        isChange = false;
+        if (mode != end)
+        {
+            isChange = true;
+        }
+
+        end = mode;
     }
 
     public void Initialize()
@@ -77,5 +88,15 @@ public class ExcP_UIModeManager : MonoBehaviour
     public EXCP_UI_MODE Mode
     {
         get { return mode; }
+    }
+
+    public bool IsChange
+    {
+        get { return isChange; }
+    }
+
+    public EXCP_UI_MODE END
+    {
+        get { return end; }
     }
 }

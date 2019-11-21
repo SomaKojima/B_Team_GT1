@@ -43,6 +43,8 @@ public class BaseMapGame : MonoBehaviour
 
     FloorBase floorBase = null;
 
+    int point = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,8 +101,9 @@ public class BaseMapGame : MonoBehaviour
             zouchikuPanel.OnClickProcess();
             if (floorBase != null)
             {
-                game.BuildingCount = game.BuildingCount + 1;
-                game.CreateLogUI(game.BuildingCount.ToString() + "階を増築しました");
+                point++;
+                game.PvManager.PLInfoAreaPointSet(game.PvManager.MyIDGet(), (int)cameraType.Type - 1, point);
+                game.CreateLogUI(point.ToString() + "階を増築しました");
                 factoryOfFloor.CreateFloor();
             }
         }
@@ -112,8 +115,10 @@ public class BaseMapGame : MonoBehaviour
             floorBase = factoryOfFloor.CreateFloorBase();
             managerOfRoutePosition.Home = floorBase.RoutePosition;
             kaitakuPanel.gameObject.SetActive(false);
-            game.BuildingCount = game.BuildingCount + 1;
+            point++;
+            game.PvManager.PLInfoAreaPointSet(game.PvManager.MyIDGet(), (int)cameraType.Type - 1, point);
         }
+
     }
 
     // 人数を合わせる
