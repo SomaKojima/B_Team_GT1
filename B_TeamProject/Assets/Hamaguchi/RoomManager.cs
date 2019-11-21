@@ -112,13 +112,13 @@ public class RoomManager : MonoBehaviour
         if (stream.isWriting)
         {
             //データの送信
-            //stream.SendNext(hensu1);
+            stream.SendNext(StartFlag);
             
         }
         else
         {
             //データの受信
-            //this.hensu1 = (int)stream.ReceiveNext();
+            this.StartFlag = (bool)stream.ReceiveNext();
             
             
         }
