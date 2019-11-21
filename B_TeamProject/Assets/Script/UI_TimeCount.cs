@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class UI_TimeCount : MonoBehaviour
 {
+    [SerializeField]
+    string sceneName;
 
+    [SerializeField]
+    int StartTime = 600;
     //個数
     public const int NUM = 4;
 
@@ -17,6 +22,7 @@ public class UI_TimeCount : MonoBehaviour
     private Sprite[] m_image_num;
 
     //カウントダウンするスピード
+    [SerializeField]
     float m_speed = 0.1f;
 
     //スピード設定
@@ -27,6 +33,8 @@ public class UI_TimeCount : MonoBehaviour
     }
 
     public float timeCount { get; private set; }
+
+    float time =0;
 
 
     // Start is called before the first frame update
@@ -42,9 +50,29 @@ public class UI_TimeCount : MonoBehaviour
         m_timer[3] = transform.Find("thousand").GetComponent<Image>();
 
         //10分設定
-        SetTime(600);
+        //SetTime(600);
+        time = StartTime + 1;
     }
 
+    private void Update()
+    {
+        time -= Time.deltaTime;
+        if (time < 0)
+        {
+            time = 0;
+            TimeOver();
+        }
+
+        int _time = (int)time - 1;
+        if (_time < 0)
+        {
+            _time = 0;
+        }
+        int sec = (_time % 60);
+        SetNumbers(sec, 2, 3);
+        int minu = (_time - sec) / 60;
+        SetNumbers(minu, 0, 1);
+    }
 
     //時間を設定する（ここで自由な値に設定）
     public void SetTime(float time)
@@ -81,5 +109,6 @@ public class UI_TimeCount : MonoBehaviour
     void TimeOver()
     {
         //Debug.Log("timeUp!!!");
+        SceneManager.LoadScene(sceneName);
     }
 }
