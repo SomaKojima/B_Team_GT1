@@ -32,6 +32,9 @@ public class MoveTapText : MonoBehaviour
 
         if (rot > 360) rot = 0;
 
-        obj.transform.position = Vector3.Slerp(startPos.position, endPos.position, Mathf.Cos(Mathf.Deg2Rad * rot));
+        Vector3 vector =  endPos.position - startPos.position;
+
+        obj.transform.position = startPos.position + (vector * (1 + Mathf.Sin(rot * Mathf.Deg2Rad)) * 0.5f);
+        //obj.transform.position = Vector3.Slerp(startPos.position, endPos.position, Mathf.Abs(Mathf.Sin(Time.time)));
     }
 }
