@@ -7,6 +7,8 @@ public class PVManager : Photon.MonoBehaviour
     private PlayerInfo[] playerInfos = new PlayerInfo[4];
     int member = 0;
 
+    private PhotonView m_photonView = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,11 @@ public class PVManager : Photon.MonoBehaviour
     void Update()
     {
         
+    }
+
+    void Awake()
+    {
+        m_photonView = GetComponent<PhotonView>();
     }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -154,18 +161,23 @@ public class PVManager : Photon.MonoBehaviour
         return playerInfos[PlayerNum].PlayerNum;
     }
 
-    public void PLInfoTreadFlagSet(int ID,bool SetFlag)
+    public void PLInfoTreadFlagSet(int ID, bool SetFlag)
     {
-        for (int i = 0; i < playerInfos.Length; i++)
-        {
-            if (playerInfos[i].PlayerID == ID)
-            {
-                playerInfos[i].TradeFlag = SetFlag;
-            }
-        }
+        photonView.RPC("RPCPLInfoTreadFlagSet", PhotonTargets.MasterClient, ID, SetFlag);
     }
 
     public void PLInfoAreaPointSet(int ID, int areanum,int SetPoint)
+    {
+        photonView.RPC("RPCPLInfoAreaPointSet", PhotonTargets.MasterClient, ID, areanum, SetPoint);
+    }
+
+    public int Member
+    {
+        get { return member; }
+    }
+
+    [PunRPC]
+    private void RPCPLInfoAreaPointSet(int ID, int areanum, int SetPoint)
     {
         for (int i = 0; i < playerInfos.Length; i++)
         {
@@ -196,8 +208,15 @@ public class PVManager : Photon.MonoBehaviour
         }
     }
 
-    public int Member
+    [PunRPC]
+    private void RPCPLInfoTreadFlagSet(int ID, bool SetFlag)
     {
-        get { return member; }
+        for (int i = 0; i < playerInfos.Length; i++)
+        {
+            if (playerInfos[i].PlayerID == ID)
+            {
+                playerInfos[i].TradeFlag = SetFlag;
+            }
+        }
     }
 }

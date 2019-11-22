@@ -47,6 +47,7 @@ public class PhotonManager : Photon.MonoBehaviour
 
     }
 
+
     //ロビーに接続した時に呼ばれるコールバックメソッド
     void OnJoinedLobby()
     {
