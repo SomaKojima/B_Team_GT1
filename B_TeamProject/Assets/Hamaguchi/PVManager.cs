@@ -5,11 +5,15 @@ using UnityEngine;
 public class PVManager : Photon.MonoBehaviour
 {
     private PlayerInfo[] playerInfos = new PlayerInfo[4];
+    int member = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         PhotonPlayer[] players = PhotonNetwork.playerList;
+        member = PhotonNetwork.playerList.Length;
+
+        Debug.Log(member);
 
         int count = 0;
         while (true)
@@ -37,7 +41,16 @@ public class PVManager : Photon.MonoBehaviour
             playerInfos[i].Area5Point = 0;
             playerInfos[i].Area6Point = 0;
             playerInfos[i].TradeFlag = false;
-            playerInfos[i].PlayerID = players[i].ID;
+            playerInfos[i].PlayerNum = i;
+            if (i < member)
+            {
+                playerInfos[i].PlayerID = players[i].ID;
+            }
+            else
+            {
+                playerInfos[i].PlayerID = -1;
+            }
+            
         }
     }
 
@@ -136,6 +149,11 @@ public class PVManager : Photon.MonoBehaviour
         return playerInfos[PlayerNum].PlayerID;
     }
 
+    public int PlayerNumGet(int PlayerNum)
+    {
+        return playerInfos[PlayerNum].PlayerNum;
+    }
+
     public void PLInfoTreadFlagSet(int ID,bool SetFlag)
     {
         for (int i = 0; i < playerInfos.Length; i++)
@@ -176,5 +194,10 @@ public class PVManager : Photon.MonoBehaviour
                 }
             }
         }
+    }
+
+    public int Member
+    {
+        get { return member; }
     }
 }

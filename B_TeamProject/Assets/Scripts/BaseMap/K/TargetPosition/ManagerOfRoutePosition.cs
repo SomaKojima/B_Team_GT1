@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ManagerOfRoutePosition : MonoBehaviour
 {
+    [SerializeField]
     Transform home = null;
 
     [SerializeField]
@@ -27,7 +28,6 @@ public class ManagerOfRoutePosition : MonoBehaviour
     public Transform Home
     {
         get { return home; }
-        set { home = value; }
     }
 
     public Transform EntityBuildingResource

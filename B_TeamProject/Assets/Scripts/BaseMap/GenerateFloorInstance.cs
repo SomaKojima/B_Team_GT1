@@ -31,19 +31,23 @@ public class GenerateFloorInstance : MonoBehaviour
     }
 
 
-    public void CreateFloor()
+    public Floor CreateFloor(Transform position)
     {
-        GameObject instance = Instantiate(floorPrefab, new Vector3(createPosition.localPosition.x, createPosition.localPosition.y + GENERATE_HEIGHT, createPosition.localPosition.z), Quaternion.identity);
+        GameObject instance = Instantiate(floorPrefab, new Vector3(position.localPosition.x, position.localPosition.y + GENERATE_HEIGHT, position.localPosition.z), Quaternion.identity);
         instance.transform.SetParent(parent.transform, false);
+
+        Floor floor = instance.GetComponent<Floor>();
+
+        return floor;
     }
 
-    public FloorBase CreateFloorBase()
+    public Floor CreateFloorBase()
     {
         GameObject instance = Instantiate(floorBasePrefab, new Vector3(createPosition.localPosition.x, createPosition.localPosition.y + GENERATE_HEIGHT, createPosition.localPosition.z), Quaternion.identity);
         instance.transform.SetParent(parent.transform, false);
-        
-        FloorBase floorBase = instance.GetComponent<FloorBase>();
 
-        return floorBase;
+        Floor floor = instance.GetComponent<Floor>();
+
+        return floor;
     }
 }

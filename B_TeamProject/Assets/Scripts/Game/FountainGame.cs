@@ -87,11 +87,43 @@ public class FountainGame : MonoBehaviour
         {
             SelectExchange_OKButton.OnClickProcess();
 
+            ActiveQR();
+
+            // UIの切り替え
+            uiModeManager.ChangeMode(ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE);
+
+            game.PvManager.PLInfoTreadFlagSet(game.PvManager.MyIDGet(), true);
+        }
+
+        if(uiModeManager.END != ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE &&
+            uiModeManager.IsChange)
+        {
+            // QRコード非表示
+            qrCodeManager.SetActiveQRcode(false);
+            game.PvManager.PLInfoTreadFlagSet(game.PvManager.MyIDGet(), false);
+        }
+
+
+        ///-------------------------------------------------------------------------------------------------------
+        ///戻るボタンの処理
+        ///-------------------------------------------------------------------------------------------------------
+        if (cancelButton.IsClick)
+        {
+            if (uiModeManager.Mode == ExcP_UIModeManager.EXCP_UI_MODE.SELECT_PLAYER)
+            {
+                game.CamerasManager.Undo();
+            }
+            cancelButton.OnClickProcess();
+            uiModeManager.BackMode();
+        }
+
+        void ActiveQR()
+        {
             // QRコード表示
             qrCodeManager.SetActiveQRcode(true);
 
             // 表示するモノの切り替えのためのフラグ反転
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 qrCodeManager.SetIsRead();
             }
@@ -128,33 +160,6 @@ public class FountainGame : MonoBehaviour
                 qrCodeManager.QRImage = qrCodeManager.CreateQRcode(testStr);
                 Debug.Log(testStr);
             }
-
-            // UIの切り替え
-            uiModeManager.ChangeMode(ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE);
-
-            game.PvManager.PLInfoTreadFlagSet(game.PvManager.MyIDGet(), true);
-        }
-
-        if(uiModeManager.END != ExcP_UIModeManager.EXCP_UI_MODE.EXCHANGE_QR_MODE &&
-            uiModeManager.IsChange)
-        {
-            // QRコード非表示
-            qrCodeManager.SetActiveQRcode(false);
-            game.PvManager.PLInfoTreadFlagSet(game.PvManager.MyIDGet(), false);
-        }
-
-
-        ///-------------------------------------------------------------------------------------------------------
-        ///戻るボタンの処理
-        ///-------------------------------------------------------------------------------------------------------
-        if (cancelButton.IsClick)
-        {
-            if (uiModeManager.Mode == ExcP_UIModeManager.EXCP_UI_MODE.SELECT_PLAYER)
-            {
-                game.CamerasManager.Undo();
-            }
-            cancelButton.OnClickProcess();
-            uiModeManager.BackMode();
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BaseMapGame : MonoBehaviour
 {
     // 総合監督の情報
-    [SerializeField]
     Game game;
 
     [SerializeField]
@@ -36,14 +36,20 @@ public class BaseMapGame : MonoBehaviour
     GenerateFloorInstance factoryOfFloor;
 
     [SerializeField]
+    ManagerOfFloor managerOfFloor;
+
+    [SerializeField]
     CheckClick zouchikuPanel;
 
     [SerializeField]
     CheckClick kaitakuPanel;
 
-    FloorBase floorBase = null;
+    [SerializeField]
+    ManagerOfUserInfoUI managerOfUseInfoUI;
+
 
     int point = 0;
+    bool isCreateBaseFloor = false;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +57,8 @@ public class BaseMapGame : MonoBehaviour
         game = GameObject.Find("Game").GetComponent<Game>();
         managerOfEntityHuman.Initialize();
         managerOfEntityBuildingResource.Add(factoryOfEntityBuildingResource.Create(InfoOfBuildingResource.BUILDING_RESOUCE_TYPE.WOOD));
+
+        managerOfUseInfoUI.Initialize();
     }
 
     // Update is called once per frame
@@ -70,8 +78,8 @@ public class BaseMapGame : MonoBehaviour
             InfoOfBuildingResource.BUILDING_RESOUCE_TYPE buildingType = ChangeFromHumanType(human.Type);
             EntityBuildingResource entity = managerOfEntityBuildingResource.EntityBRs[0];
             int count = entity.GetBuildingResourceCount();
-            //game.CreateLogUI(entity.Type.ToString() + " x" + game.BuildingManager.GetBuildingResource(entity.Type).Count.ToString());
-            //game.BuildingManager.GetBuildingResource(entity.Type).AddCount(count);
+            game.CreateLogUI(entity.Type.ToString() + " x" + game.BuildingManager.GetBuildingResource(entity.Type).Count.ToString());
+            game.BuildingManager.GetBuildingResource(entity.Type).AddCount(count);
             human.Move.OnCollectProcess();
         }
 
@@ -99,12 +107,12 @@ public class BaseMapGame : MonoBehaviour
         if (zouchikuPanel.IsClick)
         {
             zouchikuPanel.OnClickProcess();
-            if (floorBase != null)
+            if (isCreateBaseFloor)
             {
                 point++;
-                game.PvManager.PLInfoAreaPointSet(game.PvManager.MyIDGet(), (int)cameraType.Type - 1, point);
                 game.CreateLogUI(point.ToString() + "階を増築しました");
-                factoryOfFloor.CreateFloor();
+                managerOfFloor.Add(factoryOfFloor.CreateFloor(managerOfFloor.GetTopTwoFloor().transform));
+                game.PvManager.PLInfoAreaPointSet(game.PvManager.MyIDGet(), (int)cameraType.Type - 1, point);
             }
         }
 
@@ -112,20 +120,26 @@ public class BaseMapGame : MonoBehaviour
         {
             kaitakuPanel.OnClickProcess();
             game.CreateLogUI("開拓しました");
-            floorBase = factoryOfFloor.CreateFloorBase();
-            managerOfRoutePosition.Home = floorBase.RoutePosition;
+            managerOfFloor.Add(factoryOfFloor.CreateFloorBase());
             kaitakuPanel.gameObject.SetActive(false);
             point++;
+            isCreateBaseFloor = true;
             game.PvManager.PLInfoAreaPointSet(game.PvManager.MyIDGet(), (int)cameraType.Type - 1, point);
         }
+        
+        managerOfUseInfoUI.UpdateActive(game.PvManager.Member);
+        for (int i = 0; i < game.PvManager.Member; i++)
+        {
+            int id = game.PvManager.PlayerIDGet(i);
+            int buldingCount = game.PvManager.PLInfoAreaPointGet(id, (int)cameraType.Type - 1);
 
+            managerOfUseInfoUI.GetPlayerInfoUI(i).SetBuildingCount(buldingCount);
+        }
     }
 
     // 人数を合わせる
     void JudgeCount(int InfoCount, int entityCount, InfoOfHuman.HUMAN_TYPE type)
     {
-        if (managerOfRoutePosition.Home == null) return;
-
         int sabun = InfoCount - entityCount;
         // 増やす
         for (int i = 0; i < sabun; i++)

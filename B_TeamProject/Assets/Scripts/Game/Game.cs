@@ -32,9 +32,6 @@ public class Game : MonoBehaviour
     [SerializeField]
     PVManager pvManager;
 
-    [SerializeField]
-    List<Text> texts = new List<Text>(); 
-
     CameraType.CAMERA_TYPE current = CameraType.CAMERA_TYPE.WOOD;
 
 
@@ -47,7 +44,6 @@ public class Game : MonoBehaviour
         {
             managerOfLogUI.Add(factoryOfLogUI.Create(""));
         }
-
     }
 
     // Update is called once per frame
@@ -72,14 +68,7 @@ public class Game : MonoBehaviour
         {
             UpdateLogUI();
         }
-
-        pvManager.PLInfoAreaPointGet(pvManager.MyIDGet(), 1);
-
-        int i = 0;
-        foreach (Text text in texts)
-        {
-           
-        }
+        
     }
 
     private void UpdateLogUI()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityBuildingResource : MonoBehaviour
 {
-    const int COUNT = 100;
+    const int COUNT = 1;
 
     [SerializeField]
     Transform collectPos;

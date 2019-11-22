@@ -12,6 +12,7 @@ public class PlayerInfo : MonoBehaviour
     public int Area6Point;
     public bool TradeFlag;
     public int PlayerID;
+    public int PlayerNum;
 
     // Start is called before the first frame update
     void Start()

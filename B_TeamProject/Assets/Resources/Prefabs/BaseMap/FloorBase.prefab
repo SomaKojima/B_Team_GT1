@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 1745223609096361645}
   - component: {fileID: 1745223609096361647}
   - component: {fileID: 3486006511992858038}
+  - component: {fileID: 1220494850034671265}
   - component: {fileID: 1745223609096361646}
   m_Layer: 0
   m_Name: FloorBase
@@ -157,6 +158,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   routePosition: {fileID: 1745223610031877190}
+--- !u!114 &1220494850034671265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745223609096361644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2210927f389376f4d82313be56bb2fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1745223609096361646
 BoxCollider:
   m_ObjectHideFlags: 0
